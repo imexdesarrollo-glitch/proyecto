@@ -1,0 +1,358 @@
+/* =========================
+   BLOG DESTACADOS
+========================= */
+.blog-highlights {
+  padding: 50px 20px;
+  background: #eef7ff;
+  text-align: center;
+}
+
+.blog-highlights h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #003c69;
+  font-weight: 700;
+}
+
+.blog-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.blog-card img {
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.blog-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #002a4a;
+}
+
+.blog-card p {
+  font-size: 14px;
+  color: #003c69;
+  margin-bottom: 15px;
+}
+
+.read-more-btn {
+  display: inline-block;
+  background: #fcd900;
+  color: #003c69;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.read-more-btn:hover {
+  background: #e6c700;
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   VIDEOS DESTACADOS
+========================= */
+.blog-videos {
+  background: #f8f9fa;
+}
+
+.video-card {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.video-card video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  background: #000;
+}
+
+.video-description {
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+/* =========================
+   GALERÍA DE IMÁGENES
+========================= */
+.blog-gallery {
+  padding: 50px 20px;
+  text-align: center;
+  background: #eef7ff;
+}
+
+.blog-gallery h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #003c69;
+  font-weight: 700;
+}
+
+.image-card {
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.image-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 576px) {
+  .blog-highlights h2,
+  .blog-videos h2,
+  .blog-gallery h2 {
+    font-size: 24px;
+  }
+}
+
+.blog-gallery img {
+  object-fit: cover;
+  height: 180px;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.blog-gallery img:hover {
+  transform: scale(1.05);
+}
+
+.zoomable {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.zoomable:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* modelado de imagenes cuando se hace click*/
+#modalImage {
+  max-width: 85vw;   /* porcentaje del ancho de la pantalla */
+  max-height: 85vh;  /* porcentaje del alto de la pantalla */
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .bg-shapes {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .products-preview {
+    margin-top: 40px;
+  }
+}
+
+/* GALERÍA - Control de tamaño en celulares */
+@media (max-width: 576px) {
+  .gallery img,
+  .galeria img,
+  .gallery-item img {
+    width: 100%;
+    height: 140px;   /*} 120px - 180px según gusto */
+    object-fit: cover;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  footer {
+    padding: 20px 10px;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  footer a {
+    display: inline-block;
+    margin: 5px 8px;
+    font-size: 13px;
+  }
+}
+
+/* =========================
+   GALERÍA - CONTROL DE TAMAÑO
+   ========================= */
+
+/* Todas las imágenes de la galería */
+.blog-gallery img {
+  width: 100%;
+  height: 200px;      /* Desktop / Tablet */
+  object-fit: cover; /* Recorta sin deformar */
+  border-radius: 10px;
+}
+
+/* MÓVILES - hacerlas más pequeñas */
+@media (max-width: 576px) {
+  .blog-gallery img {
+    height: 100px;   /* 100px - 150px */
+  }
+
+  /* Reducir espacios entre columnas en móvil */
+  .blog-gallery .col-6 {
+    padding: 6px;
+  }
+}
+/* =========================
+   PERFORMANCE MOBILE
+========================= */
+@media (max-width: 600px) {
+
+  .image-card:hover,
+  .zoomable:hover,
+  .blog-gallery img:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .image-card,
+  .zoomable,
+  .blog-gallery img {
+    transition: none !important;
+  }
+
+}
+
+/* =========================
+   BOTON DE CONTACTO DEL HEADER
+========================= */
+.read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #fcd900, #ffea70);
+  color: #003c69;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 6px 18px rgba(252, 217, 0, 0.35);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  
+
+/*GALERIA EXTENSA*/  
+}
+
+.blog-gallery-extended {
+  background: #f8f9fa;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 992px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .gallery-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+
+.gallery-item {
+  margin-bottom: 20px;
+  break-inside: avoid;
+  cursor: pointer;
+}
+
+.gallery-img {
+  width: 100%;
+  border-radius: 12px;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.gallery-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .gallery-grid {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 576px) {
+  .gallery-grid {
+    column-count: 1;
+  }
+}
+
+.hidden-item {
+  display: none;
+}
+
+.gallery-item {
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+.gallery-item.show {
+  display: block;
+  animation: fadeIn .4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

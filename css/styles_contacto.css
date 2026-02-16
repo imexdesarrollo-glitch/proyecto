@@ -1,0 +1,281 @@
+/* =========================
+   RESET & BASE
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f9f9f9;
+  color: #003c69;
+  line-height: 1.6;
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+  background: linear-gradient(135deg, #003c69, #002a4a);
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+
+.logo {
+  width: 60px;
+  height: auto;
+}
+
+.header-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.login-btn {
+  color: white;
+  text-decoration: none;
+  padding: 8px 14px;
+  border: 2px solid #fcd900;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* NAV */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.submenu {
+  display: none;
+}
+
+/* =========================
+   CONTACT FORM
+========================= */
+.contact-us {
+  padding: 50px 20px;
+  background: #eef7ff;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.contact-header h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.contact-image {
+  max-width: 160px;
+}
+
+.contact-form {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+
+.contact-form textarea {
+  grid-column: 1 / -1;
+  min-height: 120px;
+}
+
+.contact-form button {
+  grid-column: 2 / 3;
+  justify-self: end;
+  padding: 12px 26px;
+  border-radius: 25px;
+  border: none;
+  background: #fcd900;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* =========================
+   MAP
+========================= */
+.map-section {
+  padding: 40px 20px;
+  text-align: center;
+
+}
+
+#postalCode {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* =========================
+   CONTACT INFO + HORARIOS
+========================= */
+.contact-container {
+  max-width: 10000px;
+  margin: 30px auto;
+  padding: 20px;
+  display: flex;
+  gap: 30px;
+  background: #eef7ff;
+  
+}
+
+.horarios,
+.contact-info {
+  flex: 1;
+  background: #f4faff;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.horarios ul {
+  list-style: none;
+  padding: 0;
+}
+
+.horarios li {
+  padding: 8px;
+  margin-bottom: 6px;
+  background: #ffffff;
+  border-radius: 6px;
+}
+
+.contact-info p {
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  background: linear-gradient(135deg, #003c69, #002a4a);
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .contact-form {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form button {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 100%;
+  }
+
+  .contact-container {
+    flex-direction: column;
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+  header {
+    padding: 15px 40px;
+  }
+
+  .contact-us {
+    padding: 70px 40px;
+  }
+
+  .contact-header {
+    text-align: left;
+    max-width: 900px;
+    margin: 0 auto 40px;
+  }
+}
+
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #25D366; /* Verde WhatsApp */
+  font-weight: 600;
+}
+
+.whatsapp-icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* =========================
+   BOTON DE CONTACTO DEL HEADER
+========================= */
+.read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #fcd900, #ffea70);
+  color: #003c69;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 6px 18px rgba(252, 217, 0, 0.35);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  
+}

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>IMEX WEB</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../css/styles_distribuidores.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR / MENÚ
+  ========================== -->
+   <header class="navbar navbar-expand-lg fixed-top">
+
+    <div class="container">
+
+      <div class="d-flex align-items-center gap-3 flex-grow-1">
+
+
+        <!-- LOGO -->
+        <a class="navbar-brand" href="../index.html">
+          <img src="../logos/Logotipo_IMEX_Lean_Project_10.png" alt="IMEX Logo" width="90">
+        </a>
+
+        <!-- REDES EN HEADER -->
+        <div class="header-social d-none d-md-flex align-items-center gap-2">
+          <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA"
+            aria-label="Facebook">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+              alt="Facebook">
+          </a>
+
+          <a href="https://www.linkedin.com/company/imex-lean-project" aria-label="LinkedIn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
+          </a>
+
+          <a href="https://www.instagram.com/imex_lean_project" aria-label="Instagram">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+          </a>
+
+          <a href="https://www.tiktok.com/@imex.leanproject" aria-label="TikTok">
+            <img
+              src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200"
+              alt="TikTok">
+              
+          </a>
+        </div>
+
+      </div>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#imexNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="imexNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+          <!-- Productos -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Productos</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item"
+                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-electrica-56">Eléctrica</a></li>
+              <li><a class="dropdown-item"
+                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-sensado-57">Sensado</a></li>
+              <li><a class="dropdown-item"
+                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-seguridad-63">Seguridad</a></li>
+            </ul>
+          </li>
+
+          <!-- Soluciones -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Servicios</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../html/servicios.html">Nuestros servicios</a></li>
+              <li><a class="dropdown-item" href="../html/distribuidores.html">Marcas distribuidas</a></li>
+              <li><a class="dropdown-item" href="#">Monitoreo</a></li>
+            </ul>
+          </li>
+
+          <!-- Conócenos -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Conócenos</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../html/blog.html">Blog</a></li>
+              <li><a class="dropdown-item" href="../html/valores.html">Nuestros Valores</a></li>
+              <li><a class="dropdown-item" href="../html/contacto.html">Cómo comprar</a></li>
+            </ul>
+          </li>
+              <a href="../html/contacto.html" class="read-more-btn">Contactanos</a>
+        </ul>
+
+        <!-- REDES SOLO EN MOVIL (DENTRO DEL COLLAPSE) -->
+      <div class="mobile-social d-flex d-md-none justify-content-center gap-3 py-3">
+        <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="28">
+        </a>
+
+        <a href="https://www.linkedin.com/company/imex-lean-project">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="28">
+        </a>
+
+        <a href="https://www.instagram.com/imex_lean_project">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="28">
+        </a>
+
+        <a href="https://www.tiktok.com/@imex.leanproject">
+          <img src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200" width="28">
+        </a>
+      </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 120px;">
+
+
+    <!-- =========================
+     MARCAS DISTRIBUIDAS
+    ========================== -->
+          
+  <!--    <section class="brands-section">  -->
+
+      <div class="container">
+
+        <!-- Encabezado -->
+        <div class="brands-header">
+          <h2>MARCAS DE DISTRIBUCIÓN</h2>
+          <p>
+            Somos un distribuidor autorizado con la garantía y respaldo oficial del fabricante.
+            Esto significa que recibimos los productos directamente desde el fabricante asegurando su originalidad y
+            calidad.
+          </p>
+        </div>
+
+        <!-- Grid de marcas -->
+        <div class="row g-4 brands-grid">
+
+          <!-- Marca -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="brand-card">
+              <img src="https://www.materialhandling247.com/images/logos/Banner-Engineering-logo.png"
+                alt="Banner Engineering">
+              <span>Banner Engineering</span>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="brand-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Wago-logo.png" alt="WAGO">
+              <span>WAGO</span>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="brand-card">
+              <img src="https://cdn.worldvectorlogo.com/logos/ckd-1.svg" alt="CKD">
+              <span>CKD</span>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="brand-card">
+              <img src="https://www.helukabel.mx/technical-media/customized/layout/logo/2000px-helukabel.svg.png"
+                alt="HELUKABEL">
+              <span>HELUKABEL</span>
+            </div>
+          </div>
+
+
+          <section>
+
+            <!-- BOTÓN VER MÁS -->
+          <div class="text-center mt-5">
+            <button class="btn btn-outline-primary btn-lg" type="button" data-bs-toggle="collapse"
+              data-bs-target="#moreBrands" aria-expanded="false" aria-controls="moreBrands">
+              Conoce más marcas
+            </button>
+          </div>
+
+          <!-- MARCAS ADICIONALES (OCULTAS) -->
+          <div class="collapse mt-4" id="moreBrands">
+            <div class="row g-4 brands-grid">
+
+              <!-- Marca extra -->
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Rockwell_Automation_logo_%282019%29.svg/1280px-Rockwell_Automation_logo_%282019%29.svg.png"
+                    alt="Rockwell Automation">
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg" alt="Siemens">
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Phoenix_Contact_Logo.svg/3840px-Phoenix_Contact_Logo.svg.png"
+                    alt="Phoenix Contact">
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img
+                    src="data:image/png;base64,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"
+                    alt="Schneider Electric">
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Rockwell_Automation_logo_%282019%29.svg/1280px-Rockwell_Automation_logo_%282019%29.svg.png"
+                    alt="Rockwell Automation">
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg" alt="Siemens">
+
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Phoenix_Contact_Logo.svg/3840px-Phoenix_Contact_Logo.svg.png"
+                    alt="Phoenix Contact">
+
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img
+                    src="data:image/png;base64,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"
+                    alt="Schneider Electric">
+
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Rockwell_Automation_logo_%282019%29.svg/1280px-Rockwell_Automation_logo_%282019%29.svg.png"
+                    alt="Rockwell Automation">
+
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg" alt="Siemens">
+
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Phoenix_Contact_Logo.svg/3840px-Phoenix_Contact_Logo.svg.png"
+                    alt="Phoenix Contact">
+
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img
+                    src="data:image/png;base64,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"
+                    alt="Schneider Electric">
+
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Rockwell_Automation_logo_%282019%29.svg/1280px-Rockwell_Automation_logo_%282019%29.svg.png"
+                    alt="Rockwell Automation">
+
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg" alt="Siemens">
+
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Phoenix_Contact_Logo.svg/3840px-Phoenix_Contact_Logo.svg.png"
+                    alt="Phoenix Contact">
+
+                </div>
+              </div>
+
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="brand-card">
+                  <img
+                    src="data:image/png;base64,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"
+                    alt="Schneider Electric">
+
+                </div>
+              </div>
+
+          </section>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bloque corporativo inferior -->
+        <div class="brands-footer-cta">
+          <h3>Distribuidores Autorizados</h3>
+          <p>
+            Todas nuestras marcas cuentan con respaldo técnico, garantía
+            y soporte directo por parte del fabricante.
+          </p>
+          <a href="html/contacto.html" class="read-more-btn">
+            Solicitar información
+          </a>
+        </div>
+
+      </div>
+    <!--  </section>  -->
+
+    <div class="badge-authorized">Master Authorized</div>
+
+
+    <div class="brands-kpis">
+      <strong>+20 marcas internacionales</strong> |
+      Soporte técnico en México |
+      Garantía directa de fabricante
+    </div>
+
+  </main>
+
+  <!-- Decorative Background Shapes -->
+  <div class="bg-shapes">
+    <span class="shape shape-1"></span>
+    <span class="shape shape-2"></span>
+    <span class="shape shape-3"></span>
+  </div>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+  <footer class="text-center py-4">
+    <p>&copy; 2026. Todos los derechos reservados. IMEX Lean Project
+      Felipe Villanueva 232 Peralvillo• Cuauhtémoc, C.P. 06220 • CDMX</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS -->
+  <script src="../script.js"></script>
+  <script src="../js/script_distribuidores.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>IMEX WEB</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../css/styles_servicio.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR / MENÚ
+  ========================== -->
+ <header class="navbar navbar-expand-lg fixed-top">
+
+    <div class="container">
+
+      <div class="d-flex align-items-center gap-3 flex-grow-1">
+
+
+        <!-- LOGO -->
+        <a class="navbar-brand" href="../index.html">
+          <img src="../logos/Logotipo_IMEX_Lean_Project_10.png" alt="IMEX Logo" width="90">
+        </a>
+
+        <!-- REDES EN HEADER -->
+        <div class="header-social d-none d-md-flex align-items-center gap-2">
+          <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA"
+            aria-label="Facebook">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+              alt="Facebook">
+          </a>
+
+          <a href="https://www.linkedin.com/company/imex-lean-project" aria-label="LinkedIn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
+          </a>
+
+          <a href="https://www.instagram.com/imex_lean_project" aria-label="Instagram">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+          </a>
+
+          <a href="https://www.tiktok.com/@imex.leanproject" aria-label="TikTok">
+            <img
+              src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200"
+              alt="TikTok">
+              
+          </a>
+        </div>
+
+      </div>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#imexNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="imexNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+          <!-- Productos -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Productos</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item"
+                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-electrica-56">Eléctrica</a></li>
+              <li><a class="dropdown-item"
+                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-sensado-57">Sensado</a></li>
+              <li><a class="dropdown-item"
+                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-seguridad-63">Seguridad</a></li>
+            </ul>
+          </li>
+
+          <!-- Soluciones -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Servicios</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../html/servicios.html">Nuestros servicios</a></li>
+              <li><a class="dropdown-item" href="../html/distribuidores.html">Marcas distribuidas</a></li>
+              <li><a class="dropdown-item" href="#">Monitoreo</a></li>
+            </ul>
+          </li>
+
+          <!-- Conócenos -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Conócenos</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../html/blog.html">Blog</a></li>
+              <li><a class="dropdown-item" href="../html/valores.html">Nuestros Valores</a></li>
+              <li><a class="dropdown-item" href="../html/contacto.html">Cómo comprar</a></li>
+            </ul>
+          </li>
+              <a href="contacto.html" class="read-more-btn">Contactanos</a>
+        </ul>
+
+        <!-- REDES SOLO EN MOVIL (DENTRO DEL COLLAPSE) -->
+      <div class="mobile-social d-flex d-md-none justify-content-center gap-3 py-3">
+        <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="28">
+        </a>
+
+        <a href="https://www.linkedin.com/company/imex-lean-project">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="28">
+        </a>
+
+        <a href="https://www.instagram.com/imex_lean_project">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="28">
+        </a>
+
+        <a href="https://www.tiktok.com/@imex.leanproject">
+          <img src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200" width="28">
+        </a>
+      </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 120px;">
+
+    <!--SECCION SIN CONTENEDOR PARA MOSTRAR LOS SHAPES-->
+    <section class="services-parallax">
+      <div class="container">
+
+        <h2 class="services-title">Nuestros Servicios</h2>
+
+        <div class="row align-items-center mb-5">
+          <div class="col-md-6">
+            <img src="../logos/Logotipo_IMEX_Lean_Project_2.png" class="img-fluid parallax-img"
+              alt="Instalaciones Industriales">
+          </div>
+          <div class="col-md-6 services-text">
+            <h3>Entonces, ¿Qué es lo que hacemos?</h3>
+            <p>
+              En IMEX Lean Project,
+              brindamos soluciones avanzadas en automatización industrial a través de productos y servicios
+              especializados con tecnología a la vanguardia.
+              Trabajamos con industrias como; automotriz, manufactura, alimentos y bebidas, farmacéutica, logística y
+              más.
+            </p>
+            <p>✅ Ingeniería de diseño</p>
+            <p>✅ Programación avanzada</p>
+            <p>✅ Integración de sistemas</p>
+            <p>✅ Soporte especializado</p>
+            <a href="contacto.html" class="read-more-btn">Solicitar servicio</a>
+          </div>
+        </div>
+
+        <div class="row align-items-center flex-md-row-reverse mb-5">
+          <div class="col-md-6">
+            <img src="../recursos_blog/instalacion.jpg" class="img-fluid parallax-img" alt="Automatización">
+          </div>
+          <div class="col-md-6 services-text">
+            <h3>DISTRIBUCIÓN DE SENSORES Y COMPONENTES</h3>
+            <p>
+              Somos distribuidores de sensores y equipos de automatización de marcas líderes.
+              Sensores industriales
+              Sensores inductivos, capacitivos, ultrasónicos, ópticos, de presión y temperatura.
+              Componentes eléctricos y de control
+              PLCs, relés, contactores, variadores de frecuencia, fuentes de alimentación.
+              Actuadores neumáticos y eléctricos, válvulas solenoides.
+            </p>
+            <a href="contacto.html" class="read-more-btn">Más información</a>
+          </div>
+        </div>
+
+        <div class="row align-items-center mb-5">
+          <div class="col-md-6">
+            <img src="../recursos_blog/mantenimiento.jpg" class="img-fluid parallax-img" alt="Mantenimiento">
+          </div>
+          <div class="col-md-6 services-text">
+            <h3>PROGRAMACIÓN y CONFIGURACION</h3>
+            <p>
+              Automatizamos tus procesos para mejorar eficiencia y reducir costos.PLC
+            <p>•Programación en Banner, Siemens, Schneider Electric, Wago, Allen-Bradley.</p>
+            <p>•Desarrollo de interfaces hombre-máquina (HMI) intuitivas.</p>
+            <p>•Automatización de líneas de producción</p>
+            <p>•Programación de secuencias de trabajo.</p>
+            <p>•Optimización de sistemas neumáticos y eléctricos.</p>
+            </p>
+            <a href="contacto.html" class="read-more-btn">Agendar mantenimiento</a>
+          </div>
+        </div>
+
+        <div class="row align-items-center mb-5">
+          <div class="col-md-6">
+            <img src="../recursos_blog/instalacion.jpg7.jpg" class="img-fluid parallax-img"
+              alt="Instalaciones Industriales">
+          </div>
+          <div class="col-md-6 services-text">
+            <h3>INSTALACION Y PUESTAS EN MARCHA</h3>
+            <p>Nos encargamos del montaje y configuración de tus sistemas. Montaje y cableado</p>
+            <p>•Instalación de sensores y tableros eléctricos.</p>
+            <p>• Conexionado de equipos y configuración de redes industriales, Puesta en marcha y calibración.</p>
+            <p>• Pruebas funcionales y ajuste de parámetros.</p>
+            <p>• Validación de procesos y capacitación al personal.</p>
+            <a href="contacto.html" class="read-more-btn">Solicitar servicio</a>
+          </div>
+        </div>
+
+        <div class="row align-items-center flex-md-row-reverse mb-5">
+          <div class="col-md-6">
+            <img src="../recursos_blog/instalacion.jpg2.jpg" class="img-fluid parallax-img" alt="Automatización">
+          </div>
+          <div class="col-md-6 services-text">
+            <h3>MANTENIMIENTO Y SOPORTE TECNICO</h3>
+            <p>
+              Aseguramos el funcionamiento continuo de tus equipos y de tus procesos.
+              Mantenimiento preventivo y correctivo
+            <p>• Diagnóstico de fallas y reemplazo de componentes..</p>
+            <p>• Análisis de rendimiento y optimización de procesos. Actualización y modernización de sistemas.</p>
+            <p>• Migración de sistemas obsoletos a nuevas tecnologías.</p>
+            <p>• Integración con nuevas líneas de producción.</p>
+            </p>
+            <a href="contacto.html" class="read-more-btn">Más información</a>
+          </div>
+        </div>
+
+        <div class="row align-items-center mb-5">
+          <div class="col-md-6">
+            <img src="../recursos_blog/proyecto.jpg" class="img-fluid parallax-img" alt="Mantenimiento">
+          </div>
+          <div class="col-md-6 services-text">
+            <h3>DESARROLLO DE PROYECTOS</h3>
+            <p>
+              ¿Tienes un proyecto único en mente? Nosotros lo hacemos realidad.
+              Integración con Industria 4.0
+            <p>• Conectividad para monitoreo inteligente. Automatización de almacenes y logística</p>
+            <p>• Sistemas de transporte automatizado con sensores de detección.</p>
+            <p>• Control de inventarios y visión artificial.</p>
+            Resultados: Mayor productividad, reducción de costos, eficiencia operativa.
+            </p>
+            <a href="contacto.html" class="read-more-btn">Agendar mantenimiento</a>
+          </div>
+        </div>
+
+        <div class="row align-items-center flex-md-row-reverse mb-5">
+          <div class="col-md-6">
+            <img src="../logos/Logotipo_IMEX_Lean_Project_2.png" class="img-fluid parallax-img"
+              alt="Instalaciones Industriales">
+          </div>
+          <div class="col-md-6 services-text">
+            <h3>¿POR QUÉ ELEGIRNOS?</h3>
+            <p>
+              Experiencia en el sector con soluciones personalizadas.
+              Atención especializada con soporte técnico y postventa.
+              Innovación constante con las mejores tecnologías del mercado.
+            </p>
+            <a href="contacto.html" class="read-more-btn">Solicitar servicio</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Decorative Background Shapes -->
+  <div class="bg-shapes">
+    <span class="shape shape-1"></span>
+    <span class="shape shape-2"></span>
+    <span class="shape shape-3"></span>
+  </div>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+  <footer class="text-center py-4">
+    <p>&copy; 2026. Todos los derechos reservados. IMEX Lean Project
+      Felipe Villanueva 232 Peralvillo• Cuauhtémoc, C.P. 06220 • CDMX</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS -->
+<script src="../script.js"></script>
+  <script src="../styles_servicio.css"></script>
+  <script src="../js/script_servicios.js"></script>
+
+</body>
+
+</html>

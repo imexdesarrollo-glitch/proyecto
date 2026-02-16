@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../css/styles_contacto.css">
+  <title>IMEX WEB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <script
+  src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap"
+  async
+  defer>
+</script>
+
+
+</head>
+<body>
+  <div class="overlay" id="overlay"></div>
+<!-- NAVBAR FIJA -->
+ <header class="navbar navbar-expand-lg fixed-top">
+
+    <div class="container">
+
+      <div class="d-flex align-items-center gap-3 flex-grow-1">
+
+
+        <!-- LOGO -->
+        <a class="navbar-brand" href="../index.html">
+          <img src="../logos/Logotipo_IMEX_Lean_Project_10.png" alt="IMEX Logo" width="90">
+        </a>
+
+        <!-- REDES EN HEADER -->
+        <div class="header-social d-none d-md-flex align-items-center gap-2">
+          <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA"
+            aria-label="Facebook">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+              alt="Facebook">
+          </a>
+
+          <a href="https://www.linkedin.com/company/imex-lean-project" aria-label="LinkedIn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
+          </a>
+
+          <a href="https://www.instagram.com/imex_lean_project" aria-label="Instagram">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+          </a>
+
+          <a href="https://www.tiktok.com/@imex.leanproject" aria-label="TikTok">
+            <img
+              src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200"
+              alt="TikTok">
+              
+          </a>
+        </div>
+
+      </div>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#imexNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="imexNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+          <!-- Productos -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Productos</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item"
+                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-electrica-56">Eléctrica</a></li>
+              <li><a class="dropdown-item"
+                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-sensado-57">Sensado</a></li>
+              <li><a class="dropdown-item"
+                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-seguridad-63">Seguridad</a></li>
+            </ul>
+          </li>
+
+          <!-- Soluciones -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Servicios</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../html/servicios.html">Nuestros servicios</a></li>
+              <li><a class="dropdown-item" href="../html/distribuidores.html">Marcas distribuidas</a></li>
+              <li><a class="dropdown-item" href="#">Monitoreo</a></li>
+            </ul>
+          </li>
+
+          <!-- Conócenos -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Conócenos</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../html/blog.html">Blog</a></li>
+              <li><a class="dropdown-item" href="../html/valores.html">Nuestros Valores</a></li>
+              <li><a class="dropdown-item" href="../html/contacto.html">Cómo comprar</a></li>
+            </ul>
+          </li>
+              <a href="contacto.html" class="read-more-btn">Contactanos</a>
+        </ul>
+
+        <!-- REDES EN MOVIL (DENTRO DEL COLLAPSE) -->
+      <div class="mobile-social d-flex d-md-none justify-content-center gap-3 py-3">
+        <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="28">
+        </a>
+
+        <a href="https://www.linkedin.com/company/imex-lean-project">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="28">
+        </a>
+
+        <a href="https://www.instagram.com/imex_lean_project">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="28">
+        </a>
+
+        <a href="https://www.tiktok.com/@imex.leanproject">
+          <img src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200" width="28">
+        </a>
+      </div>
+
+      </div>
+    </div>
+  </header>
+
+
+<!--SECCION DE CONTACTO CORREO-->
+<section class="contact-us">
+  <form class="contact-form" 
+        action="https://formsubmit.co/imex_desarrollo@hotmail.com" 
+        method="POST">
+
+    <input type="text" name="nombre" placeholder="Escribe Tu Nombre" required>
+    <input type="email" name="email" placeholder="Ingresa Tu Email" required>
+    <input type="tel" name="telefono" placeholder="Numero De Contacto" required>
+    <textarea name="mensaje" placeholder="Tu Mensaje" required></textarea>
+
+    <!-- Anti-spam -->
+    <input type="text" name="_honey" style="display:none">
+
+    <!-- Configuración -->
+    <input type="hidden" name="_subject" value="Nuevo mensaje desde Web IMEX">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <!-- <input type="hidden" name="_next" value="https://tudominio.com/gracias.html"> -->
+
+    <button type="submit">Enviar</button>
+  </form>
+</section>
+
+
+<!--SECCION DE GOOGLE MAP API POR INPLEMENTAR-->
+<section class="map-section">
+  <h2>Ubicación</h2>
+  <input id="postalCode" type="text" placeholder="Tu Codigo Postal">
+  <button onclick="buscarCodigoPostal()">Buscar</button>
+  <div id="map" style="width:100%; height:400px;"></div>
+</section>
+
+<!--SECCION TARJETAS DE CONTACTO-->
+<section class="contact-container">
+  <!-- Columna izquierda: Horarios -->
+  <div class="horarios">
+    <img src="../logos/Logotipo_IMEX_2.png" alt="Logo IMEX" class="logo">
+    <h3>Horarios de Atención</h3>
+    <ul>
+      <li>Lunes: 8:00 am - 6:30 pm</li>
+      <li>Martes: 8:00 am - 6:30 pm</li>
+      <li>Miércoles: 8:00 am - 6:30 pm</li>
+      <li>Jueves: 8:00 am - 6:30 pm</li>
+      <li>Viernes: 8:00 am - 6:30 pm</li>
+      <li>Sábado: Cerrado</li>
+      <li>Domingo: Cerrado</li>
+    </ul>
+    <p id="estado"></p>
+  </div>
+  <!-- Columna derecha: Contacto -->
+  <div class="contact-info">
+    <img src="../logos/Logotipo_IMEX_2.png" alt="Logo IMEX" class="logo">
+    <h2>Información de Contacto</h2>
+    <p><strong>Dirección:</strong> Calle Felipe Villanueva 232, CDMX, MEXICO</p>
+
+
+    <p><strong>WhatsApp:</strong> 
+      <a href="https://wa.me/525664644201?text=Hola%20quiero%20más%20información" target="_blank" class="whatsapp-link">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/3840px-WhatsApp.svg.png" alt="WhatsApp" class="whatsapp-icon">
+        Janeth Sánchez
+      </a>
+    </p>
+
+
+
+    <p><strong>WhatsApp:</strong> 
+      <a href="https://wa.me/522215587178?text=Hola%20quiero%20más%20información" target="_blank" class="whatsapp-link">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/3840px-WhatsApp.svg.png" alt="WhatsApp" class="whatsapp-icon">
+        Alberto Jimenez
+      </a>
+    </p>
+
+    <p><strong>Email:</strong> ventas@isselmexico.com.mx</p>
+  </div>
+</section>
+
+<!--CARRUCEL DE PROVEEDORES-->
+  <section class="proveedores" id="proveedores">
+     
+    <div class="proveedor-marquee" aria-label="Logos de proveedores" role="region">
+      <div class="marquee-track" id="marqueeTrack" tabindex="0">
+        <img src="https://www.materialhandling247.com/images/logos/Banner-Engineering-logo.png" alt="Proveedor 1" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Wago-logo.png">
+        <img src="https://cdn.worldvectorlogo.com/logos/ckd-1.svg" alt="Proveedor 3" loading="lazy">
+        <img src="https://www.helukabel.mx/technical-media/customized/layout/logo/2000px-helukabel.svg.png" alt="Proveedor 4" loading="lazy">
+        <img src="https://www.materialhandling247.com/images/logos/Banner-Engineering-logo.png" alt="Proveedor 1" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Wago-logo.png">
+        <img src="https://cdn.worldvectorlogo.com/logos/ckd-1.svg" alt="Proveedor 3" loading="lazy">
+        <img src="https://www.helukabel.mx/technical-media/customized/layout/logo/2000px-helukabel.svg.png" alt="Proveedor 4" loading="lazy">
+        
+        
+        <!-- Duplicados para efecto continuo -->
+        <img src="https://www.materialhandling247.com/images/logos/Banner-Engineering-logo.png" alt="Proveedor 1" loading="lazy" aria-hidden="true">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Wago-logo.png" alt="Proveedor 2" loading="lazy" aria-hidden="true">
+        <img src="https://cdn.worldvectorlogo.com/logos/ckd-1.svg" alt="Proveedor 3" loading="lazy" aria-hidden="true">
+        <img src="https://www.helukabel.mx/technical-media/customized/layout/logo/2000px-helukabel.svg.png" alt="Proveedor 4" loading="lazy" aria-hidden="true">
+        <img src="https://www.materialhandling247.com/images/logos/Banner-Engineering-logo.png" alt="Proveedor 1" loading="lazy" aria-hidden="true">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Wago-logo.png" alt="Proveedor 2" loading="lazy" aria-hidden="true">
+        <img src="https://cdn.worldvectorlogo.com/logos/ckd-1.svg" alt="Proveedor 3" loading="lazy" aria-hidden="true">
+        <img src="https://www.helukabel.mx/technical-media/customized/layout/logo/2000px-helukabel.svg.png" alt="Proveedor 4" loading="lazy" aria-hidden="true">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Decorative Background Shapes --> 
+<div class="bg-shapes">
+  <span class="shape shape-1"></span>
+  <span class="shape shape-2"></span>
+  <span class="shape shape-3"></span>
+</div>
+
+<!--FOOTER-->
+  <footer>
+    <p>&copy; 2026. Todos los derechos reservados. IMEX Lean Project
+    Felipe Villanueva 232 Peralvillo• Cuauhtémoc, C.P. 06220 • CDMX</p>
+  </footer>
+
+  <script src="../script.js"></script>
+  <script src="../js/script_contacto.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
