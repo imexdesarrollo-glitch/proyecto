@@ -405,15 +405,29 @@ nav {
 }
 
 .product-card {
-  position: relative;               /* importante */
-  width: 140px;
-  height: 110px;
+  position: relative;
+  width: 170px;
+  height: 200px; /* más altura para separar texto */
+  background-color: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  transition: transform .25s ease, box-shadow .25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-card::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 120px;
+  background-image: inherit;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
-  flex-shrink: 0;
-  transition: transform .25s ease, box-shadow .25s ease;
-  will-change: transform;
+  background-position: center right;
+  background-color: #f7fbff;
 }
 
 /* Franja azul continua */
@@ -435,15 +449,24 @@ nav {
 }
 
 .product-name {
-  color: #000000;
-  font-weight: 600;
-  font-size: 14px;
+  background: linear-gradient(to right, #003c69, #005b9f);
+  color: #fff;
+  font-weight: 500;
+  font-size: 13px;
   text-align: center;
-  padding: 12px;
-  position: relative;
-  z-index: 2;
-  transition: all 0.3s ease;
+  padding: 10px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.3;
 }
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(0,0,0,.18);
+}
+
 
 .product-card:hover .product-name {
   transform: scale(1.05);
@@ -805,11 +828,11 @@ footer p {
 ========================= */
 .about-us {
   background-color: #f0f8ff;
-  padding: 40px 20px;
+  padding: 30px 15px;
   text-align: center;
   border-radius: 12px;
-  max-width: 800px;
-  margin: 40px auto;
+  max-width: 600px;
+  margin: 10px auto;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -878,23 +901,23 @@ footer p {
   box-shadow:var(--shadow);
   overflow:hidden;
   display:flex;
-  gap:30px;
+  gap:20px; /* menos separación */
   align-items:center;
-  padding:28px;
+  padding:20px; /* antes 28px */
   flex-wrap:wrap;
 }
 
-/* Media area */
-.about-media{
-  flex:1 1 420px;
-  min-width:280px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+.about-media img{
+  width: 100%;
+  max-width: 350px; /* limita el tamaño */
+  height: auto;
+  max-height: 320px; /* controla altura */
+  object-fit: contain; /* evita que se corte */
 }
 
+
 /* =========================
-   IMEX CAROUSEL (SIN CONFLICTO BOOTSTRAP)
+   CAROUSEL BOOTSTRAP
 ========================= */
 
 #aboutCarousel.imex-carousel {

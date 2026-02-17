@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
 
   // =========================
-  // Logo → volver a inicio
+  // Logo y volver a inicio
   // =========================
   const imexLogo = document.getElementById('imexLogo');
   if (imexLogo) {
