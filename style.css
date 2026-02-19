@@ -140,7 +140,7 @@ nav {
 .hero-logo {
   position: absolute;             /*  fijo en pantalla */
   top: 22%;                    /*  posición vertical */
-  right: -35%;                   /*  posición horizontal */
+  left: 70%;                   /*  posición horizontal */
   transform: translate(-50%, -50%);
   width: 900px;                /*  tamaño */
   max-width: 70vw;
@@ -224,7 +224,7 @@ nav {
 /* Desktop */
 @media (min-width: 1024px) {
     .hero-text-container {
-        margin-left: 5%;   /* ← para mover el bloque a la izquierda */
+        margin-left: 5%;   /*  para mover el bloque a la izquierda */
         margin-right: auto;
         text-align: left;  /* opcional, para lectura natural */
     }
@@ -1651,9 +1651,153 @@ body > * {
 
 }
 
+.header-ticker-horizontal {
+  flex: 1; /* Ocupa todo el espacio disponible entre redes y menú */
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  margin: 0 20px;
+  /* Mascara para que el texto desaparezca suavemente a los lados */
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-content {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marqueeHorizontal 25s linear infinite;
+}
+
+.marquee-content span {
+  color: #fcd900;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-right: 50px; /* Espacio entre el final y el inicio del texto */
+}
+
+/* Animación de desplazamiento suave */
+@keyframes marqueeHorizontal {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Ajuste para que el header mantenga su altura */
+header.navbar {
+  height: 90px; /* O la altura que tengas definida, para que sea rígida */
+  overflow: hidden;
+}
+
+/* Ticker Horizontal Integrado */
+.header-ticker-horizontal {
+    flex: 1; /* Esto permite que crezca y ocupe el centro */
+    min-width: 0; /* Necesario para que flexbox no se rompa con texto largo */
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    /* Difuminado en los bordes para que el texto no choque con logo/menú */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marqueeHorizontal 30s linear infinite;
+}
+
+.marquee-content span {
+    color: #fcd900;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-right: 60px; /* Espacio entre repeticiones */
+}
+
+@keyframes marqueeHorizontal {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Pausar al pasar el mouse */
+.header-ticker-horizontal:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+/* Ajustes de compatibilidad */
+.navbar-brand img {
+    max-height: 50px; /* Asegura que el logo no estire el header */
+    width: auto;
+}
+
+header.navbar {
+  min-height: 90px;
+  overflow: visible;
+}
 
 
+.header-ticker-horizontal {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    pointer-events: none; /* Esto permite que los clics pasen a través del ticker si algo se encima */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
 
+.marquee-content {
+    display: inline-block;
+    animation: marqueeHorizontal 30s linear infinite;
+    pointer-events: auto; /* Permite pausar al poner el mouse encima */
+}
+
+.marquee-content:hover {
+    animation-play-state: paused;
+}
+
+.marquee-content span {
+    color: #fcd900;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-right: 100px;
+}
+
+@keyframes marqueeHorizontal {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Fix para el menú en móviles */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background: #001a33; /* Color sólido para que se vea el menú */
+        padding: 20px;
+        margin-top: 10px;
+        border-radius: 8px;
+    }
+}
+
+/* Asegura que el menú tenga prioridad de espacio */
+.navbar-collapse {
+    z-index: 9999;
+}
+
+/* Evita que el ticker tape el botón hamburguesa en móviles */
+@media (max-width: 991px) {
+    .header-ticker-horizontal {
+        display: none !important;
+    }
+    .navbar-toggler {
+        z-index: 10000;
+        position: relative;
+    }
+}
+
+.overlay {
+  pointer-events: none;
+}
 
 
 

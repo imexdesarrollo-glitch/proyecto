@@ -1,211 +1,270 @@
-/* =========================
-   VALORES IMEX
-========================= */
-.Valores {
-  background: #eef7ff;
-  padding: 80px 20px;
+/* =========================================
+   1. VARIABLES Y BASES
+   ========================================= */
+:root {
+  --imex-blue: #003c69;
+  --imex-blue-alt: #004e89;
+  --imex-yellow: #fcd900;
+  --imex-light: #f4faff;
+  --transition: all 0.3s ease;
 }
 
-.Valores .container {
-  max-width: 1100px;
-  margin: 0 auto;
+/* Fix para el Menú y Layout */
+header.navbar {
+  z-index: 10000 !important; /* Prioridad máxima */
+  background-color: #ffffff;
 }
 
-.Valores h1 {
-  text-align: center;
-  font-size: 38px;
-  margin-bottom: 25px;
-  color: #003c69;
-  font-weight: 800;
-}
-
-.Valores > .container > p {
-  text-align: center;
-  max-width: 850px;
-  margin: 0 auto 70px;
-  font-size: 16px;
-  color: #003c69;
-}
-
-/* =========================
-   BLOQUES DE VALORES (ZIG ZAG)
-========================= */
-.valor {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: center;
-  margin-bottom: 80px;
-}
-
-/* Alternancia */
-.valor.zag {
-  direction: rtl;
-}
-.valor.zag .valor-texto,
-.valor.zag .valor-img {
-  direction: ltr;
-}
-
-/* Texto */
-.valor-texto h2 {
-  font-size: 26px;
-  color: #002a4a;
-  margin-bottom: 10px;
+.main-content {
+  padding-top: 100px;
+  background-color: #ffffff;
   position: relative;
-  padding-left: 16px;
+  z-index: 1;
 }
 
-.valor-texto h2::before {
+/* =========================================
+   2. HERO SECTION
+   ========================================= */
+.hero-minimal { padding: 60px 0 40px; }
+
+.badge-imex {
+  background: var(--imex-blue);
+  color: #ffffff;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.text-accent { 
+  color: var(--imex-blue); 
+  position: relative; 
+  display: inline-block;
+}
+
+.text-accent::after {
   content: "";
   position: absolute;
-  left: 0;
-  top: 6px;
-  width: 6px;
-  height: 24px;
-  background: #fcd900;
-  border-radius: 4px;
+  bottom: 5px; left: 0; width: 100%; height: 8px;
+  background: var(--imex-yellow); 
+  z-index: -1;
 }
 
-.valor-texto p {
-  font-size: 15px;
-  color: #003c69;
-  line-height: 1.7;
-  margin: 0;
-}
-
-/* Imagen */
-.valor-img {
+/* =========================================
+   3. TARJETAS DE VALORES (GRILLA SUPERIOR)
+   ========================================= */
+.value-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  height: 100%;
+  box-shadow: 0 15px 35px rgba(0, 60, 105, 0.05);
+  transition: var(--transition);
+  border: 1px solid #f0f0f0;
   display: flex;
-  justify-content: center;
-}
-
-.valor-img img {
-  width: 100%;
-  max-width: 360px;
-  border-radius: 16px;
-  background: #fff;
-  padding: 12px;
-  box-shadow: 0 12px 28px rgba(0, 60, 105, 0.12);
-  transition: transform 0.3s ease;
-}
-
-.valor-img img:hover {
-  transform: scale(1.04);
-}
-
-/* =========================
-   MISIÓN Y VISIÓN
-========================= */
-.mission-vision {
-  background: #ffffff;
-  padding: 80px 20px;
-}
-
-.mission-vision .container {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-}
-
-.mission-vision .container > div {
-  background: #f4faff;
-  padding: 35px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 60, 105, 0.08);
-  transition: all 0.3s ease;
-}
-
-.mission-vision .container > div:hover {
-  transform: translateY(-6px);
-  border-left: 5px solid #fcd900;
-}
-
-.mission-vision h2 {
-  font-size: 26px;
-  color: #003c69;
-  margin-bottom: 12px;
-}
-
-.mission-vision p,
-.mission-vision li {
-  font-size: 15px;
-  color: #003c69;
-  line-height: 1.7;
-}
-
-/* Último bloque ocupa todo */
-.mission-vision .container > div:last-child {
-  grid-column: 1 / -1;
-}
-
-.mission-vision ul {
-  padding-left: 18px;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-
-  .valor {
-    grid-template-columns: 1fr;
-    gap: 25px;
-    text-align: center;
-    margin-bottom: 60px;
-  }
-
-  .valor.zag {
-    direction: ltr;
-  }
-
-  .valor-img {
-    order: -1;
-  }
-
-  .valor-texto h2 {
-    padding-left: 0;
-  }
-
-  .valor-texto h2::before {
-    left: 50%;
-    transform: translateX(-50%);
-    top: -14px;
-    width: 40px;
-    height: 4px;
-    border-radius: 10px;
-  }
-
-  .mission-vision .container {
-    grid-template-columns: 1fr;
-  }
-
-  .Valores h1 {
-    font-size: 30px;
-  }
-}
-
-/* =========================
-   BOTON DE CONTACTO DEL HEADER
-========================= */
-.read-more-btn {
-  display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
-  background: linear-gradient(135deg, #fcd900, #ffea70);
-  color: #003c69;
-  padding: 10px 22px;
-  border-radius: 30px;
-  font-weight: 700;
-  font-size: 14px;
-  text-decoration: none;
-  border: none;
-  box-shadow: 0 6px 18px rgba(252, 217, 0, 0.35);
-  transition: all 0.25s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--imex-yellow);
+  box-shadow: 0 20px 45px rgba(0, 60, 105, 0.1);
+}
+
+.card-icon img {
+  width: 80px; height: 80px;
+  object-fit: cover; border-radius: 50%;
+  margin-bottom: 25px; 
+  border: 4px solid var(--imex-light);
+}
+
+/* Variante Horizontal */
+.value-card.horizontal {
+  flex-direction: row; 
+  text-align: left; 
+  gap: 25px; 
+  padding: 25px;
+}
+
+.value-card.horizontal img {
+  width: 120px; height: 120px; 
+  border-radius: 15px;
+  margin-bottom: 0;
+}
+
+/* =========================================
+   4. DECORACIÓN Y OTROS
+   ========================================= */
+.bg-shapes {
+  position: fixed;
+  z-index: -1 !important;
+  pointer-events: none; /* Permite clics a través de las formas */
+}
+
+footer {
+  padding: 40px 0;
+  text-align: center;
+  background: var(--imex-light);
+  color: var(--imex-blue);
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   5. RESPONSIVO
+   ========================================= */
+@media (max-width: 992px) {
+  .bento-grid-equal {
+    grid-template-columns: 1fr;
+  }
+  
+  .value-card.horizontal {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-minimal { padding: 40px 0; }
+}
+
+/* VARIABLES */
+:root {
+  --imex-blue: #003c69;
+  --imex-blue-alt: #004e89;
+  --imex-yellow: #fcd900;
+  --imex-light: #f4faff;
+  --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* FIX MENÚ */
+header.navbar { z-index: 10000 !important; background: white; }
+.main-content { position: relative; z-index: 1; padding-top: 100px; }
+
+/* HERO */
+.hero-minimal { padding: 60px 0; }
+.badge-imex {
+  background: var(--imex-blue); color: white;
+  padding: 6px 18px; border-radius: 50px; font-size: 0.85rem;
+}
+.text-accent { color: var(--imex-blue); position: relative; z-index: 1; }
+.text-accent::after {
+  content: ""; position: absolute; bottom: 5px; left: 0; width: 100%; height: 8px;
+  background: var(--imex-yellow); z-index: -1;
+}
+
+/* VALORES (GRID SUPERIOR) */
+.value-card {
+  background: white; border-radius: 20px; padding: 40px 30px;
+  text-align: center; height: 100%; border: 1px solid #f0f0f0;
+  transition: var(--transition); box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.value-card:hover {
+  transform: translateY(-10px); border-color: var(--imex-yellow);
+  box-shadow: 0 20px 40px rgba(0, 60, 105, 0.1);
+}
+.card-icon img {
+  width: 80px; height: 80px; object-fit: cover; border-radius: 50%;
+  margin-bottom: 20px; border: 4px solid var(--imex-light);
+}
+
+/* BENTO GRID (MISIÓN/VISIÓN) */
+.bento-section { padding-bottom: 80px; }
+.bento-grid-equal {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.bento-card {
+  padding: 35px; border-radius: 28px; transition: var(--transition);
+  display: flex; flex-direction: column; position: relative; overflow: hidden;
+}
+.bento-card:hover { transform: translateY(-8px); }
+
+/* Efecto de destello en hover */
+.bento-card::before {
+  content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+  transform: skewX(-25deg); transition: 0.7s;
+}
+.bento-card:hover::before { left: 125%; }
+
+.mission-card { background: var(--imex-blue); color: white; }
+.vision-card { background: var(--imex-blue-alt); color: white; }
+.values-card { background: var(--imex-light); color: var(--imex-blue); border: 1px solid rgba(0,0,0,0.05); }
+
+.card-header-bento h3 { font-weight: 800; margin-bottom: 15px; }
+.card-body { flex-grow: 1; }
+.values-list { padding-left: 0; list-style: none; font-size: 0.9rem; }
+.values-list li { margin-bottom: 8px; }
+
+/* BARRA EJES */
+.bento-full-width-bar {
+  grid-column: 1 / -1; background: var(--imex-yellow);
+  padding: 25px; border-radius: 28px; text-align: center;
+}
+.tag-container { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.tag-container span {
+  background: white; color: var(--imex-blue); padding: 6px 16px;
+  border-radius: 50px; font-weight: 700; transition: 0.3s;
+}
+.tag-container span:hover { background: var(--imex-blue); color: white; transform: scale(1.1); }
+
+/* =========================================
+   6. BENTO GRID (UNIFICADO A AZUL)
+   ========================================= */
+.bento-section { padding: 40px 0 80px; }
+
+.bento-grid-equal {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.bento-card {
+  display: flex;
+  flex-direction: column;
+  padding: 35px;
+  border-radius: 28px;
+  transition: var(--transition);
+  height: 100%;
   position: relative;
   overflow: hidden;
-  
+  color: #ffffff; /* Todo el texto de las 3 cartas será blanco */
 }
 
+/* Las tres cartas ahora usan los azules oscuros */
+.mission-card { background: var(--imex-blue); }
+.vision-card  { background: var(--imex-blue-alt); }
+.values-card  { 
+  background: var(--imex-blue); /* Mismo azul que Misión */
+  border: none; 
+  box-shadow: none;
+}
+
+/* Forzamos que los títulos sean blancos en las tres */
+.bento-card h3 {
+  color: #ffffff !important;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+/* Animación de destello sutil para fondo oscuro */
+.bento-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+  transform: skewX(-25deg);
+  transition: 0.7s;
+}
+
+.bento-card:hover { transform: translateY(-8px); }
+.bento-card:hover::before { left: 125%; }
+
+.card-body { flex-grow: 1; }
+
+/* RESPONSIVO */
+@media (max-width: 992px) {
+  .bento-grid-equal { grid-template-columns: 1fr; }
+  .value-card.horizontal { flex-direction: column; text-align: center; }
+}

@@ -10,7 +10,14 @@
   <link rel="stylesheet" href="https://unpkg.com" />
   <link href="https://fonts.googleapis.com" rel="stylesheet">
 </head>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+  <script src="../js/script_valores.js"></script>
+  <script src="../script.js"></script>
+</body>
 <body>
   <div class="overlay" id="overlay"></div>
   <!-- NAVBAR FIJA -->
@@ -119,134 +126,126 @@
     </div>
   </header>
 
-  <!--<main style="padding-top: 120px;">-->
   <!--BLOQUE PRINCIPAL DE LA SECCION-->
-  <section class="Valores">
-    <div class="container">
-      <h1>VALORES IMEX</h1>
-      <p>
-        En IMEX, nuestros valores fundamentales guían cada aspecto de nuestro negocio y definen quiénes somos como
-        empresa.
-        Estos valores son la base sobre la cual construimos relaciones sólidas con nuestros clientes, empleados y socios
-        comerciales.
+  
+ <!--  <main class="main-content">    -->
+
+  
+  <section class="hero-minimal">
+    <div class="container text-center" data-aos="fade-down">
+      <span class="badge-imex">Identidad Corporativa</span>
+      <h1 class="display-4 fw-bold mt-3">Valores <span class="text-accent">IMEX</span></h1>
+      <p class="lead mx-auto" style="max-width: 700px;">
+        Nuestros valores fundamentales definen nuestra ética y la excelencia tecnológica que entregamos en cada proyecto.
       </p>
-
-      <!-- INTEGRIDAD -->
-      <div class="valor zig">
-        <div class="valor-texto">
-          <h2>Integridad</h2>
-          <p>
-            Actuamos con honestidad y transparencia en todas nuestras interacciones. La confianza es esencial para
-            nosotros,
-            y nos comprometemos a mantener los más altos estándares éticos en todo lo que hacemos.
-          </p>
-        </div>
-        <div class="valor-img">
-          <img src="../logos/Logotipo_IMEX_2.png" alt="Integridad IMEX">
-        </div>
-      </div>
-
-      <!-- INNOVACIÓN -->
-      <div class="valor zag">
-        <div class="valor-texto">
-          <h2>Innovación</h2>
-          <p>
-            Fomentamos una cultura de creatividad y mejora continua. Buscamos constantemente nuevas ideas y tecnologías
-            para ofrecer soluciones innovadoras que satisfagan las necesidades cambiantes de nuestros clientes.
-          </p>
-        </div>
-        <div class="valor-img">
-          <img src="../logos/Logotipo_IMEX_2.png" alt="Innovación IMEX">
-        </div>
-      </div>
-
-      <!-- CALIDAD -->
-      <div class="valor zig">
-        <div class="valor-texto">
-          <h2>Calidad</h2>
-          <p>
-            Nos dedicamos a proporcionar productos y servicios de la más alta calidad. Cada detalle importa,
-            y trabajamos arduamente para superar las expectativas de nuestros clientes en cada proyecto.
-          </p>
-        </div>
-        <div class="valor-img">
-          <img src="../logos/Logotipo_IMEX_2.png" alt="Calidad IMEX">
-        </div>
-      </div>
-
-      <!-- COLABORACIÓN -->
-      <div class="valor zag">
-        <div class="valor-texto">
-          <h2>Colaboración</h2>
-          <p>
-            Creemos en el poder del trabajo en equipo. Fomentamos un ambiente colaborativo donde se valoran las ideas
-            y contribuciones de todos, tanto dentro de nuestra empresa como con nuestros socios externos.
-          </p>
-        </div>
-        <div class="valor-img">
-          <img src="../logos/Logotipo_IMEX_2.png" alt="Colaboración IMEX">
-        </div>
-      </div>
-
-      <!-- SOSTENIBILIDAD -->
-      <div class="valor zig">
-        <div class="valor-texto">
-          <h2>Sostenibilidad</h2>
-          <p>
-            Estamos comprometidos con prácticas empresariales responsables que protejan el medio ambiente
-            y promuevan el bienestar social, contribuyendo positivamente a las comunidades donde operamos.
-          </p>
-        </div>
-        <div class="valor-img">
-          <img src="../logos/Logotipo_IMEX_2.png" alt="Sostenibilidad IMEX">
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- MISIÓN Y VISIÓN -->
-  <section class="mission-vision">
-    <div class="container">
-      <div>
-        <h2>Misión</h2>
-        <p>
-          Ofrecer productos y servicios de automatización industrial que impulsen la eficiencia, la seguridad
-          y la innovación, proporcionando soluciones personalizadas y soporte técnico especializado.
-        </p>
-      </div>
 
-      <div>
-        <h2>Visión</h2>
-        <p>
-          Ser la empresa líder en soluciones de automatización, destacando por nuestra calidad,
-          innovación y compromiso con el éxito de nuestros clientes.
-        </p>
+<section class="values-grid-section">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="value-card">
+          <div class="card-icon"><img src="../recursos_valores/integrity.png" alt="Integridad"></div>
+          <h3>Integridad</h3>
+          <p>Actuamos con honestidad y transparencia. La confianza es nuestra base ética.</p>
+        </div>
       </div>
-
-      <div>
-        <h2>Nuestros Valores Clave</h2>
-        <ul>
-          <li><strong>Innovación:</strong> Adoptamos las últimas tecnologías.</li>
-          <li><strong>Calidad:</strong> Productos confiables con marcas líderes.</li>
-          <li><strong>Compromiso:</strong> Atención personalizada y soporte técnico.</li>
-          <li><strong>Eficiencia:</strong> Optimización de procesos productivos.</li>
-        </ul>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="value-card">
+          <div class="card-icon"><img src="../recursos_valores/innovation.jpg" alt="Innovación"></div>
+          <h3>Innovación</h3>
+          <p>Creatividad y tecnología de vanguardia para solucionar retos industriales.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="value-card">
+          <div class="card-icon"><img src="../recursos_valores/quality.png" alt="Calidad"></div>
+          <h3>Calidad</h3>
+          <p>Excelencia en cada detalle para superar las expectativas del cliente.</p>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!--   
-</main>  -->
+    <div class="row g-4 mt-2">
+      <div class="col-md-6" data-aos="fade-right" data-aos-delay="300">
+        <div class="value-card horizontal">
+          <img src="../recursos_valores/colaboracion1.jpg" alt="Colaboración">
+          <div class="txt">
+            <h3>Colaboración</h3>
+            <p>Trabajo en equipo donde cada idea suma valor al resultado final.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6" data-aos="fade-left" data-aos-delay="400">
+        <div class="value-card horizontal">
+          <img src="../recursos_valores/Sostenibilidad1.jpg" alt="Sostenibilidad">
+          <div class="txt">
+            <h3>Sostenibilidad</h3>
+            <p>Compromiso con el medio ambiente y el bienestar social.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <script src="../script.js"></script>
+<section class="bento-section">
+  <div class="container">
+    <div class="bento-grid-equal">
+      
+      <div class="bento-card mission-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="card-body">
+          <div class="card-header-bento">
+            <h3>Misión</h3>
+          </div>
+          <p>Ofrecer productos y servicios de automatización industrial que impulsen la eficiencia, la seguridad y la innovación en nuestros clientes, proporcionando soluciones personalizadas y soporte técnico.</p>
+        </div>
+      </div>
 
-  <script src="https://unpkg.com"></script>
-  <script>
-    AOS.init({ duration: 800, once: true });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+      <div class="bento-card vision-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-body">
+          <div class="card-header-bento">
+            <h3>Visión</h3>
+          </div>
+          <p>Ser la empresa líder en soluciones de automatización, destacando por nuestra calidad, innovación y compromiso con el éxito de nuestros clientes en la transformación digital de la industria.</p>
+        </div>
+      </div>
 
-  <!-- Decorative Background Shapes -->
+      <div class="bento-card values-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="card-body">
+          <div class="card-header-bento">
+            <h3>Nuestros Valores</h3>
+          </div>
+          <ul class="values-list">
+            <li><strong>Innovación</strong> – Tecnologías avanzadas.</li>
+            <li><strong>Calidad</strong> – Marcas confiables.</li>
+            <li><strong>Compromiso</strong> – Soporte especializado.</li>
+            <li><strong>Eficiencia</strong> – Productividad optimizada.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bento-full-width-bar" data-aos="zoom-in" data-aos-delay="500">
+        <h4>EJES CLAVE DE NUESTRO SERVICIO</h4>
+        <div class="tag-container">
+          <span>#Tecnología</span>
+          <span>#Confianza</span>
+          <span>#Eficiencia</span>
+          <span>#Liderazgo</span>
+          <span>#Innovación</span>
+          <span>#Soporte</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!--    </main>     -->
+
+    <!-- Decorative Background Shapes -->
   <div class="bg-shapes">
     <span class="shape shape-1"></span>
     <span class="shape shape-2"></span>
@@ -256,14 +255,10 @@
   <footer>
     <p>&copy; 2026. Todos los derechos reservados. IMEX Lean Project
       Felipe Villanueva 232 Peralvillo• Cuauhtémoc, C.P. 06220 • CDMX</p>
-    <p>
-      <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA">Facebook</a> |
-      <a href="https://www.instagram.com/imex_lean_project">Instagram</a> |
-      <a href="https://www.linkedin.com/company/imex-lean-project">LinkedIn</a>
-    </p>
   </footer>
 
   <script src="../js/script_valores.js"></script>
+  <script src="../script.js"></script>
 
 </body>
 
