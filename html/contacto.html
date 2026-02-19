@@ -21,54 +21,58 @@
 <body>
   <div class="overlay" id="overlay"></div>
 <!-- NAVBAR FIJA -->
- <header class="navbar navbar-expand-lg fixed-top">
-
-    <div class="container">
-
-      <div class="d-flex align-items-center gap-3 flex-grow-1">
+  <header class="navbar navbar-expand-lg fixed-top">
 
 
-        <!-- LOGO -->
-        <a class="navbar-brand" href="../index.html">
-          <img src="../logos/Logotipo_IMEX_Lean_Project_10.png" alt="IMEX Logo" width="90">
+
+      <div class="d-flex align-items-center gap-3 flex-shrink-0">
+        <a class="navbar-brand m-0" href="../index.html">
+          <img src="../logos/Logotipo_IMEX_Lean_Project_10.png" alt="IMEX Logo">
         </a>
 
-        <!-- REDES EN HEADER -->
-        <div class="header-social d-none d-md-flex align-items-center gap-2">
+        <div class="header-social d-none d-md-flex align-items-center gap-2 ms-3">
           <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA"
             aria-label="Facebook">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
-              alt="Facebook">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"
+              width="20">
           </a>
-
           <a href="https://www.linkedin.com/company/imex-lean-project" aria-label="LinkedIn">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn"
+              width="20">
           </a>
-
           <a href="https://www.instagram.com/imex_lean_project" aria-label="Instagram">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"
+              width="20">
           </a>
 
-          <a href="https://www.tiktok.com/@imex.leanproject" aria-label="TikTok">
+          <a href="https://www.tiktok.com/@imex.leanproject">
             <img
               src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200"
-              alt="TikTok">
-              
+              width="28">
           </a>
         </div>
-
       </div>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#imexNavbar">
+      <div class="header-ticker-horizontal d-none d-lg-block mx-4" style="flex: 15; min-width: 0;">
+        <div class="marquee-content">
+          <span> Proyectos Lean de alta eficiencia • Envíos a todo el país • Soporte técnico especializado • Soluciones
+            Industriales • </span>
+          <span> Proyectos Lean de alta eficiencia • Envíos a todo el país • Soporte técnico especializado • Soluciones
+            Industriales • </span>
+        </div>
+      </div>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#imexNavbar"
+        aria-controls="imexNavbar" aria-expanded="false">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="imexNavbar">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
 
-          <!-- Productos -->
+          <!-- MENÚ -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Productos</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Productos</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item"
                   href="https://issel-mexico.odoo.com/shop/category/aplicacion-electrica-56">Eléctrica</a></li>
@@ -79,49 +83,50 @@
             </ul>
           </li>
 
-          <!-- Soluciones -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Servicios</a>
+          <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="../html/servicios.html">Nuestros servicios</a></li>
               <li><a class="dropdown-item" href="../html/distribuidores.html">Marcas distribuidas</a></li>
               <li><a class="dropdown-item" href="../html/nosotros.html">Acerca de nosotros</a></li>
             </ul>
           </li>
-
-          <!-- Conócenos -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Conócenos</a>
+          <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">Conócenos</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="../html/blog.html">Blog</a></li>
               <li><a class="dropdown-item" href="../html/valores.html">Nuestros Valores</a></li>
               <li><a class="dropdown-item" href="../html/contacto.html">Cómo comprar</a></li>
             </ul>
           </li>
-              <a href="contacto.html" class="read-more-btn">Contactanos</a>
+
+          <li class="nav-item ms-lg-3">
+            <a href="html/contacto.html" class="read-more-btn">Contáctanos</a>
+          </li>
+
         </ul>
 
-        <!-- REDES EN MOVIL (DENTRO DEL COLLAPSE) -->
-      <div class="mobile-social d-flex d-md-none justify-content-center gap-3 py-3">
-        <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="28">
-        </a>
+        <!-- REDES SOLO EN MÓVIL -->
+        <div class="mobile-social d-flex d-lg-none justify-content-center gap-4 pt-3 mt-3 border-top">
+          <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="28">
+          </a>
+          <a href="https://www.linkedin.com/company/imex-lean-project">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="28">
+          </a>
+          <a href="https://www.instagram.com/imex_lean_project">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="28">
+          </a>
+          <a href="https://www.tiktok.com/@imex.leanproject">
+            <img
+              src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200"
+              width="28">
+          </a>
+        </div>
 
-        <a href="https://www.linkedin.com/company/imex-lean-project">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="28">
-        </a>
-
-        <a href="https://www.instagram.com/imex_lean_project">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="28">
-        </a>
-
-        <a href="https://www.tiktok.com/@imex.leanproject">
-          <img src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200" width="28">
-        </a>
       </div>
 
-      </div>
-    </div>
+
   </header>
 
 

@@ -13,15 +13,14 @@
 </head>
 
 <body>
-  <div class="overlay" id="overlay"></div>
+
+  <header class="navbar navbar-expand-lg fixed-top">
 
 
-  <<header class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
 
-      <div class="d-flex align-items-center flex-shrink-0">
-        <a class="navbar-brand" href="index.html">
-          <img src="logos/Logotipo_IMEX_Lean_Project_10.png" alt="IMEX Logo" width="90">
+      <div class="d-flex align-items-center gap-3 flex-shrink-0">
+        <a class="navbar-brand m-0" href="index.html">
+          <img src="logos/Logotipo_IMEX_Lean_Project_10.png" alt="IMEX Logo">
         </a>
 
         <div class="header-social d-none d-md-flex align-items-center gap-2 ms-3">
@@ -47,7 +46,7 @@
         </div>
       </div>
 
-      <div class="header-ticker-horizontal d-none d-lg-block mx-4" style="flex: 1; min-width: 0;">
+      <div class="header-ticker-horizontal d-none d-lg-block mx-4" style="flex: 15; min-width: 0;">
         <div class="marquee-content">
           <span> Proyectos Lean de alta eficiencia • Envíos a todo el país • Soporte técnico especializado • Soluciones
             Industriales • </span>
@@ -68,28 +67,31 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Productos</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="https://issel-mexico.odoo.com/shop/category/aplicacion-electrica-56">Eléctrica</a></li>
-              <li><a class="dropdown-item" href="https://issel-mexico.odoo.com/shop/category/aplicacion-sensado-57">Sensado</a></li>
-              <li><a class="dropdown-item" href="https://issel-mexico.odoo.com/shop/category/aplicacion-seguridad-63">Seguridad</a></li>
+              <li><a class="dropdown-item"
+                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-electrica-56">Eléctrica</a></li>
+              <li><a class="dropdown-item"
+                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-sensado-57">Sensado</a></li>
+              <li><a class="dropdown-item"
+                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-seguridad-63">Seguridad</a></li>
             </ul>
           </li>
 
           <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="html/servicios.html">Nuestros servicios</a></li>
-            <li><a class="dropdown-item" href="html/distribuidores.html">Marcas distribuidas</a></li>
-            <li><a class="dropdown-item" href="html/nosotros.html">Acerca de nosotros</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false">Conócenos</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="html/blog.html">Blog</a></li>
-            <li><a class="dropdown-item" href="html/valores.html">Nuestros Valores</a></li>
-            <li><a class="dropdown-item" href="html/contacto.html">Cómo comprar</a></li>
-          </ul>
-        </li>
+              data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="html/servicios.html">Nuestros servicios</a></li>
+              <li><a class="dropdown-item" href="html/distribuidores.html">Marcas distribuidas</a></li>
+              <li><a class="dropdown-item" href="html/nosotros.html">Acerca de nosotros</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">Conócenos</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="html/blog.html">Blog</a></li>
+              <li><a class="dropdown-item" href="html/valores.html">Nuestros Valores</a></li>
+              <li><a class="dropdown-item" href="html/contacto.html">Cómo comprar</a></li>
+            </ul>
+          </li>
 
           <li class="nav-item ms-lg-3">
             <a href="html/contacto.html" class="read-more-btn">Contáctanos</a>
@@ -117,348 +119,345 @@
 
       </div>
 
+
+  </header>
+
+  <!--SECCION DEL DROPDOWN-IMAGENES-LOGO-->
+  <section class="hero">
+    <img src="logos/Logotipo_IMEX_Lean_Project_2.png" class="hero-logo" id="heroLogo" alt="IMEX Hero Logo">
+    <div class="hero-text-container" id="hero-text">
+      <h1>Soluciones Para Diversas Industrias</h1>
+      <p>DESDE LA AUTOMOTRÍZ HASTA LA SALUD, NUESTRAS SOLUCIONES MEJORAN LA SEGURIDAD Y PRECISIÓN EN MULTIPLES
+        SECTORES.
+      </p>
     </div>
-    </header>
 
-    <!--SECCION DEL DROPDOWN-IMAGENES-LOGO-->
-    <section class="hero">
-      <img src="logos/Logotipo_IMEX_Lean_Project_2.png" class="hero-logo" id="heroLogo" alt="IMEX Hero Logo">
-      <div class="hero-text-container" id="hero-text">
-        <h1>Soluciones Para Diversas Industrias</h1>
-        <p>DESDE LA AUTOMOTRÍZ HASTA LA SALUD, NUESTRAS SOLUCIONES MEJORAN LA SEGURIDAD Y PRECISIÓN EN MULTIPLES
-          SECTORES.
-        </p>
+    <div class="search-container">
+      <div class="search-wrapper">
+        <input type="text" class="search-input" id="searchInput" placeholder="Buscar productos...">
+        <div class="categories-dropdown" id="categoriesDropdown">
+          <div class="categories-header">
+            <input type="text" class="search-in-dropdown" id="searchInDropdown" placeholder="O escribe para buscar...">
+          </div>
+          <div class="categories-header">Categorías</div>
+          <ul class="categories-list">
+            <li>
+              <a href="https://issel-mexico.odoo.com/shop/category/aplicacion-electrica-56" class="category-item">
+                <img
+                  src="https://issel-mexico.odoo.com/web/image/product.product/169998/image_1024/%5B24991%5D%20K50APTGRE%20%20%20K50%20Series%20EZ-LIGHT:%202-Color%20Touch%20Sensor%3B%20Job%20Light%20Overrides%20Touch%20Light%3B%20Voltage:%2012-30%20V%20dc%3B%20Housing:%20Polycarbonate%3B%20IP67%20IP69K%3B%20Input:%20PNP%20%28NO%29%3B%20Colors:%20Green%20Red%3B%202%20m%20%286.5%20FT%29%20PVC%20Cable?unique=4b41b2e"
+                  alt="Sensores" class="category-image">
+                <span>Electrica</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://issel-mexico.odoo.com/shop/category/aplicacion-sensado-57" class="category-item">
+                <img
+                  src="https://issel-mexico.odoo.com/web/image/product.product/179142/image_1024/%5B804307%5D%20S22ALTFGRCT%20%20%20S22%20Pro%20Touch%20Series:%202-color%20RGB%20Touch%20Sensor-FDA%3B%20Voltage:%2010-30%20V%20dc%3B%20Housing:%20Copolyester%3B%20IP67%20IP69K%3B%20Input-Output:%20Bimodal%2C%20NO%2C%20Latching%3B%20Colors:%20Green%20Red%3B%205-screw%20Terminal%20Wiring?unique=4b41b2e"
+                  alt="Luces" class="category-image">
+                <span>Sensado</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://issel-mexico.odoo.com/shop/category/aplicacion-seguridad-63" class="category-item">
+                <img
+                  src="https://issel-mexico.odoo.com/web/image/product.product/183526/image_1024/%5B83344%5D%20STBVP6-RB2E02%20%20%20Self-Checking%20Touch%20Button%20with%20IP65%20Run%20Bar%20and%20E-STOP?unique=4b41b2e"
+                  alt="Controladores" class="category-image">
+                <span>Seguridad</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://issel-mexico.odoo.com/shop/category/aplicacion-medicion-64" class="category-item">
+                <img
+                  src="https://issel-mexico.odoo.com/web/image/product.product/168119/image_1024/%5B15151%5D%20EA5R150XKQ%20%20%20EA5R150XKQ%20EZ-ARRAY%205%20mm%20Optical%20Spacing%20x%20150%20mm%20RECVR%20with%20IO-Link%20Integral%208-pin%20M12?unique=4b41b2e"
+                  alt="Automatización" class="category-image">
+                <span>Medicion</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://issel-mexico.odoo.com/shop/category/aplicacion-inalambrico-69" class="category-item">
+                <img
+                  src="https://issel-mexico.odoo.com/web/image/product.product/511813/image_1024/%5B815001%5D%20PGPS100PSIG-C-I-Q%20%20%20Pressure%20Sensor%2C%200-100%20PSIG%2C%204-20%20mA%2C%20Stainless%2C%201-4NPT%2C%20M12?unique=4b41b2e"
+                  alt="Control" class="category-image">
+                <span>Inalambrico</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <button class="search-btn">Buscar</button>
+    </div>
+    <div class="products-preview">
+      <div class="product-card" data-image="recurso_index/rfid_hf.png"
+        style="background-image: url('recurso_index/rfid_hf.png');">
+        <span class="product-name">Cabezales y etiquetas de lectura/escritura RFID </span>
+      </div>
+      <div class="product-card" data-image="recurso_index/kit.png"
+        style="background-image: url('recurso_index/kit.png');">
+        <span class="product-name">Gateway de monitoreo de activos SNAP ID</span>
+      </div>
+      <div class="product-card" data-image="recurso_index/k50.png"
+        style="background-image: url('recurso_index/k50.png');">
+        <span class="product-name">Control tactil K50 con pantalla</span>
+      </div>
+      <div class="product-card" data-image="recurso_index/k50r.png"
+        style="background-image: url('recurso_index/k50r.png');">
+        <span class="product-name">Sensor de radar K50R con IO-LINK</span>
       </div>
 
-      <div class="search-container">
-        <div class="search-wrapper">
-          <input type="text" class="search-input" id="searchInput" placeholder="Buscar productos...">
-          <div class="categories-dropdown" id="categoriesDropdown">
-            <div class="categories-header">
-              <input type="text" class="search-in-dropdown" id="searchInDropdown"
-                placeholder="O escribe para buscar...">
-            </div>
-            <div class="categories-header">Categorías</div>
-            <ul class="categories-list">
-              <li>
-                <a href="https://issel-mexico.odoo.com/shop/category/aplicacion-electrica-56" class="category-item">
-                  <img
-                    src="https://issel-mexico.odoo.com/web/image/product.product/169998/image_1024/%5B24991%5D%20K50APTGRE%20%20%20K50%20Series%20EZ-LIGHT:%202-Color%20Touch%20Sensor%3B%20Job%20Light%20Overrides%20Touch%20Light%3B%20Voltage:%2012-30%20V%20dc%3B%20Housing:%20Polycarbonate%3B%20IP67%20IP69K%3B%20Input:%20PNP%20%28NO%29%3B%20Colors:%20Green%20Red%3B%202%20m%20%286.5%20FT%29%20PVC%20Cable?unique=4b41b2e"
-                    alt="Sensores" class="category-image">
-                  <span>Electrica</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://issel-mexico.odoo.com/shop/category/aplicacion-sensado-57" class="category-item">
-                  <img
-                    src="https://issel-mexico.odoo.com/web/image/product.product/179142/image_1024/%5B804307%5D%20S22ALTFGRCT%20%20%20S22%20Pro%20Touch%20Series:%202-color%20RGB%20Touch%20Sensor-FDA%3B%20Voltage:%2010-30%20V%20dc%3B%20Housing:%20Copolyester%3B%20IP67%20IP69K%3B%20Input-Output:%20Bimodal%2C%20NO%2C%20Latching%3B%20Colors:%20Green%20Red%3B%205-screw%20Terminal%20Wiring?unique=4b41b2e"
-                    alt="Luces" class="category-image">
-                  <span>Sensado</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://issel-mexico.odoo.com/shop/category/aplicacion-seguridad-63" class="category-item">
-                  <img
-                    src="https://issel-mexico.odoo.com/web/image/product.product/183526/image_1024/%5B83344%5D%20STBVP6-RB2E02%20%20%20Self-Checking%20Touch%20Button%20with%20IP65%20Run%20Bar%20and%20E-STOP?unique=4b41b2e"
-                    alt="Controladores" class="category-image">
-                  <span>Seguridad</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://issel-mexico.odoo.com/shop/category/aplicacion-medicion-64" class="category-item">
-                  <img
-                    src="https://issel-mexico.odoo.com/web/image/product.product/168119/image_1024/%5B15151%5D%20EA5R150XKQ%20%20%20EA5R150XKQ%20EZ-ARRAY%205%20mm%20Optical%20Spacing%20x%20150%20mm%20RECVR%20with%20IO-Link%20Integral%208-pin%20M12?unique=4b41b2e"
-                    alt="Automatización" class="category-image">
-                  <span>Medicion</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://issel-mexico.odoo.com/shop/category/aplicacion-inalambrico-69" class="category-item">
-                  <img
-                    src="https://issel-mexico.odoo.com/web/image/product.product/511813/image_1024/%5B815001%5D%20PGPS100PSIG-C-I-Q%20%20%20Pressure%20Sensor%2C%200-100%20PSIG%2C%204-20%20mA%2C%20Stainless%2C%201-4NPT%2C%20M12?unique=4b41b2e"
-                    alt="Control" class="category-image">
-                  <span>Inalambrico</span>
-                </a>
-              </li>
-            </ul>
+      <div class="product-card" data-image="recurso_index/tl70.png"
+        style="background-image: url('recurso_index/tl70.png');">
+        <span class="product-name">Torretas TL70 PRO</span>
+      </div>
+
+      <div class="product-card" data-image="recurso_index/k100.png"
+        style="background-image: url('recurso_index/k100.png');">
+        <span class="product-name">Beacon de visualización programable k100</span>
+      </div>
+    </div>
+  </section>
+
+  <!--SECCION NOVEDADES-->
+  <section class="container my-5 novedades-section">
+    <h2 class="text-center mb-4">Novedades IMEX</h2>
+
+    <div class="row text-center">
+
+      <!-- Nuevo Producto -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow novedades-card">
+          <div class="position-relative">
+            <img
+              src="https://issel-mexico.odoo.com/web/image/product.product/454923/image_1024/%5B813377%5D%20DK-K50PT-DISPLAY%20%20%20Show%20the%20K50%20Pro%20Touch%20Display.%20Custom%20Demonstration%20Functions.%20Includes%20LMF3050B%20Flange%20Bracket?unique=4b41b2e"
+              class="card-img-top" alt="Nuevo Sensor">
+            <span class="badge bg-success position-absolute top-0 start-0 m-3">Nuevo</span>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Nuevo Sensor Fotoeléctrico</h5>
+            <p class="card-text">
+              Sensor de alta precisión para automatización industrial de última generación.
+            </p>
+            <a href="https://issel-mexico.odoo.com/shop/813377-dk-k50pt-display-show-the-k50-pro-touch-display-custom-demonstration-functions-includes-lmf3050b-flange-bracket-454954?page=2&category=26"
+              class="btn btn-outline-primary btn-sm">Ver producto</a>
           </div>
         </div>
-        <button class="search-btn">Buscar</button>
       </div>
-      <div class="products-preview">
-        <div class="product-card" data-image="recurso_index/rfid_hf.png"
-          style="background-image: url('recurso_index/rfid_hf.png');">
-          <span class="product-name">Cabezales y etiquetas de lectura/escritura RFID </span>
-        </div>
-        <div class="product-card" data-image="recurso_index/kit.png"
-          style="background-image: url('recurso_index/kit.png');">
-          <span class="product-name">Gateway de monitoreo de activos SNAP ID</span>
-        </div>
-        <div class="product-card" data-image="recurso_index/k50.png"
-          style="background-image: url('recurso_index/k50.png');">
-          <span class="product-name">Control tactil K50 con pantalla</span>
-        </div>
-        <div class="product-card" data-image="recurso_index/k50r.png"
-          style="background-image: url('recurso_index/k50r.png');">
-          <span class="product-name">Sensor de radar K50R con IO-LINK</span>
-        </div>
 
-        <div class="product-card" data-image="recurso_index/tl70.png"
-          style="background-image: url('recurso_index/tl70.png');">
-          <span class="product-name">Torretas TL70 PRO</span>
-        </div>
-
-        <div class="product-card" data-image="recurso_index/k100.png"
-          style="background-image: url('recurso_index/k100.png');">
-          <span class="product-name">Beacon de visualización programable k100</span>
-        </div>
-      </div>
-    </section>
-
-    <!--SECCION NOVEDADES-->
-    <section class="container my-5 novedades-section">
-      <h2 class="text-center mb-4">Novedades IMEX</h2>
-
-      <div class="row text-center">
-
-        <!-- Nuevo Producto -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow novedades-card">
-            <div class="position-relative">
-              <img
-                src="https://issel-mexico.odoo.com/web/image/product.product/454923/image_1024/%5B813377%5D%20DK-K50PT-DISPLAY%20%20%20Show%20the%20K50%20Pro%20Touch%20Display.%20Custom%20Demonstration%20Functions.%20Includes%20LMF3050B%20Flange%20Bracket?unique=4b41b2e"
-                class="card-img-top" alt="Nuevo Sensor">
-              <span class="badge bg-success position-absolute top-0 start-0 m-3">Nuevo</span>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Nuevo Sensor Fotoeléctrico</h5>
-              <p class="card-text">
-                Sensor de alta precisión para automatización industrial de última generación.
-              </p>
-              <a href="https://issel-mexico.odoo.com/shop/813377-dk-k50pt-display-show-the-k50-pro-touch-display-custom-demonstration-functions-includes-lmf3050b-flange-bracket-454954?page=2&category=26"
-                class="btn btn-outline-primary btn-sm">Ver producto</a>
-            </div>
+      <!-- Más Vendido -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow novedades-card">
+          <div class="position-relative">
+            <img src="recursos_blog/instalacion.jpg" class="card-img-top" alt="Más Vendido">
+            <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3">Más vendido</span>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Sensores de Seguridad</h5>
+            <p class="card-text">
+              Línea más solicitada por la industria automotriz y de manufactura.
+            </p>
+            <a href="https://issel-mexico.odoo.com/shop/category/aplicacion-seguridad-63"
+              class="btn btn-outline-primary btn-sm">Ver categoría</a>
           </div>
         </div>
+      </div>
 
-        <!-- Más Vendido -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow novedades-card">
-            <div class="position-relative">
-              <img src="recursos_blog/instalacion.jpg" class="card-img-top" alt="Más Vendido">
-              <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3">Más vendido</span>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Sensores de Seguridad</h5>
-              <p class="card-text">
-                Línea más solicitada por la industria automotriz y de manufactura.
-              </p>
-              <a href="https://issel-mexico.odoo.com/shop/category/aplicacion-seguridad-63"
-                class="btn btn-outline-primary btn-sm">Ver categoría</a>
-            </div>
+      <!-- Servicios -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow novedades-card">
+          <div class="position-relative">
+            <img src="recursos_blog/instalacion.jpg2.jpg" class="card-img-top" alt="Servicios Industriales">
+            <span class="badge bg-danger position-absolute top-0 start-0 m-3">Servicio</span>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Instalaciones Disponibles</h5>
+            <p class="card-text">
+              Agenda instalaciones eléctricas, neumáticas y sistemas de seguridad.
+            </p>
+            <a href="html/servicios.html" class="btn btn-outline-primary btn-sm">Nuestros servicios</a>
           </div>
         </div>
+      </div>
 
-        <!-- Servicios -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow novedades-card">
-            <div class="position-relative">
-              <img src="recursos_blog/instalacion.jpg2.jpg" class="card-img-top" alt="Servicios Industriales">
-              <span class="badge bg-danger position-absolute top-0 start-0 m-3">Servicio</span>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Instalaciones Disponibles</h5>
-              <p class="card-text">
-                Agenda instalaciones eléctricas, neumáticas y sistemas de seguridad.
-              </p>
-              <a href="html/servicios.html" class="btn btn-outline-primary btn-sm">Nuestros servicios</a>
-            </div>
+    </div>
+  </section>
+
+  <!--SECCION CARRUCEL CENTRAL-->
+  <section class="about-us">
+    <div class="about-inner">
+      <div class="about-media">
+        <!-- Carrusel -->
+        <div class="imex-carousel" id="aboutCarousel">
+          <button class="carousel-btn prev" aria-label="Anterior">‹</button>
+          <div class="carousel-track">
+            <img src="flyers/demos.png" alt="Producto 1" class="imex-carousel-item" data-index="0">
+            <img src="flyers/demos1.png" alt="Producto 2" class="imex-carousel-item" data-index="1">
+            <img src="flyers/demos2.png" alt="Producto 3" class="imex-carousel-item" data-index="2">
+            <img src="flyers/demos3.png" alt="Producto 3" class="imex-carousel-item" data-index="3">
+            <img src="flyers/demos4.png" alt="Producto 3" class="imex-carousel-item" data-index="4">
           </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!--SECCION CARRUCEL CENTRAL-->
-    <section class="about-us">
-      <div class="about-inner">
-        <div class="about-media">
-          <!-- Carrusel -->
-          <div class="imex-carousel" id="aboutCarousel">
-            <button class="carousel-btn prev" aria-label="Anterior">‹</button>
-            <div class="carousel-track">
-              <img src="flyers/demos.png" alt="Producto 1" class="imex-carousel-item" data-index="0">
-              <img src="flyers/demos1.png" alt="Producto 2" class="imex-carousel-item" data-index="1">
-              <img src="flyers/demos2.png" alt="Producto 3" class="imex-carousel-item" data-index="2">
-              <img src="flyers/demos3.png" alt="Producto 3" class="imex-carousel-item" data-index="3">
-              <img src="flyers/demos4.png" alt="Producto 3" class="imex-carousel-item" data-index="4">
-            </div>
-            <button class="carousel-btn next" aria-label="Siguiente">›</button>
-          </div>
-        </div>
-        <div class="about-content">
-          <h2>Sobre Nosotros</h2>
-          <p>IMEX es líder en soluciones de automatización industrial, donde tú puedes encontrar productos innovadores
-            que
-            mejoran la
-            eficiencia y seguridad en tu industria.</p>
-          <a href="https://issel-mexico.odoo.com/shop" class="learn-more-btn">Conoce Más</a>
+          <button class="carousel-btn next" aria-label="Siguiente">›</button>
         </div>
       </div>
-    </section>
-
-    <!-- SECCION CASOS DE EXITOS-->
-    <section class="projects reveal">
-      <h2>Casos de Éxito</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <img src="recurso_index/kit.png" .jpg alt="Proyecto 1">
-          <h3>Monitoreo de vibración y temperatura en motores</h3>
-          <p>SOLUCÍON- Kit de soluciónes inalambricas de Banner</p>
-          <p>RESULTADOS:</p>
-          <p>Menos tiempos muertos</p>
-          <p>Reparaciones planeadas</p>
-          <p>Hasta 60hrs de paro evitadas</p>
-        </div>
-        <div class="project-card">
-          <img src="logos/Logotipo_IMEX_2.png" alt="Proyecto 2">
-          <h3>Control de Procesos en Planta Y</h3>
-          <p>Mejora en la seguridad y eficiencia energética.</p>
-        </div>
+      <div class="about-content">
+        <h2>Sobre Nosotros</h2>
+        <p>IMEX es líder en soluciones de automatización industrial, donde tú puedes encontrar productos innovadores
+          que
+          mejoran la
+          eficiencia y seguridad en tu industria.</p>
+        <a href="https://issel-mexico.odoo.com/shop" class="learn-more-btn">Conoce Más</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!--SECCION DE PREGUNTAS-->
-    <section class="container my-5">
-      <h2 class="text-center mb-4">Preguntas Frecuentes</h2>
-
-      <div class="accordion" id="faqAccordion">
-
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">
-              ¿Cómo instalo los sensores?
-            </button>
-          </h2>
-          <div id="faq1" class="accordion-collapse collapse show">
-            <div class="accordion-body">
-              Se instalan siguiendo nuestro manual paso a paso, disponible en PDF.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
-              ¿Qué garantía tienen los controladores?
-            </button>
-          </h2>
-          <div id="faq2" class="accordion-collapse collapse">
-            <div class="accordion-body">
-              Nuestros productos cuentan con 2 años de garantía completa.
-            </div>
-          </div>
-        </div>
-
+  <!-- SECCION CASOS DE EXITOS-->
+  <section class="projects reveal">
+    <h2>Casos de Éxito</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="recurso_index/kit.png" .jpg alt="Proyecto 1">
+        <h3>Monitoreo de vibración y temperatura en motores</h3>
+        <p>SOLUCÍON- Kit de soluciónes inalambricas de Banner</p>
+        <p>RESULTADOS:</p>
+        <p>Menos tiempos muertos</p>
+        <p>Reparaciones planeadas</p>
+        <p>Hasta 60hrs de paro evitadas</p>
       </div>
-    </section>
-
-    <!--SECCION DE COMENTARIOS-->
-    <section class="testimonials reveal">
-      <h2>Lo que dicen nuestros clientes</h2>
-      <div class="testimonial-cards">
-        <div class="testimonial-card">
-          <p>"Los sensores de IMEX han mejorado significativamente nuestra línea de producción."</p>
-          <span>- Juan Pérez, Gerente de Producción</span>
-        </div>
-        <div class="testimonial-card">
-          <p>"El soporte técnico es excepcional, siempre dispuestos a ayudar."</p>
-          <span>- María López, Ingeniera de Procesos</span>
-        </div>
-        <div class="testimonial-card">
-          <p>"Las luces indicadoras son claras y fiables, esenciales para nuestra seguridad."</p>
-          <span>- Carlos Sánchez, Supervisor de Planta</span>
-        </div>
-
-        <div class="testimonial-card">
-          <p>"Los sensores de IMEX han mejorado significativamente nuestra línea de producción."</p>
-          <span>- Felipe Gutierrez, PM</span>
-        </div>
-        <div class="testimonial-card">
-          <p>"El soporte técnico es excepcional, siempre dispuestos a ayudar."</p>
-          <span>- María López, Ingeniera de Procesos</span>
-        </div>
-        <div class="testimonial-card">
-          <p>"Las luces indicadoras son claras y fiables, esenciales para nuestra seguridad."</p>
-          <span>- Carlos Sánchez, Supervisor de Planta</span>
-        </div>
-
-        <div class="testimonial-card">
-          <p>"Los sensores de IMEX han mejorado significativamente nuestra línea de producción."</p>
-          <span>- Felipe Gutierrez, PM</span>
-        </div>
-        <div class="testimonial-card">
-          <p>"El soporte técnico es excepcional, siempre dispuestos a ayudar."</p>
-          <span>- María López, Ingeniera de Procesos</span>
-        </div>
-        <div class="testimonial-card">
-          <p>"Las luces indicadoras son claras y fiables, esenciales para nuestra seguridad."</p>
-          <span>- Carlos Sánchez, Supervisor de Planta</span>
-        </div>
+      <div class="project-card">
+        <img src="logos/Logotipo_IMEX_2.png" alt="Proyecto 2">
+        <h3>Control de Procesos en Planta Y</h3>
+        <p>Mejora en la seguridad y eficiencia energética.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!--SECCION DE PROVEEDORES-->
-    <section class="proveedores" id="proveedores">
-      <div class="container">
-        <h2>Nuestros Proveedores</h2>
-        <h2>Son los mas confiables y capacitados en la industria, proponen las mejores soluciones automatizadas para su
-          produccion
-          en todos los sectores industriales.
+  <!--SECCION DE PREGUNTAS-->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Preguntas Frecuentes</h2>
+
+    <div class="accordion" id="faqAccordion">
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            ¿Cómo instalo los sensores?
+          </button>
         </h2>
-
-        <div class="proveedor-marquee" aria-label="Logos de proveedores" role="region">
-          <div class="marquee-track" id="marqueeTrack" tabindex="0">
-            <img src="recurso_index/logos_proveedores/Banner.png" alt="Proveedor 1" loading="lazy">
-            <img src="recurso_index/logos_proveedores/Wago.png">
-            <img src="recurso_index/logos_proveedores/ckd-png.png" alt="Proveedor 3" loading="lazy">
-            <img src="recurso_index/logos_proveedores/helukabel.png" alt="Proveedor 4" loading="lazy">
-            <img src="recurso_index/logos_proveedores/Banner.png" alt="Proveedor 1" loading="lazy">
-            <img src="recurso_index/logos_proveedores/Wago.png">
-            <img src="recurso_index/logos_proveedores/ckd-png.png" alt="Proveedor 3" loading="lazy">
-            <img src="recurso_index/logos_proveedores/helukabel.png" alt="Proveedor 4" loading="lazy">
-
-            <!-- Duplicados para efecto continuo -->
-            <img src="recurso_index/logos_proveedores/Banner.png" alt="Proveedor 1" loading="lazy" aria-hidden="true">
-            <img src="recurso_index/logos_proveedores/Wago.png" alt="Proveedor 2" loading="lazy" aria-hidden="true">
-            <img src="recurso_index/logos_proveedores/ckd-png.png" alt="Proveedor 3" loading="lazy" aria-hidden="true">
-            <img src="recurso_index/logos_proveedores/helukabel.png" alt="Proveedor 4" loading="lazy"
-              aria-hidden="true">
-            <img src="recurso_index/logos_proveedores/Banner.png" alt="Proveedor 1" loading="lazy" aria-hidden="true">
-            <img src="recurso_index/logos_proveedores/Wago.png" alt="Proveedor 2" loading="lazy" aria-hidden="true">
-            <img src="recurso_index/logos_proveedores/ckd-png.png" alt="Proveedor 3" loading="lazy" aria-hidden="true">
-            <img src="recurso_index/logos_proveedores/helukabel.png" alt="Proveedor 4" loading="lazy"
-              aria-hidden="true">
+        <div id="faq1" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            Se instalan siguiendo nuestro manual paso a paso, disponible en PDF.
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Decorative Background Shapes -->
-    <div class="bg-shapes">
-      <span class="shape shape-1"></span>
-      <span class="shape shape-2"></span>
-      <span class="shape shape-3"></span>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
+            ¿Qué garantía tienen los controladores?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Nuestros productos cuentan con 2 años de garantía completa.
+          </div>
+        </div>
+      </div>
+
     </div>
+  </section>
 
-    <!--FOOTER O SECCION FINAL DE LA PAGINA-->
-    <footer>
-      <p>&copy; 2026. Todos los derechos reservados. IMEX Lean Project
-        Felipe Villanueva 232 Peralvillo• Cuauhtémoc, C.P. 06220 • CDMX</p>
-    </footer>
+  <!--SECCION DE COMENTARIOS-->
+  <section class="testimonials reveal">
+    <h2>Lo que dicen nuestros clientes</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial-card">
+        <p>"Los sensores de IMEX han mejorado significativamente nuestra línea de producción."</p>
+        <span>- Juan Pérez, Gerente de Producción</span>
+      </div>
+      <div class="testimonial-card">
+        <p>"El soporte técnico es excepcional, siempre dispuestos a ayudar."</p>
+        <span>- María López, Ingeniera de Procesos</span>
+      </div>
+      <div class="testimonial-card">
+        <p>"Las luces indicadoras son claras y fiables, esenciales para nuestra seguridad."</p>
+        <span>- Carlos Sánchez, Supervisor de Planta</span>
+      </div>
 
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+      <div class="testimonial-card">
+        <p>"Los sensores de IMEX han mejorado significativamente nuestra línea de producción."</p>
+        <span>- Felipe Gutierrez, PM</span>
+      </div>
+      <div class="testimonial-card">
+        <p>"El soporte técnico es excepcional, siempre dispuestos a ayudar."</p>
+        <span>- María López, Ingeniera de Procesos</span>
+      </div>
+      <div class="testimonial-card">
+        <p>"Las luces indicadoras son claras y fiables, esenciales para nuestra seguridad."</p>
+        <span>- Carlos Sánchez, Supervisor de Planta</span>
+      </div>
+
+      <div class="testimonial-card">
+        <p>"Los sensores de IMEX han mejorado significativamente nuestra línea de producción."</p>
+        <span>- Felipe Gutierrez, PM</span>
+      </div>
+      <div class="testimonial-card">
+        <p>"El soporte técnico es excepcional, siempre dispuestos a ayudar."</p>
+        <span>- María López, Ingeniera de Procesos</span>
+      </div>
+      <div class="testimonial-card">
+        <p>"Las luces indicadoras son claras y fiables, esenciales para nuestra seguridad."</p>
+        <span>- Carlos Sánchez, Supervisor de Planta</span>
+      </div>
+    </div>
+  </section>
+
+  <!--SECCION DE PROVEEDORES-->
+  <section class="proveedores" id="proveedores">
+    <div class="container">
+      <h2>Nuestros Proveedores</h2>
+      <h2>Son los mas confiables y capacitados en la industria, proponen las mejores soluciones automatizadas para su
+        produccion
+        en todos los sectores industriales.
+      </h2>
+
+      <div class="proveedor-marquee" aria-label="Logos de proveedores" role="region">
+        <div class="marquee-track" id="marqueeTrack" tabindex="0">
+          <img src="recurso_index/logos_proveedores/Banner.png" alt="Proveedor 1" loading="lazy">
+          <img src="recurso_index/logos_proveedores/Wago.png">
+          <img src="recurso_index/logos_proveedores/ckd-png.png" alt="Proveedor 3" loading="lazy">
+          <img src="recurso_index/logos_proveedores/helukabel.png" alt="Proveedor 4" loading="lazy">
+          <img src="recurso_index/logos_proveedores/Banner.png" alt="Proveedor 1" loading="lazy">
+          <img src="recurso_index/logos_proveedores/Wago.png">
+          <img src="recurso_index/logos_proveedores/ckd-png.png" alt="Proveedor 3" loading="lazy">
+          <img src="recurso_index/logos_proveedores/helukabel.png" alt="Proveedor 4" loading="lazy">
+
+          <!-- Duplicados para efecto continuo -->
+          <img src="recurso_index/logos_proveedores/Banner.png" alt="Proveedor 1" loading="lazy" aria-hidden="true">
+          <img src="recurso_index/logos_proveedores/Wago.png" alt="Proveedor 2" loading="lazy" aria-hidden="true">
+          <img src="recurso_index/logos_proveedores/ckd-png.png" alt="Proveedor 3" loading="lazy" aria-hidden="true">
+          <img src="recurso_index/logos_proveedores/helukabel.png" alt="Proveedor 4" loading="lazy" aria-hidden="true">
+          <img src="recurso_index/logos_proveedores/Banner.png" alt="Proveedor 1" loading="lazy" aria-hidden="true">
+          <img src="recurso_index/logos_proveedores/Wago.png" alt="Proveedor 2" loading="lazy" aria-hidden="true">
+          <img src="recurso_index/logos_proveedores/ckd-png.png" alt="Proveedor 3" loading="lazy" aria-hidden="true">
+          <img src="recurso_index/logos_proveedores/helukabel.png" alt="Proveedor 4" loading="lazy" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Decorative Background Shapes -->
+  <div class="bg-shapes">
+    <span class="shape shape-1"></span>
+    <span class="shape shape-2"></span>
+    <span class="shape shape-3"></span>
+  </div>
+
+  <!--FOOTER O SECCION FINAL DE LA PAGINA-->
+  <footer>
+    <p>&copy; 2026. Todos los derechos reservados. IMEX Lean Project
+      Felipe Villanueva 232 Peralvillo• Cuauhtémoc, C.P. 06220 • CDMX</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

@@ -84,6 +84,7 @@ if (menuColapsable && navbarToggler) {
     });
 }
 
+
 // 5. CARRUSEEL "SOBRE NOSOTROS" (Simplificado)
 (function() {
     const carousel = document.getElementById('aboutCarousel');

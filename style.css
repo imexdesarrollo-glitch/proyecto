@@ -49,6 +49,7 @@ header {
 .logo {
   flex-shrink: 0;
   transition: transform 0.3s ease;
+  right: 70%;
 }
 
 .logo:hover {
@@ -61,15 +62,19 @@ nav {
   justify-content: center;
 }
 
-
 /* =========================
    HEADER BOOTSTRAP
 ========================= */
-
 .navbar {
   background: linear-gradient(135deg, #003c69 0%, #002a4a 100%) !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 15px 40px;
+  padding: 10px 25px;
+}
+
+/* Usamos todo el ancho */
+.navbar .container-fluid {
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 /* Logo */
@@ -81,57 +86,63 @@ nav {
   transform: scale(1.05);
 }
 
-/* Links principales */
-.navbar .nav-link {
-  color: white !important;
-  font-weight: 600;
-  padding: 10px 15px;
-  border-bottom: 2px solid transparent;
-  transition: color 0.3s ease, border-color 0.3s ease;
+/* Redes */
+.social-icons a {
+  color: white;
+  font-size: 18px;
+  transition: 0.3s ease;
 }
 
-/* Hover links principales */
+.social-icons a:hover {
+  color: #fcd900;
+  transform: translateY(-2px);
+}
+
+/* Links */
+.navbar .nav-link {
+  color: rgb(255, 255, 255) !important;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
 .navbar .nav-link:hover,
 .navbar .nav-link:focus {
   color: #fcd900 !important;
   border-bottom-color: #fcd900;
 }
 
-/* Dropdown menu fondo */
-.navbar .dropdown-menu {
-  background: linear-gradient(135deg, #003c69 0%, #002a4a 100%);
-  border: none;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-}
-
-/* Items del dropdown */
-.navbar .dropdown-menu .dropdown-item {
-  color: white;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 8px 20px;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-/* Hover dropdown */
-.navbar .dropdown-menu .dropdown-item:hover {
-  background-color: rgba(252, 217, 0, 0.15);
-  color: #fcd900;
-}
-
-/* Estado activo */
+/* Activo */
 .navbar .nav-link.active {
   color: #fcd900 !important;
   border-bottom-color: #fcd900;
 }
 
-/* Botón hamburguesa Bootstrap */
+/* Dropdown */
+.navbar .dropdown-menu {
+  background: linear-gradient(135deg, #003c69 0%, #002a4a 100%);
+  border: none;
+}
+
+/* Botón hamburguesa */
 .navbar-toggler {
   border-color: rgba(255,255,255,0.5);
 }
 
 .navbar-toggler-icon {
   filter: invert(100%);
+}
+
+/* Letras del dropdown */
+.navbar .dropdown-menu .dropdown-item {
+  color: white !important;  /* color de la fuete  */
+}
+
+/* Hover del dropdown */
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: rgba(252, 217, 0, 0.15);
+  color: #fcd900 !important; /* Color cuando pasas el mouse */
 }
 
 /* =========================
@@ -174,6 +185,7 @@ nav {
 .hero {
   position: relative;
   overflow: hidden;
+  
 }
 
 /* Capa de imagen hover */
@@ -1757,7 +1769,7 @@ header.navbar {
 }
 
 .marquee-content span {
-    color: #fcd900;
+    color: #ffffff; /* color del carrucel del header*/
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
@@ -1772,7 +1784,7 @@ header.navbar {
 /* Fix para el menú en móviles */
 @media (max-width: 991px) {
     .navbar-collapse {
-        background: #001a33; /* Color sólido para que se vea el menú */
+        background: #003c69; /* Color sólido para que se vea el menú */
         padding: 20px;
         margin-top: 10px;
         border-radius: 8px;
