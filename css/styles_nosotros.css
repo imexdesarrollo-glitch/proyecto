@@ -379,7 +379,7 @@ html, body {
 
 .section-title2 {
   font-weight: 700;
-  color: #ffffff; /* azul  */
+  color: #fcd900; /* amarillo  */
   letter-spacing: 2px;
 }
 
@@ -427,5 +427,54 @@ html, body {
   
 }
 
+/* =========================
+   IMEX EN NUMEROS
+========================= */
 
+.imex-stats {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  padding: 100px 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.stats-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 70px;
+  letter-spacing: 2px;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+  min-width: 140px;
+  transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-10px); /* efecto sutil */
+}
+
+.counter {
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #fcd900;
+  display: block;
+}
+
+.stat-item p {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 10px;
+  opacity: 0.8;
+}
 
