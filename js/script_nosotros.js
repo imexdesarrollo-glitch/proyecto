@@ -49,3 +49,28 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
+// Opcion para poner el simbolo de más +
+document.querySelectorAll('.counter').forEach(counter => {
+
+  const target = parseInt(counter.getAttribute('data-target'));
+  const suffix = counter.getAttribute('data-suffix') || "";
+  const speed = 200;
+  let count = 0;
+
+  const updateCount = () => {
+    const increment = Math.ceil(target / speed);
+
+    if (count < target) {
+      count += increment;
+      if (count > target) count = target;
+
+      counter.innerText = count;
+      setTimeout(updateCount, 10);
+    } else {
+      counter.innerText = target + suffix;
+    }
+  };
+
+  updateCount();
+});
