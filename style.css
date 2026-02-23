@@ -1811,5 +1811,38 @@ header.navbar {
   pointer-events: none;
 }
 
+.footer {
+  background: #003c69;
+  color: #fff;
+  padding: 60px 20px 20px;
+}
 
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer h3, .footer h4 {
+  margin-bottom: 15px;
+}
+
+.footer a {
+  color: #cbd5e1;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #38bdf8;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid #334155;
+  padding-top: 15px;
+  font-size: 14px;
+}
 
