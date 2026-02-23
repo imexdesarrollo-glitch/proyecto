@@ -10,11 +10,13 @@
   <link rel="stylesheet" href="../css/styles_contacto.css">
   <title>IMEX WEB</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- 
   <script
   src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap"
   async
   defer>
-</script>
+</script>     -->
 
 
 </head>
@@ -153,17 +155,33 @@
 
     <button type="submit">Enviar</button>
   </form>
+
 </section>
 
 
 
 <!--SECCION DE GOOGLE MAP API POR INPLEMENTAR-->
 <section class="map-section">
+
+  <h2 class="titulo-ubicacion">Donde Encontrarnos</h2>
+  <div class="map-container">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d940.452036926141!2d-99.1402201!3d19.4638368!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f9007f78526f%3A0xf9dae82be17b1c42!2sIMEX%20ISSEL%20M%C3%89XICO!5e0!3m2!1ses!2smx!4v1771879048086!5m2!1ses!2smx"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+  
+ <!--   
   <h2>Ubicación</h2>
   <input id="postalCode" type="text" placeholder="Tu Codigo Postal">
   <button onclick="buscarCodigoPostal()">Buscar</button>
   <div id="map" style="width:100%; height:400px;"></div>
+  -->
 </section>
+
+
 
 <!--SECCION TARJETAS DE CONTACTO-->
 <section class="contact-container">
@@ -207,6 +225,8 @@
 
     <p><strong>Email:</strong> ventas@isselmexico.com.mx</p>
   </div>
+
+  
 </section>
 
   <!--SECCION DE PROVEEDORES-->
@@ -220,18 +240,14 @@
 
       <div class="proveedor-marquee" aria-label="Logos de proveedores" role="region">
         <div class="marquee-track" id="marqueeTrack" tabindex="0">
-          <img src="../recurso_index/logos_proveedores/Banner.png" alt="Proveedor 1"
-            loading="lazy">
-          <img src="../recurso_index/logos_proveedores/Wago.png">
+          <img src="../recurso_index/logos_proveedores/Banner.png" alt="Proveedor 1" loading="lazy">
+          <img src="../recurso_index/logos_proveedores/Wago.png" alt="Proveedor 2" loading="lazy">
           <img src="../recurso_index/logos_proveedores/ckd-png.png" alt="Proveedor 3" loading="lazy">
-          <img src="../recurso_index/logos_proveedores/helukabel.png"
-            alt="Proveedor 4" loading="lazy">
-          <img src="../recurso_index/logos_proveedores/Banner.png" alt="Proveedor 1"
-            loading="lazy">
-          <img src="../recurso_index/logos_proveedores/Wago.png">
+          <img src="../recurso_index/logos_proveedores/helukabel.png" alt="Proveedor 4" loading="lazy">
+          <img src="../recurso_index/logos_proveedores/Banner.png" alt="Proveedor 1" loading="lazy">
+          <img src="../recurso_index/logos_proveedores/Wago.png" alt="Proveedor 2" loading="lazy">
           <img src="../recurso_index/logos_proveedores/ckd-png.png" alt="Proveedor 3" loading="lazy">
-          <img src="../recurso_index/logos_proveedores/helukabel.png"
-            alt="Proveedor 4" loading="lazy">
+          <img src="../recurso_index/logos_proveedores/helukabel.png" alt="Proveedor 4" loading="lazy">
 
           <!-- Duplicados para efecto continuo -->
           <img src="../recurso_index/logos_proveedores/Banner.png" alt="Proveedor 1"
@@ -240,14 +256,14 @@
             aria-hidden="true">
           <img src="../recurso_index/logos_proveedores/ckd-png.png" alt="Proveedor 3" loading="lazy"
             aria-hidden="true">
-          <img src="../recurso_index/logos_proveedores/helukabel.png"Proveedor 4" loading="lazy" aria-hidden="true">
+          <img src="../recurso_index/logos_proveedores/helukabel.png" alt="Proveedor 4" loading="lazy" aria-hidden="true">
           <img src="../recurso_index/logos_proveedores/Banner.png" alt="Proveedor 1"
             loading="lazy" aria-hidden="true">
           <img src="../recurso_index/logos_proveedores/Wago.png" alt="Proveedor 2" loading="lazy"
             aria-hidden="true">
           <img src="../recurso_index/logos_proveedores/ckd-png.png" alt="Proveedor 3" loading="lazy"
             aria-hidden="true">
-          <img src="../recurso_index/logos_proveedores/helukabel.png"Proveedor 4" loading="lazy" aria-hidden="true">
+          <img src="../recurso_index/logos_proveedores/helukabel.png" alt="Proveedor 4" loading="lazy" aria-hidden="true">
         </div>
       </div>
     </div>
