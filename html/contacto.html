@@ -136,19 +136,26 @@
       <input type="text" name="nombre" placeholder="Escribe Tu Nombre" required>
       <input type="text" name="apellido" placeholder="Escribe Tu Apellido" required>
       <input type="email" name="email" placeholder="Ingresa Tu Email" required>
-      <input type="tel" name="telefono" placeholder="Número De Contacto"pattern="[0-9]{10}"maxlength="10"inputmode="numeric"required>
+
+      <input 
+        type="tel" 
+        name="telefono" 
+        placeholder="Número De Contacto"
+        pattern="[0-9]{10}" 
+        maxlength="10"
+        inputmode="numeric"
+        required>
+
       <textarea name="mensaje" placeholder="Tu Mensaje" required></textarea>
 
-      <!-- Anti-spam -->
       <input type="text" name="_honey" style="display:none">
-
-      <!-- Configuración -->
       <input type="hidden" name="_subject" value="Nuevo mensaje desde Web IMEX">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_next" value="https://imexdesarrollo-glitch.github.io/proyecto/html/gracias.html">
 
       <button type="submit">Enviar</button>
+
     </form>
   </section>
 
