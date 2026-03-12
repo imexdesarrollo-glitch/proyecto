@@ -77,6 +77,63 @@ nav a {
 }
 
 /* =========================
+   primer seccion de contacto
+========================= */
+
+/* =========================
+   ACCESO RAPIDO CONTACTO
+========================= */
+
+.contacto-rapido{
+  background: linear-gradient(135deg, #003c69, #002a4a);
+  padding: 25px 20px;
+  text-align: center;
+}
+
+.rapido-container{
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.btn-ubicacion,
+.btn-whatsapp{
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* BOTON UBICACION */
+.btn-ubicacion{
+  background: linear-gradient(135deg, #fcd900, #ffea70);
+  color: #003c69;
+  box-shadow: 0 6px 18px rgba(252,217,0,0.35);
+}
+
+.btn-ubicacion:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(252,217,0,0.5);
+}
+
+/* BOTON WHATSAPP */
+.btn-whatsapp{
+  background: #25D366;
+  color: white;
+  box-shadow: 0 6px 18px rgba(37,211,102,0.35);
+}
+
+.btn-whatsapp:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(37,211,102,0.5);
+}
+/* =========================
    CONTACT FORM
 ========================= */
 .contact-us {

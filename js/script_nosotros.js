@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   const counters = document.querySelectorAll('.counter');
-  const speed = 200;
+  const speed = 100;
   let countersStarted = false;
 
   const observer = new IntersectionObserver((entries) => {
@@ -51,26 +51,57 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Opcion para poner el simbolo de más +
-document.querySelectorAll('.counter').forEach(counter => {
+document.addEventListener("DOMContentLoaded", () => {
 
-  const target = parseInt(counter.getAttribute('data-target'));
-  const suffix = counter.getAttribute('data-suffix') || "";
-  const speed = 200;
-  let count = 0;
+  const counters = document.querySelectorAll('.counter');
+  let countersStarted = false;
 
-  const updateCount = () => {
-    const increment = Math.ceil(target / speed);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
 
-    if (count < target) {
-      count += increment;
-      if (count > target) count = target;
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
 
-      counter.innerText = count;
-      setTimeout(updateCount, 10);
-    } else {
-      counter.innerText = target + suffix;
-    }
-  };
+      if (entry.isIntersecting && entry.target.classList.contains("imex-stats") && !countersStarted) {
 
-  updateCount();
+        counters.forEach(counter => {
+
+          const target = parseInt(counter.getAttribute('data-target'));
+          const suffix = counter.getAttribute('data-suffix') || "";
+          const speed = 200;
+          let count = 0;
+
+          const updateCount = () => {
+            const increment = Math.ceil(target / speed);
+
+            if (count < target) {
+              count += increment;
+              if (count > target) count = target;
+
+              counter.innerText = count;
+              setTimeout(updateCount, 10);
+            } else {
+              counter.innerText = target + suffix;
+            }
+          };
+
+          updateCount();
+        });
+
+        countersStarted = true;
+      }
+
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.reveal').forEach(el => {
+    observer.observe(el);
+  });
+
+  const statsSection = document.querySelector('.imex-stats');
+  if (statsSection) {
+    observer.observe(statsSection);
+  }
+
 });
