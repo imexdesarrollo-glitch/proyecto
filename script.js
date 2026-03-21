@@ -137,6 +137,36 @@ if (menuColapsable && navbarToggler) {
     });
 }
 
+// --- Lógica de Cookies IMEX ---
+    const cookieBanner = document.getElementById("cookie-banner");
+    const cookieOverlay = document.getElementById("cookie-overlay");
+    const acceptCookies = document.getElementById("acceptCookies");
+    const rejectCookies = document.getElementById("rejectCookies");
+
+    // Función para ocultar todo y habilitar el sitio
+    const closeCookies = () => {
+        if (cookieBanner) cookieBanner.style.display = "none";
+        if (cookieOverlay) cookieOverlay.style.display = "none";
+        document.body.style.overflow = "auto"; 
+    };
+
+    // Verificar si ya se decidió anteriormente
+    if (cookieBanner && !sessionStorage.getItem("cookiesIMEX")) {
+        cookieBanner.style.display = "block";
+        if (cookieOverlay) cookieOverlay.style.display = "block";
+        document.body.style.overflow = "hidden"; // Bloquea el scroll de la web
+    }
+
+    // Eventos de botones
+    acceptCookies?.addEventListener("click", () => {
+        sessionStorage.setItem("cookiesIMEX", "accepted");
+        closeCookies();
+    });
+
+    rejectCookies?.addEventListener("click", () => {
+        sessionStorage.setItem("cookiesIMEX", "rejected");
+        closeCookies();
+    });
 
 // 5. CARRUSEEL "SOBRE NOSOTROS" (Simplificado)
 (function() {

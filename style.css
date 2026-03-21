@@ -1660,3 +1660,114 @@ header.chat-open {
   background: #ccc;
   border-radius: 10px;
 }
+
+/* =========================
+   COOKIES IMEX - COMPLETO
+========================= */
+
+/* Capa gris de fondo */
+.cookie-overlay {
+  display: none; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4); 
+  backdrop-filter: grayscale(100%) blur(4px);
+  -webkit-backdrop-filter: grayscale(100%) blur(4px);
+  z-index: 9998;
+  animation: fadeInOverlay 0.5s ease forwards;
+}
+
+/* Contenedor del Banner */
+.cookie-banner {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 1100px;
+  z-index: 9999;
+}
+
+/* Caja de diseño premium */
+.cookie-box {
+  background: rgba(17, 57, 187, 0.95);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 25px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  animation: cookieFade 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cookie-box p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffffff;
+}
+
+.cookie-box a {
+  color: #fcd900;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* Botones */
+.cookie-actions {
+  display: flex;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.cookie-actions button {
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .3s ease;
+  text-transform: uppercase;
+}
+
+#acceptCookies {
+  background: #fcd900;
+  color: #003c69;
+}
+
+#acceptCookies:hover {
+  background: #ffffff;
+  transform: translateY(-3px);
+}
+
+#rejectCookies {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* Animaciones */
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes cookieFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+  .cookie-box { flex-direction: column; text-align: center; padding: 25px; }
+  .cookie-actions { width: 100%; flex-direction: column; }
+  .cookie-actions button { width: 100%; }
+}
