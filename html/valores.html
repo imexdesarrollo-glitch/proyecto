@@ -10,14 +10,15 @@
   <link rel="stylesheet" href="https://unpkg.com" />
   <link href="https://fonts.googleapis.com" rel="stylesheet">
 </head>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 800, once: true });
-  </script>
-  <script src="../js/script_valores.js"></script>
-  <script src="../script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true });
+</script>
+<script src="../js/script_valores.js"></script>
+<script src="../script.js"></script>
 </body>
+
 <body>
   <div class="overlay" id="overlay"></div>
   <!-- NAVBAR FIJA -->
@@ -25,230 +26,245 @@
 
 
 
-      <div class="d-flex align-items-center gap-3 flex-shrink-0">
-        <a class="navbar-brand m-0" href="../index.html">
-          <img src="../logos/Logotipo_IMEX_Lean_Project_10.png" alt="IMEX Logo">
+    <div class="d-flex align-items-center gap-3 flex-shrink-0">
+      <a class="navbar-brand m-0" href="../index.html">
+        <img src="../logos/Logotipo_IMEX_Lean_Project_10.png" alt="IMEX Logo">
+      </a>
+
+      <div class="header-social d-none d-md-flex align-items-center gap-2 ms-3">
+        <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA" aria-label="Facebook">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"
+            width="20">
+        </a>
+        <a href="https://www.linkedin.com/company/imex-lean-project" aria-label="LinkedIn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn"
+            width="20">
+        </a>
+        <a href="https://www.instagram.com/imex_lean_project" aria-label="Instagram">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"
+            width="20">
         </a>
 
-        <div class="header-social d-none d-md-flex align-items-center gap-2 ms-3">
-          <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA"
-            aria-label="Facebook">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"
-              width="20">
-          </a>
-          <a href="https://www.linkedin.com/company/imex-lean-project" aria-label="LinkedIn">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn"
-              width="20">
-          </a>
-          <a href="https://www.instagram.com/imex_lean_project" aria-label="Instagram">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"
-              width="20">
-          </a>
+        <a href="https://www.tiktok.com/@imex.leanproject">
+          <img
+            src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200"
+            width="28">
+        </a>
+      </div>
+    </div>
 
-          <a href="https://www.tiktok.com/@imex.leanproject">
-            <img
-              src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200"
-              width="28">
-          </a>
-        </div>
+    <div class="header-ticker-horizontal d-none d-lg-block mx-4" style="flex: 15; min-width: 0;">
+      <div class="marquee-content">
+        <span> Proyectos Lean de alta eficiencia • Distribución de sensores y componentes • Soporte técnico
+          especializado •
+          Soluciones
+          Industriales • </span>
+        <span> Proyectos Lean de alta eficiencia • Distribución de sensores y componentes • Soporte técnico
+          especializado •
+          Soluciones
+          Industriales • </span>
+      </div>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#imexNavbar"
+      aria-controls="imexNavbar" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="imexNavbar">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+
+        <!-- MENÚ -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Productos</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item"
+                href="https://issel-mexico.odoo.com/shop/category/aplicacion-electrica-56">Eléctrica</a></li>
+            <li><a class="dropdown-item"
+                href="https://issel-mexico.odoo.com/shop/category/aplicacion-sensado-57">Sensado</a></li>
+            <li><a class="dropdown-item"
+                href="https://issel-mexico.odoo.com/shop/category/aplicacion-seguridad-63">Seguridad</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="../html/servicios.html">Nuestros servicios</a></li>
+            <li><a class="dropdown-item" href="../html/distribuidores.html">Marcas distribuidas</a></li>
+            <li><a class="dropdown-item" href="../html/nosotros.html">Acerca de nosotros</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">Conócenos</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="../html/blog.html">Blog</a></li>
+            <li><a class="dropdown-item" href="../html/valores.html">Nuestros Valores</a></li>
+            <li><a class="dropdown-item" href="../html/contacto.html">Cómo comprar</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item ms-lg-3">
+          <a href="../html/contacto.html" class="read-more-btn">Contáctanos</a>
+        </li>
+
+      </ul>
+
+      <!-- REDES SOLO EN MÓVIL -->
+      <div class="mobile-social d-flex d-lg-none justify-content-center gap-4 pt-3 mt-3 border-top">
+        <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="28">
+        </a>
+        <a href="https://www.linkedin.com/company/imex-lean-project">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="28">
+        </a>
+        <a href="https://www.instagram.com/imex_lean_project">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="28">
+        </a>
+        <a href="https://www.tiktok.com/@imex.leanproject">
+          <img
+            src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200"
+            width="28">
+        </a>
       </div>
 
-      <div class="header-ticker-horizontal d-none d-lg-block mx-4" style="flex: 15; min-width: 0;">
-        <div class="marquee-content">
-          <span> Proyectos Lean de alta eficiencia • Distribución de sensores y componentes • Soporte técnico especializado •
-                    Soluciones
-                    Industriales • </span>
-                <span> Proyectos Lean de alta eficiencia • Distribución de sensores y componentes • Soporte técnico especializado •
-                    Soluciones
-                    Industriales • </span>
-        </div>
-      </div>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#imexNavbar"
-        aria-controls="imexNavbar" aria-expanded="false">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="imexNavbar">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-
-          <!-- MENÚ -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Productos</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item"
-                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-electrica-56">Eléctrica</a></li>
-              <li><a class="dropdown-item"
-                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-sensado-57">Sensado</a></li>
-              <li><a class="dropdown-item"
-                  href="https://issel-mexico.odoo.com/shop/category/aplicacion-seguridad-63">Seguridad</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../html/servicios.html">Nuestros servicios</a></li>
-              <li><a class="dropdown-item" href="../html/distribuidores.html">Marcas distribuidas</a></li>
-              <li><a class="dropdown-item" href="../html/nosotros.html">Acerca de nosotros</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">Conócenos</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../html/blog.html">Blog</a></li>
-              <li><a class="dropdown-item" href="../html/valores.html">Nuestros Valores</a></li>
-              <li><a class="dropdown-item" href="../html/contacto.html">Cómo comprar</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item ms-lg-3">
-            <a href="../html/contacto.html" class="read-more-btn">Contáctanos</a>
-          </li>
-
-        </ul>
-
-        <!-- REDES SOLO EN MÓVIL -->
-        <div class="mobile-social d-flex d-lg-none justify-content-center gap-4 pt-3 mt-3 border-top">
-          <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="28">
-          </a>
-          <a href="https://www.linkedin.com/company/imex-lean-project">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="28">
-          </a>
-          <a href="https://www.instagram.com/imex_lean_project">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="28">
-          </a>
-          <a href="https://www.tiktok.com/@imex.leanproject">
-            <img
-              src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200"
-              width="28">
-          </a>
-        </div>
-
-      </div>
+    </div>
 
   </header>
-  <!--BLOQUE PRINCIPAL DE LA SECCION-->
-  
- <!--  <main class="main-content">    -->
 
-  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NLQLQX55HN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-NLQLQX55HN');
+  </script>
+
+  <!--BLOQUE PRINCIPAL DE LA SECCION-->
+
+  <!--  <main class="main-content">    -->
+
+
   <section class="hero-minimal">
     <div class="container text-center" data-aos="fade-down">
       <span class="badge-imex">Identidad Corporativa</span>
       <h1 class="display-4 fw-bold mt-3">Valores <span class="text-accent">IMEX</span></h1>
       <p class="lead mx-auto" style="max-width: 700px;">
-        Nuestros valores fundamentales definen nuestra ética y la excelencia tecnológica que entregamos en cada proyecto.
+        Nuestros valores fundamentales definen nuestra ética y la excelencia tecnológica que entregamos en cada
+        proyecto.
       </p>
     </div>
   </section>
 
 
-<section class="values-grid-section">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
-        <div class="value-card">
-          <div class="card-icon"><img src="../recursos_valores/integrity.png" alt="Integridad"></div>
-          <h3>Integridad</h3>
-          <p>Actuamos con honestidad y transparencia. La confianza es nuestra base ética.</p>
+  <section class="values-grid-section">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+          <div class="value-card">
+            <div class="card-icon"><img src="../recursos_valores/integrity.png" alt="Integridad"></div>
+            <h3>Integridad</h3>
+            <p>Actuamos con honestidad y transparencia. La confianza es nuestra base ética.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="value-card">
+            <div class="card-icon"><img src="../recursos_valores/innovation.jpg" alt="Innovación"></div>
+            <h3>Innovación</h3>
+            <p>Creatividad y tecnología de vanguardia para solucionar retos industriales.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="value-card">
+            <div class="card-icon"><img src="../recursos_valores/quality.png" alt="Calidad"></div>
+            <h3>Calidad</h3>
+            <p>Excelencia en cada detalle para superar las expectativas del cliente.</p>
+          </div>
         </div>
       </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="value-card">
-          <div class="card-icon"><img src="../recursos_valores/innovation.jpg" alt="Innovación"></div>
-          <h3>Innovación</h3>
-          <p>Creatividad y tecnología de vanguardia para solucionar retos industriales.</p>
+
+      <div class="row g-4 mt-2">
+        <div class="col-md-6" data-aos="fade-right" data-aos-delay="300">
+          <div class="value-card horizontal">
+            <img src="../recursos_valores/colaboracion1.jpg" alt="Colaboración">
+            <div class="txt">
+              <h3>Colaboración</h3>
+              <p>Trabajo en equipo donde cada idea suma valor al resultado final.</p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="value-card">
-          <div class="card-icon"><img src="../recursos_valores/quality.png" alt="Calidad"></div>
-          <h3>Calidad</h3>
-          <p>Excelencia en cada detalle para superar las expectativas del cliente.</p>
+        <div class="col-md-6" data-aos="fade-left" data-aos-delay="400">
+          <div class="value-card horizontal">
+            <img src="../recursos_valores/Sostenibilidad1.jpg" alt="Sostenibilidad">
+            <div class="txt">
+              <h3>Sostenibilidad</h3>
+              <p>Compromiso con el medio ambiente y el bienestar social.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="row g-4 mt-2">
-      <div class="col-md-6" data-aos="fade-right" data-aos-delay="300">
-        <div class="value-card horizontal">
-          <img src="../recursos_valores/colaboracion1.jpg" alt="Colaboración">
-          <div class="txt">
-            <h3>Colaboración</h3>
-            <p>Trabajo en equipo donde cada idea suma valor al resultado final.</p>
+  <section class="bento-section">
+    <div class="container">
+      <div class="bento-grid-equal">
+
+        <div class="bento-card mission-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="card-body">
+            <div class="card-header-bento">
+              <h3>Misión</h3>
+            </div>
+            <p>Ofrecer productos y servicios de automatización industrial que impulsen la eficiencia, la seguridad y la
+              innovación en nuestros clientes, proporcionando soluciones personalizadas y soporte técnico.</p>
           </div>
         </div>
-      </div>
-      <div class="col-md-6" data-aos="fade-left" data-aos-delay="400">
-        <div class="value-card horizontal">
-          <img src="../recursos_valores/Sostenibilidad1.jpg" alt="Sostenibilidad">
-          <div class="txt">
-            <h3>Sostenibilidad</h3>
-            <p>Compromiso con el medio ambiente y el bienestar social.</p>
+
+        <div class="bento-card vision-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-body">
+            <div class="card-header-bento">
+              <h3>Visión</h3>
+            </div>
+            <p>Ser la empresa líder en soluciones de automatización, destacando por nuestra calidad, innovación y
+              compromiso con el éxito de nuestros clientes en la transformación digital de la industria.</p>
           </div>
         </div>
+
+        <div class="bento-card values-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="card-body">
+            <div class="card-header-bento">
+              <h3>Nuestros Valores</h3>
+            </div>
+            <ul class="values-list">
+              <li><strong>Innovación</strong> – Tecnologías avanzadas.</li>
+              <li><strong>Calidad</strong> – Marcas confiables.</li>
+              <li><strong>Compromiso</strong> – Soporte especializado.</li>
+              <li><strong>Eficiencia</strong> – Productividad optimizada.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bento-full-width-bar" data-aos="zoom-in" data-aos-delay="500">
+          <h4>EJES CLAVE DE NUESTRO SERVICIO</h4>
+          <div class="tag-container">
+            <span>#Tecnología</span>
+            <span>#Confianza</span>
+            <span>#Eficiencia</span>
+            <span>#Liderazgo</span>
+            <span>#Innovación</span>
+            <span>#Soporte</span>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="bento-section">
-  <div class="container">
-    <div class="bento-grid-equal">
-      
-      <div class="bento-card mission-card" data-aos="fade-up" data-aos-delay="0">
-        <div class="card-body">
-          <div class="card-header-bento">
-            <h3>Misión</h3>
-          </div>
-          <p>Ofrecer productos y servicios de automatización industrial que impulsen la eficiencia, la seguridad y la innovación en nuestros clientes, proporcionando soluciones personalizadas y soporte técnico.</p>
-        </div>
-      </div>
+  <!--    </main>     -->
 
-      <div class="bento-card vision-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="card-body">
-          <div class="card-header-bento">
-            <h3>Visión</h3>
-          </div>
-          <p>Ser la empresa líder en soluciones de automatización, destacando por nuestra calidad, innovación y compromiso con el éxito de nuestros clientes en la transformación digital de la industria.</p>
-        </div>
-      </div>
-
-      <div class="bento-card values-card" data-aos="fade-up" data-aos-delay="400">
-        <div class="card-body">
-          <div class="card-header-bento">
-            <h3>Nuestros Valores</h3>
-          </div>
-          <ul class="values-list">
-            <li><strong>Innovación</strong> – Tecnologías avanzadas.</li>
-            <li><strong>Calidad</strong> – Marcas confiables.</li>
-            <li><strong>Compromiso</strong> – Soporte especializado.</li>
-            <li><strong>Eficiencia</strong> – Productividad optimizada.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="bento-full-width-bar" data-aos="zoom-in" data-aos-delay="500">
-        <h4>EJES CLAVE DE NUESTRO SERVICIO</h4>
-        <div class="tag-container">
-          <span>#Tecnología</span>
-          <span>#Confianza</span>
-          <span>#Eficiencia</span>
-          <span>#Liderazgo</span>
-          <span>#Innovación</span>
-          <span>#Soporte</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!--    </main>     -->
-
-    <!-- Decorative Background Shapes -->
+  <!-- Decorative Background Shapes -->
   <div class="bg-shapes">
     <span class="shape shape-1"></span>
     <span class="shape shape-2"></span>
@@ -256,54 +272,54 @@
   </div>
 
 
-        <!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
-    <script src="https://elfsightcdn.com/platform.js" async></script>
-    <div class="elfsight-app-f760d761-b5db-4b1f-b436-1fd973ddb20b" data-elfsight-app-lazy></div>
-    
-    <!--FOOTER O SECCION FINAL DE LA PAGINA-->
-    <footer class="footer">
-        <div class="footer-container">
+  <!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
+  <script src="https://elfsightcdn.com/platform.js" async></script>
+  <div class="elfsight-app-f760d761-b5db-4b1f-b436-1fd973ddb20b" data-elfsight-app-lazy></div>
 
-            <!-- Empresa -->
-            <div class="footer-col">
-                <h3>IMEX</h3>
-                <p>Soluciones en automatización industrial con innovación y confianza.</p>
-            </div>
+  <!--FOOTER O SECCION FINAL DE LA PAGINA-->
+  <footer class="footer">
+    <div class="footer-container">
 
-            <!-- Enlaces rápidos -->
-            <div class="footer-col">
-                <h4>Enlaces</h4>
-                <ul>
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="../html/servicios.html">Nuestros Servicios</a></li>
-                    <li><a href="../html/blog.html">Blog</a></li>
-                    <li><a href="../html/contacto.html">Contacto</a></li>
-                </ul>
-            </div>
+      <!-- Empresa -->
+      <div class="footer-col">
+        <h3>IMEX</h3>
+        <p>Soluciones en automatización industrial con innovación y confianza.</p>
+      </div>
 
-            <!-- Legal -->
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="../html/terminos_condiciones.html">Términos y Condiciones</a></li>
-                    <li><a href="../html/terminos_condiciones.html">Aviso de Privacidad</a></li>
-                </ul>
-            </div>
+      <!-- Enlaces rápidos -->
+      <div class="footer-col">
+        <h4>Enlaces</h4>
+        <ul>
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="../html/servicios.html">Nuestros Servicios</a></li>
+          <li><a href="../html/blog.html">Blog</a></li>
+          <li><a href="../html/contacto.html">Contacto</a></li>
+        </ul>
+      </div>
 
-            <!-- Contacto -->
-            <div class="footer-col">
-                <h4>Contacto</h4>
-                <ul> 
-                    <li><a href="../html/contacto.html" class="footer-contact-btn">Contáctanos</a></li>
-                </ul>
-            </div>
-        </div>
+      <!-- Legal -->
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="../html/terminos_condiciones.html">Términos y Condiciones</a></li>
+          <li><a href="../html/terminos_condiciones.html">Aviso de Privacidad</a></li>
+        </ul>
+      </div>
 
-        <div class="footer-bottom">
-            <p>© 2026. Todos los derechos reservados. IMEX Lean Project
-                Felipe Villanueva 232 Peralvillo• Cuauhtémoc, C.P. 06220 • CDMX</p>
-        </div>
-    </footer>
+      <!-- Contacto -->
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="../html/contacto.html" class="footer-contact-btn">Contáctanos</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026. Todos los derechos reservados. IMEX Lean Project
+        Felipe Villanueva 232 Peralvillo• Cuauhtémoc, C.P. 06220 • CDMX</p>
+    </div>
+  </footer>
 
   <script src="../js/script_valores.js"></script>
   <script src="../script.js"></script>
