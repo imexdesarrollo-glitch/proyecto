@@ -1224,7 +1224,7 @@ section h2 { font-size: clamp(22px, 3vw, 32px); }
   box-shadow: 0 12px 24px rgba(0, 60, 105, 0.1);
 }
 
-/* Acordeón (Si usas componentes de Bootstrap o Custom) */
+/* Acordeón (para componentes de Bootstrap o Custom) */
 .accordion-body {
   font-size: 15px;
   color: var(--accent);
@@ -1456,7 +1456,7 @@ header.navbar {
   }
 
   .navbar-collapse {
-    background: #003c69; /* Tu color corporativo */
+    background: #003c69; /*  */
     padding: 20px;
     margin-top: 10px;
     border-radius: 8px;
@@ -1497,7 +1497,7 @@ header.navbar {
 }
 
 .footer a:hover {
-  color: var(--cta); /* Cambiado a tu amarillo para consistencia */
+  color: var(--cta); /* amarillo */
 }
 
 .footer-bottom {
@@ -1604,7 +1604,7 @@ header.chat-open {
 }
 
 .live-item:hover {
-  background: #f8fbff; /* Un azul muy sutil en lugar de gris */
+  background: #f8fbff; /* Un azul sutil  */
 }
 
 .live-img {
@@ -1692,7 +1692,7 @@ header.chat-open {
   z-index: 9999;
 }
 
-/* Caja de diseño premium */
+/* Caja de diseño  */
 .cookie-box {
   background: rgba(17, 57, 187, 0.95);
   backdrop-filter: blur(15px);
