@@ -73,3 +73,209 @@ main a:hover {
     font-size: 1rem;
   }
 }
+
+
+/*-----------------------------------------------
+seccion del cross reference, 
+al momento de implementarlo crear su propio css 
+------------------------------------------------*/
+
+/* CONTENEDOR */
+.coming-soon {
+  text-align: center;
+  padding: 140px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* TITULO */
+.coming-title {
+  font-size: 56px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 3px;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+/* Glow dorado animado (consistente con tu about) */
+.coming-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -12px;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(90deg,#4c00fc,#4c00fc,#4c00fc);
+  transition: width 1s ease, left 1s ease;
+}
+
+.reveal.show .coming-title::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Línea secundaria */
+.coming-line {
+  width: 80px;
+  height: 4px;
+  background: #4c00fc;
+  margin: 25px auto;
+  border-radius: 3px;
+  transform: scaleX(0);
+  transition: transform 0.8s ease;
+}
+
+.reveal.show .coming-line {
+  transform: scaleX(1);
+}
+
+/* Subtítulo */
+.coming-subtitle {
+  font-size: 18px;
+  color: #d9e6f2;
+  max-width: 500px;
+  margin: auto;
+  letter-spacing: 1px;
+}
+
+/* Glow ambiental */
+.coming-soon::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(14, 57, 197, 0.12) 0%, transparent 70%);
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  animation: pulseLight 8s infinite alternate ease-in-out;
+}
+
+/* TEXTO BASE */
+.loading-text {
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  /* Gradiente animado */
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffffff 40%,
+    #00b7ff 50%,
+    #ffffff 60%,
+    #ffffff 100%
+  );
+
+  background-size: 200% auto;
+
+  /* Clip al texto */
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shimmerText 6s linear infinite;
+}
+
+/* ANIMACIÓN */
+@keyframes shimmerText {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+/* =========================
+   RESPONSIVE COMING SOON
+========================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+
+  .coming-soon {
+    padding: 110px 20px;
+  }
+
+  .coming-title,
+  .loading-text {
+    font-size: 42px;
+    letter-spacing: 2px;
+  }
+
+  .coming-subtitle {
+    font-size: 16px;
+    max-width: 420px;
+  }
+
+  .coming-line {
+    width: 70px;
+  }
+
+  .coming-soon::before {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+
+  .coming-soon {
+    padding: 90px 15px;
+  }
+
+  .coming-title,
+  .loading-text {
+    font-size: 32px;
+    letter-spacing: 1.5px;
+  }
+
+  .coming-subtitle {
+    font-size: 15px;
+    max-width: 350px;
+  }
+
+  .coming-line {
+    width: 60px;
+    height: 3px;
+  }
+
+  .coming-soon::before {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+
+  .coming-title,
+  .loading-text {
+    font-size: 26px;
+    letter-spacing: 1px;
+  }
+
+  .coming-subtitle {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  .coming-line {
+    width: 50px;
+  }
+
+  .coming-soon {
+    padding: 70px 10px;
+  }
+
+  .coming-soon::before {
+    width: 220px;
+    height: 220px;
+  }
+}
