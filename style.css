@@ -1750,5 +1750,544 @@ header.hide-on-scroll {
   .cookie-actions button { width: 100%; }
 }
 
-/*////////////////////////////////////////////*/
+/*//////////////para el menu con logos //////////////////////////////*/
 
+/* Configuración General del Mega Menu */
+@media all and (min-width: 992px) {
+  .navbar .has-megamenu { position: static; }
+  .navbar .megamenu {
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #002b49; /* El azul oscuro de tu imagen */
+    padding: 30px 0;
+    border: none;
+    box-shadow: 0px 15px 30px rgba(0,0,0,0.4);
+  }
+
+  /* Línea vertical divisoria */
+  .divider-left {
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Estilo de los encabezados (CATEGORÍAS / NUESTRAS MARCAS) */
+.menu-header-title {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Estilo de los enlaces de categoría */
+.category-link {
+  color: #ffffff !important;
+  font-weight: 400;
+  font-size: 0.95rem;
+  padding: 5px 0 !important;
+  background: transparent !important;
+}
+
+.category-link:hover {
+  color: #ffee00 !important; /* Amarillo de IMEX al pasar el mouse */
+  text-decoration: underline;
+}
+
+/* Control de Logos para que no se vean gigantes */
+.brand-logo {
+  max-height: 35px;     /* Altura máxima para que se vean uniformes */
+  max-width: 110px;    /* Ancho máximo */
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* Los hace blancos como en tu foto */
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.brand-logo:hover {
+  filter: none; /* Recuperan color original al pasar mouse */
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+/* Línea horizontal del título */
+.border-bottom-custom {
+  border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+
+/* Control de Logos - COLOR ORIGINAL SIEMPRE */
+.brand-logo {
+  max-height: 40px;      /* Un poco más grandes para mejor visibilidad */
+  max-width: 120px;     
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  
+  /* ELIMINAMOS FILTROS Y OPACIDAD */
+  filter: none !important;    /* Forzamos que no haya filtros de color */
+  opacity: 1 !important;       /* Totalmente sólido desde el inicio */
+  
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.brand-logo:hover {
+  transform: scale(1.1);       /* Solo mantenemos el pequeño zoom al pasar el mouse */
+}
+
+/* Ajuste de la línea divisoria vertical para que se vea mejor con logos a color */
+@media all and (min-width: 992px) {
+  .divider-left {
+    border-left: 1px solid rgba(255, 255, 255, 0.15); /* Línea más sutil */
+    padding-left: 2rem; /* Espacio para que el logo no pegue a la línea */
+  }
+}
+
+/* Tarjeta de Llamada a la Acción en el menú */
+.menu-cta-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+
+.btn-cta-menu {
+    background-color: #ffee00;
+    color: #002b49;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    display: block;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.btn-cta-menu:hover {
+    background-color: #ffffff;
+    color: #002b49;
+    transform: translateY(-2px);
+}
+
+/* Ajuste de logos para que no se amontonen */
+.brand-logo {
+    max-height: 38px;
+    width: auto;
+    filter: none !important; /* Mantiene color original */
+    opacity: 1 !important;    /* Sin transparencia */
+    transition: transform 0.3s ease;
+}
+
+.btn-contacto-imex {
+    display: inline-flex;
+    align-items: center;
+    background-color: #ffda2a; /* El amarillo vibrante de tu imagen */
+    color: #002b49 !important; /* Azul oscuro para el texto */
+    padding: 10px 28px;
+    border-radius: 50px; /* Forma de píldora */
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    /* Efecto de resplandor (glow) */
+    box-shadow: 0 0 15px rgba(255, 218, 42, 0.4);
+    white-space: nowrap;
+}
+
+.btn-contacto-imex .arrow-icon {
+    margin-left: 10px;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+/* Efectos al pasar el mouse */
+.btn-contacto-imex:hover {
+    background-color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-contacto-imex:hover .arrow-icon {
+    transform: translateX(5px); /* La flechita se mueve a la derecha */
+}
+
+/* Ajuste para que en móvil no ocupe todo el ancho si no quieres */
+@media (max-width: 991px) {
+    .btn-contacto-imex {
+        margin-bottom: 20px;
+    }
+}
+
+/* =========================
+   MEGA MENÚ RESPONSIVO IMEX
+   ========================= */
+
+/* ====== ESTILOS GENERALES ====== */
+
+.menu-header-title {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.category-link {
+  color: #ffffff !important;
+  font-weight: 400;
+  font-size: 0.95rem;
+  padding: 6px 0 !important;
+  background: transparent !important;
+  display: block;
+  transition: all 0.2s ease;
+}
+
+.category-link:hover {
+  color: #ffee00 !important;
+  text-decoration: underline;
+}
+
+/* ====== LOGOS ====== */
+
+.brand-logo {
+  max-height: 38px;
+  max-width: 120px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: none !important;
+  opacity: 1 !important;
+  transition: transform 0.3s ease;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.brand-logo:hover {
+  transform: scale(1.1);
+}
+
+/* ====== TARJETA CTA ====== */
+
+.menu-cta-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.btn-cta-menu {
+  background-color: #ffee00;
+  color: #002b49;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.85rem;
+  display: block;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.btn-cta-menu:hover {
+  background-color: #ffffff;
+  color: #002b49;
+  transform: translateY(-2px);
+}
+
+/* ====== BOTÓN CONTACTO ====== */
+
+.btn-contacto-imex {
+  display: inline-flex;
+  align-items: center;
+  background-color: #ffda2a;
+  color: #002b49 !important;
+  padding: 10px 28px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 218, 42, 0.4);
+  white-space: nowrap;
+}
+
+.btn-contacto-imex .arrow-icon {
+  margin-left: 10px;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-contacto-imex:hover {
+  background-color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-contacto-imex:hover .arrow-icon {
+  transform: translateX(5px);
+}
+
+/* ====== DESKTOP (>= 992px) ====== */
+
+@media (min-width: 992px) {
+
+  .navbar .has-megamenu {
+    position: static;
+  }
+
+  .navbar .megamenu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #002b49;
+    padding: 30px 0;
+    border: none;
+    box-shadow: 0px 15px 30px rgba(0,0,0,0.4);
+  }
+
+  .divider-left {
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    padding-left: 2rem;
+  }
+
+}
+
+/* ====== MÓVIL Y TABLET (< 992px) ====== */
+
+@media (max-width: 991px) {
+
+  .navbar .megamenu {
+    position: static;
+    width: 100%;
+    background-color: #002b49;
+    padding: 15px;
+    box-shadow: none;
+  }
+
+  .menu-header-title {
+    font-size: 0.8rem;
+    margin-top: 15px;
+  }
+
+  .category-link {
+    font-size: 0.9rem;
+    padding: 8px 0 !important;
+  }
+
+  .divider-left {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .brand-logo {
+    max-height: 30px;
+  }
+
+  .menu-cta-card {
+    margin-top: 20px;
+  }
+
+  .btn-contacto-imex {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+}
+
+
+/* ===== REDES SOLO CUANDO EL MENÚ ESTÁ ABIERTO ===== */
+
+@media (max-width: 991px) {
+
+  .mobile-social {
+    display: none;
+  }
+
+  /* Bootstrap agrega .show cuando el menú está abierto */
+  .navbar-collapse.show + .mobile-social {
+    display: flex;
+  }
+
+}
+
+/* ============================================================
+   AJUSTE FINAL PARA MÓVIL: SOLO NAVEGACIÓN (SIN LOGOS)
+   ============================================================ */
+
+@media (max-width: 991px) {
+    
+    /* 1. Fondo y contenedor del menú desplegable */
+    .navbar-collapse {
+        background-color: #002b49 !important; /* Azul IMEX */
+        padding: 10px 20px 30px 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* 2. Reset del Mega Menú */
+    .navbar .megamenu {
+        position: static !important;
+        width: 100% !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        border: none !important;
+    }
+
+    /* 3. 🚫 OCULTAR LOGOS Y COLUMNAS INNECESARIAS 🚫 */
+    /* Aquí eliminamos la columna de logos, los fabricantes y el soporte */
+    .megamenu .divider-left, 
+    .megamenu .brand-logo, 
+    .megamenu .menu-cta-card,
+    .megamenu .col-lg-6, 
+    .megamenu .col-lg-9,
+    .megamenu .col-lg-3:has(.menu-cta-card) {
+        display: none !important;
+    }
+
+    /* Ocultar específicamente los títulos que estorban en móvil */
+    .menu-header-title {
+        display: none !important;
+    }
+
+    /* 4. Mostrar solo la columna de categorías (Columna 1) */
+    .megamenu .col-lg-3:first-child {
+        display: block !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    /* 5. Estilo de los enlaces (Opciones del Navbar) */
+    .category-link {
+        color: #ffffff !important;
+        font-size: 1.1rem !important; /* Tamaño legible */
+        padding: 15px 0 !important;   /* Espacio para el dedo */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: block !important;
+        text-decoration: none !important;
+    }
+
+    .category-link:hover {
+        color: #ffda2a !important;
+        padding-left: 10px !important; /* Pequeño efecto al tocar */
+        transition: 0.3s;
+    }
+
+    /* 6. Botón de contacto al final */
+    .btn-contacto-imex {
+        display: flex !important;
+        width: 100% !important;
+        justify-content: center;
+        margin-top: 25px;
+        background-color: #ffda2a !important;
+        color: #002b49 !important;
+    }
+
+    /* 7. Redes sociales compactas */
+    .mobile-social {
+        display: flex !important;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+
+
+/* Configuración Base Navbar */
+.navbar {
+    background-color: #002b49 !important;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.nav-link {
+    color: white !important;
+    font-weight: 500;
+}
+
+/* Mega Menú Desktop */
+@media (min-width: 992px) {
+    .has-megamenu { position: static; }
+    .megamenu {
+        width: 100%;
+        left: 0;
+        right: 0;
+        background-color: #002b49 !important;
+        border: none;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding: 30px 0;
+    }
+    .divider-left {
+        border-left: 1px solid rgba(255,255,255,0.1);
+    }
+}
+
+/* Estilos de Contenido del Menú */
+.menu-header-title {
+    color: #ffda2a;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 1.2px;
+}
+
+.category-link {
+    color: white !important;
+    background: transparent !important;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+.category-link:hover {
+    color: #ffda2a !important;
+    transform: translateX(5px);
+}
+
+.brand-logo {
+    max-height: 30px;
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+}
+
+/* Botón de Contacto IMEX */
+.btn-contacto-imex {
+    background-color: #ffda2a;
+    color: #002b49 !important;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Ajustes para Móvil */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background-color: #002b49;
+        margin-top: 10px;
+        padding: 20px;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+    
+    .megamenu {
+        background-color: rgba(255,255,255,0.05) !important;
+        border: none;
+        padding-left: 15px;
+    }
+
+    .category-link {
+        padding: 10px 0 !important;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+}

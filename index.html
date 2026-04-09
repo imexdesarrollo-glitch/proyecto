@@ -15,117 +15,189 @@
 
 <body>
 
-  <header class="navbar navbar-expand-lg fixed-top">
-
+<header class="navbar navbar-expand-lg fixed-top">
+  <div class="container-fluid px-lg-4">
+    
+    <!-- Lado Izquierdo: Logo y Redes Desktop -->
     <div class="d-flex align-items-center gap-3 flex-shrink-0">
       <a class="navbar-brand m-0" href="index.html">
-        <img src="logos/Logotipo_IMEX_Lean_Project_10.png" alt="IMEX Logo">
+        <img src="logos/Logotipo_IMEX_Lean_Project_10.png" alt="IMEX Logo" height="50">
       </a>
 
+      <!-- Redes Sociales (Solo Desktop) -->
       <div class="header-social d-none d-md-flex align-items-center gap-2 ms-3">
-        <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA" aria-label="Facebook">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"
-            width="20" height="20">
+        <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="20" height="20">
         </a>
-        <a href="https://www.linkedin.com/company/imex-lean-project" aria-label="LinkedIn">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn"
-            width="20" height="20">
+        <a href="https://www.linkedin.com/company/imex-lean-project" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="20" height="20">
         </a>
-        <a href="https://www.instagram.com/imex_lean_project" aria-label="Instagram">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"
-            width="20" height="20">
+        <a href="https://www.instagram.com/imex_lean_project" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="20" height="20">
         </a>
-
-        <a href="https://www.tiktok.com/@imex.leanproject" aria-label="TikTok">
-          <img
-            src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200"
-            alt="Tiktok" width="28" height="28">
+        <a href="https://www.tiktok.com/@imex.leanproject" target="_blank">
+          <img src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200" width="28" height="28">
         </a>
       </div>
     </div>
 
+    <!-- Ticker Horizontal (Solo Desktop) -->
     <div class="header-ticker-horizontal d-none d-lg-block mx-4" style="flex: 15; min-width: 0;">
       <div class="marquee-content">
-        <span> Proyectos Lean de alta eficiencia • Distribución de sensores y componentes • Soporte técnico
-          especializado •
-          Soluciones
-          Industriales • </span>
-        <span> Proyectos Lean de alta eficiencia • Distribución de sensores y componentes • Soporte técnico
-          especializado •
-          Soluciones
-          Industriales • </span>
+        <span> Proyectos Lean de alta eficiencia • Distribución de equipos de automatización industrial • Soporte técnico especializado • </span>
+        <span> Proyectos Lean de alta eficiencia • Distribución de equipos de automatización industrial • Soporte técnico especializado • </span>
       </div>
     </div>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#imexNavbar"
-      aria-controls="imexNavbar" aria-expanded="false" aria_label="Abrir menú de navegación">
+    <!-- Botón Hamburguesa (Móvil) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#imexNavbar" aria-controls="imexNavbar" aria-expanded="false" aria-label="Abrir menú">
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- Contenido del Menú -->
     <div class="collapse navbar-collapse" id="imexNavbar">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
 
-        <!-- MENÚ -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Productos</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item"
-                href="https://issel-mexico.odoo.com/shop/category/aplicacion-electrica-56">Eléctrica</a></li>
-            <li><a class="dropdown-item"
-                href="https://issel-mexico.odoo.com/shop/category/aplicacion-sensado-57">Sensado</a></li>
-            <li><a class="dropdown-item"
-                href="https://issel-mexico.odoo.com/shop/category/aplicacion-seguridad-63">Seguridad</a></li>
-            <li><a class="dropdown-item" href="html/Crossref.html">Cross Reference</a></li>
-          </ul>
+<!-- PRODUCTOS (MEGA MENU) -->
+<li class="nav-item dropdown has-megamenu">
+  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Productos</a>
+  <div class="dropdown-menu megamenu">
+    <div class="container-fluid px-lg-5">
+      
+      <!-- Títulos (Solo Desktop) -->
+      <div class="row pb-2 mb-3 border-bottom-custom d-none d-lg-flex">
+        <div class="col-lg-3"><span class="menu-header-title">CATEGORÍAS</span></div>
+        <div class="col-lg-6 ps-lg-4"><span class="menu-header-title">EXPLORAR FABRICANTES</span></div>
+        <div class="col-lg-3 ps-lg-4"><span class="menu-header-title">SOPORTE IMEX</span></div>
+      </div>
+
+      <div class="row">
+        <!-- Columna 1: Categorías (Aquí puedes agregar más enlaces) -->
+        <div class="col-lg-3">
+          <div class="py-1 py-lg-2"><a class="dropdown-item category-link" href="https://issel-mexico.odoo.com/shop/category/aplicacion-electrica-56">Eléctrica</a></div>
+          <div class="py-1 py-lg-2"><a class="dropdown-item category-link" href="https://issel-mexico.odoo.com/shop/category/aplicacion-sensado-57">Sensado</a></div>
+          <div class="py-1 py-lg-2"><a class="dropdown-item category-link" href="https://issel-mexico.odoo.com/shop/category/aplicacion-seguridad-63">Seguridad</a></div>
+          
+          <!-- NUEVA CATEGORÍA EJEMPLO -->
+          <div class="py-1 py-lg-2"><a class="dropdown-item category-link" href="https://issel-mexico.odoo.com/shop/category/productos-sensores-26">Sensores</a></div>
+           <!-- 
+          <div class="py-1 py-lg-2"><a class="dropdown-item category-link" href="#">Neumática</a></div>   -->
+          
+          <div class="py-1 py-lg-2 border-top border-secondary mt-2">
+            <a class="dropdown-item category-link fw-bold text-warning" href="html/Crossref.html">Cross Reference</a>
+          </div>
+        </div>
+
+        <!-- Columna 1: Electrica Logos (Sección de Fabricantes) -->
+        <div class="col-lg-6 ps-lg-4 divider-left d-none d-lg-block">
+          
+          <!-- Grupo 1: Principales -->
+          <div class="d-flex flex-wrap gap-4 align-items-center mb-4">
+            <a href="https://www.bannerengineering.com/mx/es/products/sensors/photoelectric-sensors.html#all"><img src="recurso_index/logos_proveedores/Banner.png" class="brand-logo" alt="Banner"></a>
+            <a href="https://www.wago.com/mx-es/electr%C3%B3nica-interfaz"><img src="recurso_index/logos_proveedores/Wago.png" class="brand-logo" alt="Wago"></a>
+            <a href="https://www.ckdmex.com.mx/productinfo/taikei/"><img src="recurso_index/logos_proveedores/ckd-png.png" class="brand-logo" alt="CKD"></a>
+          </div>
+
+          <!-- Grupo 2: Sensado -->
+
+          <div class="d-flex flex-wrap gap-4 align-items-center">
+            <a href="https://www.bannerengineering.com/mx/es/products/measurement-solutions.html"><img src="recurso_index/logos_proveedores/Banner.png" class="brand-logo" alt="Banner"></a>
+            <a href="https://www.ckd.co.jp/kiki/en/product/list?new=1"><img src="recurso_index/logos_proveedores/ckd-png.png" class="brand-logo" alt="CKD"></a>
+            <!-- Agrega más logos aquí siguiendo la misma estructura <a><img></a> -->
+          </div>
+
+          <!-- Grupo 3: Seguridad  -->
+
+          <div class="d-flex flex-wrap gap-4 align-items-center">
+            <a href="https://www.bannerengineering.com/mx/es/products/machine-safety.html"><img src="recurso_index/logos_proveedores/Banner.png" class="brand-logo" alt="Banner"></a>
+            <a href="https://www.wago.com/mx-es/productos"><img src="recurso_index/logos_proveedores/Wago.png" class="brand-logo" alt="Wago"></a>
+            <!-- Agrega más logos aquí siguiendo la misma estructura <a><img></a> -->
+          </div>
+
+          <!-- Grupo 3: Sensores  -->
+
+          <div class="d-flex flex-wrap gap-4 align-items-center">
+            <a href="https://www.bannerengineering.com/mx/es/products/sensors.html"><img src="recurso_index/logos_proveedores/Banner.png" class="brand-logo" alt="Banner"></a>
+            <a href="https://www.wago.com/mx-es/tecnolog%C3%ADa-automatizaci%C3%B3n/sensores-y-actuadores"><img src="recurso_index/logos_proveedores/Wago.png" class="brand-logo" alt="Wago"></a>
+            <!-- Agrega más logos aquí siguiendo la misma estructura <a><img></a> -->
+          </div>
+
+        </div>
+
+        <!-- Columna 3: CTA Soporte -->
+        <div class="col-lg-3 ps-lg-4 divider-left d-none d-lg-block">
+          <div class="menu-cta-card">
+            <p class="text-white mb-3 small">¿Necesitas ayuda específica?</p>
+            <a href="html/contacto.html" class="btn-cta-menu w-100 text-center">Contactar Especialista</a>
+            
+            <!-- Items extra de soporte -->
+            <div class="mt-4">
+               <a href="#" class="d-block text-white-50 small mb-2 hover-warning text-decoration-none">→ Centro de descargas</a>
+               <a href="#" class="d-block text-white-50 small mb-2 hover-warning text-decoration-none">→ Guías de selección</a>
+            </div>
+          </div>
+        </div>
+      </div> <!-- Fin Row -->
+
+    </div>
+  </div>
+</li>
+        <!-- SERVICIOS -->
+        <li class="nav-item dropdown has-megamenu">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Servicios</a>
+          <div class="dropdown-menu megamenu">
+            <div class="container-fluid px-lg-5">
+              <div class="row">
+                <div class="col-lg-3">
+                  <div class="py-1"><a class="dropdown-item category-link" href="html/servicios.html">Servicios Técnicos</a></div>
+                  <div class="py-1"><a class="dropdown-item category-link" href="html/distribuidores.html">Marcas Distribuidas</a></div>
+                  <div class="py-1"><a class="dropdown-item category-link" href="html/nosotros.html">Acerca de nosotros</a></div>
+                </div>
+                <div class="col-lg-9 ps-lg-4 divider-left d-none d-lg-block">
+                  <span class="menu-header-title">VALOR AGREGADO</span>
+                  <p class="text-white-50">Soluciones integrales en automatización industrial y proyectos Lean.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </li>
 
-        <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="html/servicios.html">Nuestros servicios</a></li>
-            <li><a class="dropdown-item" href="html/distribuidores.html">Marcas distribuidas</a></li>
-            <li><a class="dropdown-item" href="html/nosotros.html">Acerca de nosotros</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false">Conócenos</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="html/blog.html">Blog</a></li>
-            <li><a class="dropdown-item" href="html/valores.html">Nuestros Valores</a></li>
-            <li><a class="dropdown-item" href="html/contacto.html">Cómo comprar</a></li>
-          </ul>
+        <!-- CONÓCENOS -->
+        <li class="nav-item dropdown has-megamenu">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Conócenos</a>
+          <div class="dropdown-menu megamenu">
+            <div class="container-fluid px-lg-5">
+              <div class="row">
+                <div class="col-lg-3">
+                  <div class="py-1"><a class="dropdown-item category-link" href="html/blog.html">Blog Industrial</a></div>
+                  <div class="py-1"><a class="dropdown-item category-link" href="html/valores.html">Nuestros Valores</a></div>
+                  <div class="py-1"><a class="dropdown-item category-link" href="html/contacto.html">Cómo comprar</a></div>
+                </div>
+                <div class="col-lg-9 ps-lg-4 divider-left d-none d-lg-block">
+                  <span class="menu-header-title">NUESTRA FILOSOFÍA</span>
+                  <p class="text-white-50">Líderes en distribución de equipo de automatización en México.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </li>
 
-        <li class="nav-item ms-lg-3">
-          <a href="html/contacto.html" class="read-more-btn">Contáctanos</a>
+        <!-- Botón Contacto -->
+        <li class="nav-item ms-lg-4 mt-3 mt-lg-0">
+          <a href="html/contacto.html" class="btn-contacto-imex">Contáctanos</a>
         </li>
-
       </ul>
 
-      <!-- REDES SOLO EN MÓVIL -->
-      <div class="mobile-social d-flex d-lg-none justify-content-center gap-4 pt-3 mt-3 border-top">
-        <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="28"
-            height="28">
-        </a>
-        <a href="https://www.linkedin.com/company/imex-lean-project">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="28"
-            height="28">
-        </a>
-        <a href="https://www.instagram.com/imex_lean_project">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="28" height="28">
-        </a>
-        <a href="https://www.tiktok.com/@imex.leanproject">
-          <img
-            src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200"
-            width="28" height="28">
-        </a>
+      <!-- REDES MÓVIL (Se ven dentro del menú al final) -->
+      <div class="mobile-social d-flex d-lg-none justify-content-center gap-4 pt-3 mt-3 border-top w-100">
+        <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="28"></a>
+        <a href="https://www.linkedin.com/company/imex-lean-project"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="28"></a>
+        <a href="https://www.instagram.com/imex_lean_project"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="28"></a>
       </div>
 
     </div>
-
-
-  </header>
+  </div>
+</header>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NLQLQX55HN"></script>
@@ -141,9 +213,9 @@
   <section class="hero">
     <img src="logos/Logotipo_IMEX_Lean_Project_2.png" class="hero-logo" id="heroLogo" alt="IMEX Hero Logo">
     <div class="hero-text-container" id="hero-text">
-      <h1>Soluciones Para Diversas Industrias</h1>
-      <p>DESDE LA AUTOMOTRÍZ HASTA LA SALUD, NUESTRAS SOLUCIONES MEJORAN LA SEGURIDAD Y PRECISIÓN EN MULTIPLES
-        SECTORES.
+      <h1>Potencinado tu industria sin importar el sector </h1>
+      <p>No importa el sector, el objetivo es el mismo: excelencia técnica. Transformamos la complejidad en confianza
+
       </p>
     </div>
 
@@ -205,28 +277,36 @@
     <div class="products-preview">
       <div class="product-card" data-image="recurso_index/rfid_hf.webp"
         style="background-image: url('recurso_index/rfid_hf.webp');">
+        <a href="https://www.bannerengineering.com/mx/es/company/new-products/high-frequency-rfid-readers-and-tags.html" class="stretched-link"></a>
         <span class="product-name">Cabezales y etiquetas de lectura/escritura RFID </span>
       </div>
       <div class="product-card" data-image="recurso_index/kit.webp"
         style="background-image: url('recurso_index/kit.webp');">
+        <a href="https://www.bannerengineering.com/mx/es/products/monitoring-solutions/monitoring-gateways/asset-monitoring-gateway-with-snap-id.html?pageNum=1&sort=4#all" class="stretched-link"></a>
         <span class="product-name">Gateway de monitoreo de activos SNAP ID</span>
       </div>
       <div class="product-card" data-image="recurso_index/k50.webp"
         style="background-image: url('recurso_index/k50.webp');">
+        <a href="https://issel-mexico.odoo.com/shop/813377-dk-k50pt-display-show-the-k50-pro-touch-display-custom-demonstration-functions-includes-lmf3050b-flange-bracket-454954?search=k50&order=name+asc" class="stretched-link"></a>
         <span class="product-name">Control tactil K50 con pantalla</span>
       </div>
       <div class="product-card" data-image="recurso_index/k50r.webp"
         style="background-image: url('recurso_index/k50r.webp');">
+        <a href="https://www.bannerengineering.com/mx/es/company/new-products/k50r-radar-sensor-with-io-link.html" class="stretched-link"></a>
+
         <span class="product-name">Sensor de radar K50R con IO-LINK</span>
       </div>
 
       <div class="product-card" data-image="recurso_index/tl70.webp"
         style="background-image: url('recurso_index/tl70.webp');">
+        <a href="https://issel-mexico.odoo.com/shop/814502-tl70b-gyraq-tl70-basic-tower-light-black-housing-3-color-audible-indicator-voltage-12-30-v-dc-environmental-rating-ip65-input-bimodal-colors-green-yellow-red-5-pin-m12-integral-qd-512735?page=2&search=LT+70&order=name+asc" class="stretched-link"></a>
         <span class="product-name">Torretas TL70 PRO</span>
       </div>
 
       <div class="product-card" data-image="recurso_index/k100.webp"
         style="background-image: url('recurso_index/k100.webp');">
+        <a href="https://www.bannerengineering.com/mx/es/company/new-products/k100-programmable-display-beacon.html" class="stretched-link"></a>
+
         <span class="product-name">Beacon de visualización programable k100</span>
       </div>
     </div>
@@ -246,12 +326,12 @@
             <span class="badge bg-success position-absolute top-0 start-0 m-3">Nuevo</span>
           </div>
           <div class="card-body">
-            <h1 class="card-title">Sensor Fotoeléctrico</h1>
+            <h1 class="card-title">Nuevas Tecnologías</h1>
             <p class="card-text">
-              Sensor de alta precisión para automatización industrial de última generación.
+              Conecta con la innovacion, e informate de nuevos lanzamientos.
             </p>
-            <a href="https://issel-mexico.odoo.com/shop/813377-dk-k50pt-display-show-the-k50-pro-touch-display-custom-demonstration-functions-includes-lmf3050b-flange-bracket-454954?page=2&category=26"
-              class="btn btn-outline-primary btn-sm">Ver producto</a>
+            <a href="https://info.bannerengineering.com/cs/groups/public/documents/literature/186084.pdf
+              " class="btn btn-outline-primary btn-sm">Conoce los nuevos lanzamientos!</a>
           </div>
         </div>
       </div>
@@ -260,16 +340,16 @@
       <div class="col-md-4 mb-4">
         <div class="card h-100 shadow novedades-card">
           <div class="position-relative">
-            <img src="recursos_blog/instalacion1.webp" class="card-img-top" alt="Más Vendido">
-            <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3">Más vendido</span>
+            <img src="recurso_index/wago-diseñador.webp" class="card-img-top" alt="Más Vendido">
+            <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3">Diseñador</span>
           </div>
           <div class="card-body">
-            <h1 class="card-title">Sensores de Seguridad</h1>
+            <h1 class="card-title">Configura tu Gabinete</h1>
             <p class="card-text">
-              Línea más solicitada por la industria automotriz y de manufactura.
+              Personaliza y configura tu gabinete tu mismo.
             </p>
-            <a href="https://issel-mexico.odoo.com/shop/category/aplicacion-seguridad-63"
-              class="btn btn-outline-primary btn-sm">Ver categoría</a>
+            <a href="https://configurator.wago.com/profile/login" class="btn btn-outline-primary btn-sm">Personalizalo!
+            </a>
           </div>
         </div>
       </div>
@@ -313,7 +393,8 @@
       </div>
       <div class="about-content">
         <h2>Sobre Nosotros</h2>
-        <p>IMEX es líder en soluciones de automatización industrial, donde tú puedes encontrar productos innovadores
+        <p>IMEX es líder en soluciones de automatización industrial, donde tú puedes encontrar servicios de calidad y
+          productos innovadores
           que
           mejoran la
           eficiencia y seguridad en tu industria.</p>
@@ -329,19 +410,19 @@
 
     <div class="elfsight-app-754289b1-ee35-4576-a041-d564d5a16274" data-elfsight-app-lazy></div>
 
-        <!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
+    <!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
     <div class="elfsight-app-f760d761-b5db-4b1f-b436-1fd973ddb20b" data-elfsight-app-lazy></div>
 
   </section>
 
-    <!--SECCION DE PROVEEDORES-->
-    <section class="proveedores" id="proveedores">
-      <div class="container">
-        <h2>Nuestros Proveedores</h2>
-        <h2>Son los mas confiables y capacitados en la industria, proponen las mejores soluciones automatizadas para su
-          produccion
-          en todos los sectores industriales.
-        </h2>
+  <!--SECCION DE PROVEEDORES-->
+  <section class="proveedores" id="proveedores">
+    <div class="container">
+      <h2>Nuestros Proveedores</h2>
+      <h2>Son los mas confiables y capacitados en la industria, proponen las mejores soluciones automatizadas para su
+        produccion
+        en todos los sectores industriales.
+      </h2>
 
       <div class="proveedor-marquee" aria-label="Logos de proveedores" role="region">
         <div class="marquee-track" id="marqueeTrack" tabindex="0">
