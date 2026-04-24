@@ -68,20 +68,52 @@ function buscarCodigoPostal() {
   verificarEstado();
 
 // === ABRIR LINKS EXTERNOS EN NUEVA PESTAÑA ===
+// === ESPERAR A QUE CARGUE EL CONTENIDO ===
 document.addEventListener("DOMContentLoaded", () => {
   const currentHost = window.location.hostname;
 
+  // 1. LÓGICA DE LINKS EXTERNOS (Ya la tenías)
   document.querySelectorAll('a[href]').forEach(link => {
     try {
       const url = new URL(link.href, window.location.origin);
-
-      // Si es link externo
       if (url.hostname && url.hostname !== currentHost) {
         link.target = "_blank";
         link.rel = "noopener noreferrer external";
       }
-    } catch (e) {
-      // Ignorar links mal formados (mailto, tel, #, javascript:)
-    }
+    } catch (e) {}
   });
+
+  // 2. LÓGICA DEL FORMULARIO (Agregada aquí mismo)
+  const form = document.getElementById("contactForm");
+  if (form) {
+    form.addEventListener("submit", function(e) {
+      e.preventDefault(); 
+
+      const formData = new FormData(form);
+      const submitButton = form.querySelector('button');
+      
+      submitButton.textContent = "Enviando...";
+      submitButton.disabled = true;
+
+      // Usamos /ajax/ para evitar el bloqueo del Firewall del hosting
+      fetch("https://formsubmit.co/ajax/ventas@isselmexico.com.mx", {
+        method: "POST",
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          // Redirección manual: esto salta el error CFN #0005
+          window.location.href = "https://isselmexico.com.mx/html/gracias.html";
+        } else {
+          throw new Error('Fallo en el servidor');
+        }
+      })
+      .catch(error => {
+        alert("Error al enviar. Por favor intenta de nuevo.");
+        submitButton.textContent = "Enviar Mensaje";
+        submitButton.disabled = false;
+      });
+    });
+  }
 });
