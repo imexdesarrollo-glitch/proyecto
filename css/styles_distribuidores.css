@@ -60,12 +60,23 @@
   border: 1px solid rgba(0,0,0,0.04);
 }
 
-.brand-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+.brand-card:hover img {
+  filter: grayscale(0%); /* <--- BORRA ESTA LÍNEA */
+  transform: scale(1.05);
 }
 
-/* Logo */
+
+/* Logo  a color  */
+.brand-card img {
+  max-height: 65px;
+  width: 100%;
+  object-fit: contain;
+  margin-bottom: 12px;
+  /* Sin filtros aquí */
+  transition: all 0.3s ease;
+}
+
+/* Logo  en gris y efecto hover 
 .brand-card img {
   max-height: 65px;
   width: 100%;
@@ -74,7 +85,7 @@
   filter: grayscale(100%);
   transition: all 0.3s ease;
 }
-
+*/
 .brand-card:hover img {
   filter: grayscale(0%);
   transform: scale(1.05);
@@ -265,3 +276,4 @@
 .category-group {
   padding: 10px;
 }
+

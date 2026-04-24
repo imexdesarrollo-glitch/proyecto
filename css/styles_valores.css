@@ -130,7 +130,7 @@ footer {
 
 /* VARIABLES */
 :root {
-  --imex-blue: #003c69;
+  --imex-blue: #004e89;
   --imex-blue-alt: #004e89;
   --imex-yellow: #fcd900;
   --imex-light: #f4faff;
@@ -215,7 +215,7 @@ header.navbar { z-index: 10000 !important; background: white; }
 
 .bento-grid-equal {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   align-items: stretch;
 }
