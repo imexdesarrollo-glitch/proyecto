@@ -1,0 +1,440 @@
+/* ================================================
+   CALCULADORA ROI - IMEX Lean Project
+   Importar DESPUÉS de style.css y bootstrap
+   ================================================ */
+
+:root {
+    --azul: #003c69;
+    --azul-dark: #002a4a;
+    --azul-mid: rgba(255, 255, 255, 0.06);
+    --azul-border: rgba(255, 255, 255, 0.12);
+    --amarillo: #fcd900;
+    --amarillo-dim: #ffe96b;
+    --blanco: #ffffff;
+    --texto-claro: #d9e6f2;
+    --texto-dim: rgba(255, 255, 255, 0.55);
+}
+
+/* ========================
+   CANVAS CIRCUITOS
+======================== */
+#calc-circuits-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 1;
+}
+
+/* ========================
+   PÁGINA CONTENEDOR
+======================== */
+.calc-page {
+    background: linear-gradient(135deg, #003c69 0%, #002a4a 100%);
+    min-height: 100vh;
+    padding: 120px 1rem 4rem;
+    position: relative;
+    overflow-x: hidden;
+    margin: 0;
+    display: block;
+}
+
+/* Luz radial de fondo */
+.calc-page::before {
+    content: "";
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(252, 217, 0, 0.12) 0%, transparent 70%);
+    top: -200px;
+    right: -200px;
+    z-index: 0;
+    pointer-events: none;
+    animation: calcPulseLight 8s infinite alternate ease-in-out;
+}
+
+@keyframes calcPulseLight {
+    0%   { opacity: .3; transform: scale(1); }
+    100% { opacity: .6; transform: scale(1.1); }
+}
+
+/* ========================
+   REVEAL ANIMATION
+======================== */
+.calc-reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 1s cubic-bezier(.19, 1, .22, 1);
+}
+.calc-reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================
+   HEADER DE LA CALCULADORA
+======================== */
+.calc-header {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--amarillo);
+    padding-bottom: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.calc-eyebrow {
+    color: var(--amarillo);
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.calc-titulo {
+    font-size: clamp(26px, 5vw, 42px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--blanco);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    position: relative;
+    display: inline-block;
+    margin: 0;
+}
+
+.calc-titulo span { color: var(--amarillo); }
+
+.calc-titulo::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--amarillo), var(--amarillo-dim), var(--amarillo));
+    transition: width .9s ease, left .9s ease;
+}
+.calc-reveal.show .calc-titulo::after {
+    width: 100%;
+    left: 0;
+}
+
+.calc-subtitulo {
+    font-size: 14px;
+    color: var(--texto-claro);
+    max-width: 280px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ========================
+   TARJETA PRINCIPAL
+======================== */
+.calc-card {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+}
+
+/* ========================
+   SECCIONES INTERNAS
+======================== */
+.calc-section {
+    padding: 1.75rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background .4s cubic-bezier(.19, 1, .22, 1);
+}
+.calc-section:last-child { border-bottom: none; }
+.calc-section:hover { background: rgba(255, 255, 255, 0.04); }
+
+.calc-section-label {
+    color: var(--amarillo);
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.calc-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* ========================
+   INPUTS
+======================== */
+.calc-inputs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+@media (max-width: 500px) {
+    .calc-inputs-grid { grid-template-columns: 1fr; }
+}
+
+.calc-field { display: flex; flex-direction: column; gap: 6px; }
+
+.calc-field label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--texto-dim);
+}
+
+.calc-field select,
+.calc-field input[type="number"] {
+    padding: 9px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--blanco);
+    background: rgba(255, 255, 255, 0.08);
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+    font-family: inherit;
+}
+.calc-field select option { background: var(--azul-dark); color: var(--blanco); }
+.calc-field select:focus,
+.calc-field input[type="number"]:focus {
+    outline: none;
+    border-color: var(--amarillo);
+    background: rgba(252, 217, 0, 0.07);
+}
+
+/* ========================
+   SLIDERS
+======================== */
+.calc-slider-group { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.calc-slider-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+}
+.calc-slider-row label {
+    font-size: 13px;
+    color: var(--texto-claro);
+    margin-bottom: 5px;
+    display: block;
+}
+
+.calc-slider-row input[type="range"] {
+    width: 100%;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+.calc-slider-row input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--amarillo);
+    cursor: pointer;
+    border: 2px solid var(--azul-dark);
+    box-shadow: 0 0 0 2px var(--amarillo);
+}
+.calc-slider-row input[type="range"]::-moz-range-thumb {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--amarillo);
+    cursor: pointer;
+    border: 2px solid var(--azul-dark);
+}
+
+.calc-slider-val {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--amarillo);
+    text-align: right;
+    min-width: 72px;
+    white-space: nowrap;
+}
+
+/* ========================
+   RESULTADOS
+======================== */
+.calc-results-section { background: rgba(0, 20, 40, 0.45); }
+
+.calc-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.calc-result-card {
+    background: rgba(0, 30, 60, 0.6);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: background .3s;
+}
+.calc-result-card:hover { background: rgba(0, 40, 80, 0.8); }
+
+.calc-result-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--texto-dim);
+}
+
+.calc-result-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--amarillo);
+    line-height: 1;
+}
+.calc-result-value.white { color: var(--blanco); }
+.calc-result-value.dim   { color: var(--texto-claro); }
+
+/* ========================
+   INSIGHT BAR
+======================== */
+.calc-insight-bar {
+    border-left: 3px solid var(--amarillo);
+    padding: 0.85rem 1rem;
+    background: rgba(252, 217, 0, 0.05);
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 1.5rem;
+}
+.calc-insight-bar p {
+    font-size: 14px;
+    color: var(--texto-claro);
+    line-height: 1.6;
+    margin: 0;
+}
+.calc-insight-bar strong { color: var(--amarillo); font-weight: 700; }
+
+/* ========================
+   BOTONES CTA
+======================== */
+.calc-cta-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+@media (max-width: 480px) {
+    .calc-cta-row { grid-template-columns: 1fr; }
+}
+
+.calc-btn-primary {
+    padding: 13px 20px;
+    background: var(--amarillo);
+    color: var(--azul-dark) !important;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    text-align: center;
+    text-decoration: none !important;
+    display: block;
+}
+.calc-btn-primary:hover {
+    background: var(--amarillo-dim);
+    transform: translateY(-3px);
+    color: var(--azul-dark) !important;
+}
+
+.calc-btn-secondary {
+    padding: 13px 20px;
+    background: transparent;
+    color: var(--texto-claro) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    text-align: center;
+    text-decoration: none !important;
+    display: block;
+}
+.calc-btn-secondary:hover {
+    border-color: var(--amarillo);
+    color: var(--amarillo) !important;
+    transform: translateY(-3px);
+}
+
+/* ========================
+   DISCLAIMER
+======================== */
+.calc-disclaimer {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+    margin: 1.25rem auto 0;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.35);
+    text-align: center;
+    line-height: 1.7;
+}
+.calc-disclaimer a { color: var(--amarillo); text-decoration: none; }
+
+/* ========================
+   RESPONSIVE
+======================== */
+@media (max-width: 768px) {
+    .calc-page { padding-top: 90px; }
+    .calc-titulo { font-size: 24px; }
+    .calc-section { padding: 1.25rem 1.25rem; }
+}
+@media (max-width: 480px) {
+    .calc-page { padding-top: 80px; }
+}
+
+/* ========================
+   FIX: SIN LÍNEA BLANCA
+   entre main y footer
+======================== */
+.calc-page + .footer,
+body > .footer {
+    margin-top: 0 !important;
+    border-top: none !important;
+    background: #002a4a !important; /* mismo azul oscuro del gradiente */
+}
+
+/* Por si el body tiene background blanco por defecto en otras páginas */
+body:has(.calc-page) {
+    background: #002a4a;
+    margin: 0;
+    padding: 0;
+}

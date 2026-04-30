@@ -1,4 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // === NUEVO: LÓGICA DE WELCOME OVERLAY (FLYERS) ===
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const closeWelcome = document.getElementById('close-welcome');
+
+    // Bloqueamos el scroll si el flyer está presente
+    if (welcomeScreen) {
+        document.body.style.overflow = "hidden";
+    }
+
+    // Al cerrar el flyer, iniciamos la validación de cookies
+    closeWelcome?.addEventListener('click', () => {
+        welcomeScreen.style.opacity = '0';
+        setTimeout(() => {
+            welcomeScreen.style.display = 'none';
+            // Una vez cerrado el flyer, verificamos si hay que mostrar cookies
+            initCookieLogic();
+        }, 500);
+    });
+
     // 1. LOGO A INICIO
     const imexLogo = document.getElementById('imexLogo') || document.querySelector('.navbar-brand img');
     if (imexLogo) {
@@ -11,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBtn = document.querySelector('.search-btn');
     const categoriesDropdown = document.getElementById('categoriesDropdown');
     const searchWrapper = document.querySelector('.search-wrapper');
-    // Seleccionamos la lista donde caerán los resultados
     const categoriesList = document.querySelector('.categories-list'); 
 
     let debounceTimer;
@@ -25,17 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = "https://issel-mexico.odoo.com/shop?search=" + encodeURIComponent(query);
     }
 
-    // Función para buscar en Odoo y renderizar
     function fetchOdooProducts(term) {
         if (term.length < 2) return;
-
-        // Endpoint de Odoo para autocompletado
         fetch(`https://issel-mexico.odoo.com/shop/products/autocomplete?term=${encodeURIComponent(term)}`)
             .then(response => response.json())
             .then(data => {
                 if (data.results && data.results.length > 0) {
                     let html = '';
-                    // Odoo devuelve un array de productos en data.results
                     data.results.slice(0, 6).forEach(item => {
                         html += `
                             <li>
@@ -55,20 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (searchWrapper) {
         searchInput?.addEventListener('focus', () => categoriesDropdown?.classList.add('active'));
-
-        // Escuchar cuando el usuario escribe
         searchInput?.addEventListener('input', (e) => {
             const term = e.target.value.trim();
             clearTimeout(debounceTimer);
-            
-            if (term === "") {
-                // Si borra todo, podrías restaurar tus categorías fijas o limpiar
-                return;
+            if (term !== "") {
+                debounceTimer = setTimeout(() => {
+                    fetchOdooProducts(term);
+                }, 300);
             }
-
-            debounceTimer = setTimeout(() => {
-                fetchOdooProducts(term);
-            }, 300); // Espera 300ms después de dejar de escribir
         });
 
         document.addEventListener('click', (e) => {
@@ -112,52 +120,36 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-});
 
-// AUTO-CERRAR MENÚ MÓVIL AL HACER CLIC FUERA
-const menuColapsable = document.getElementById('imexNavbar');
-const navbarToggler = document.querySelector('.navbar-toggler');
-
-if (menuColapsable && navbarToggler) {
-
-    document.addEventListener('click', function (event) {
-
-        const isMenuOpen = menuColapsable.classList.contains('show');
-
-        const clickInsideMenu = menuColapsable.contains(event.target);
-        const clickOnToggler = navbarToggler.contains(event.target);
-
-        if (isMenuOpen && !clickInsideMenu && !clickOnToggler && window.innerWidth < 992) {
-
-            const bsCollapse = bootstrap.Collapse.getInstance(menuColapsable)
-                || new bootstrap.Collapse(menuColapsable, { toggle: false });
-
-            bsCollapse.hide();
-        }
-    });
-}
-
-// --- Lógica de Cookies IMEX ---
+    // --- Lógica de Cookies IMEX ---
     const cookieBanner = document.getElementById("cookie-banner");
     const cookieOverlay = document.getElementById("cookie-overlay");
     const acceptCookies = document.getElementById("acceptCookies");
     const rejectCookies = document.getElementById("rejectCookies");
 
-    // Función para ocultar todo y habilitar el sitio
     const closeCookies = () => {
         if (cookieBanner) cookieBanner.style.display = "none";
         if (cookieOverlay) cookieOverlay.style.display = "none";
         document.body.style.overflow = "auto"; 
     };
 
-    // Verificar si ya se decidió anteriormente
-    if (cookieBanner && !sessionStorage.getItem("cookiesIMEX")) {
-        cookieBanner.style.display = "block";
-        if (cookieOverlay) cookieOverlay.style.display = "block";
-        document.body.style.overflow = "hidden"; // Bloquea el scroll de la web
+    // Función que inicializa cookies (llamada tras cerrar el flyer)
+    function initCookieLogic() {
+        if (cookieBanner && !sessionStorage.getItem("cookiesIMEX")) {
+            cookieBanner.style.display = "block";
+            if (cookieOverlay) cookieOverlay.style.display = "block";
+            document.body.style.overflow = "hidden"; 
+        } else {
+            // Si ya se aceptaron las cookies, devolvemos el scroll al cerrar el flyer
+            document.body.style.overflow = "auto";
+        }
     }
 
-    // Eventos de botones
+    // Si NO hay flyer al cargar (por ejemplo en otras páginas), iniciamos cookies directo
+    if (!welcomeScreen) {
+        initCookieLogic();
+    }
+
     acceptCookies?.addEventListener("click", () => {
         sessionStorage.setItem("cookiesIMEX", "accepted");
         closeCookies();
@@ -167,22 +159,38 @@ if (menuColapsable && navbarToggler) {
         sessionStorage.setItem("cookiesIMEX", "rejected");
         closeCookies();
     });
+});
 
-// 5. CARRUSEEL "SOBRE NOSOTROS" (Simplificado)
+// AUTO-CERRAR MENÚ MÓVIL AL HACER CLIC FUERA
+(function() {
+    const menuColapsable = document.getElementById('imexNavbar');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    if (menuColapsable && navbarToggler) {
+        document.addEventListener('click', function (event) {
+            const isMenuOpen = menuColapsable.classList.contains('show');
+            const clickInsideMenu = menuColapsable.contains(event.target);
+            const clickOnToggler = navbarToggler.contains(event.target);
+            if (isMenuOpen && !clickInsideMenu && !clickOnToggler && window.innerWidth < 992) {
+                const bsCollapse = bootstrap.Collapse.getInstance(menuColapsable)
+                    || new bootstrap.Collapse(menuColapsable, { toggle: false });
+                bsCollapse.hide();
+            }
+        });
+    }
+})();
+
+// 5. CARRUSEEL "SOBRE NOSOTROS"
 (function() {
     const carousel = document.getElementById('aboutCarousel');
     if (!carousel) return;
     const track = carousel.querySelector('.carousel-track');
     const items = carousel.querySelectorAll('.imex-carousel-item');
     let index = 0;
-    
     const update = () => track.style.transform = `translateX(${-index * 100}%)`;
     const next = () => { index = (index + 1) % items.length; update(); };
-    
     let timer = setInterval(next, 4000);
     carousel.addEventListener('mouseenter', () => clearInterval(timer));
     carousel.addEventListener('mouseleave', () => timer = setInterval(next, 4000));
-    
     carousel.querySelector('.next')?.addEventListener('click', next);
     carousel.querySelector('.prev')?.addEventListener('click', () => {
         index = (index - 1 + items.length) % items.length;
@@ -193,51 +201,33 @@ if (menuColapsable && navbarToggler) {
 // === ABRIR LINKS EXTERNOS EN NUEVA PESTAÑA ===
 document.addEventListener("DOMContentLoaded", () => {
   const currentHost = window.location.hostname;
-
   document.querySelectorAll('a[href]').forEach(link => {
     try {
       const url = new URL(link.href, window.location.origin);
-
-      // Si es link externo
       if (url.hostname && url.hostname !== currentHost) {
         link.target = "_blank";
         link.rel = "noopener noreferrer external";
       }
-    } catch (e) {
-      // Ignorar links mal formados (mailto, tel, #, javascript:)
-    }
+    } catch (e) {}
   });
 });
 
-//////////////////////////////////////////////////////
+// HIDE HEADER ON SCROLL
 document.addEventListener("DOMContentLoaded", function () {
-
-  const header = document.querySelector("header");
-  let lastScroll = 0;
-  const scrollThreshold = 80; // evita que se esconda muy rápido
-
-  window.addEventListener("scroll", function () {
-
-    const currentScroll = window.pageYOffset;
-
-    // No hacer nada cerca del top
-    if (currentScroll <= 0) {
-      header.classList.remove("hide-on-scroll");
-      return;
-    }
-
-    // Si baja y ya pasó el threshold se oculta
-    if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
-      header.classList.add("hide-on-scroll");
-    } 
-    // Si sube se muestra
-    else if (currentScroll < lastScroll) {
-      header.classList.remove("hide-on-scroll");
-    }
-
-    lastScroll = currentScroll;
-  });
-
+    const header = document.querySelector("header");
+    let lastScroll = 0;
+    const scrollThreshold = 80;
+    window.addEventListener("scroll", function () {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll <= 0) {
+            header.classList.remove("hide-on-scroll");
+            return;
+        }
+        if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
+            header.classList.add("hide-on-scroll");
+        } else if (currentScroll < lastScroll) {
+            header.classList.remove("hide-on-scroll");
+        }
+        lastScroll = currentScroll;
+    });
 });
-    
-

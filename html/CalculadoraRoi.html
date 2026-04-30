@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calcula cuánto puede ahorrar tu planta industrial con soluciones de automatización IMEX Lean Project.">
+  <title>Calculadora de Ahorro – IMEX Lean Project</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://isselmexico.com.mx/logos/img/favicon.png">
+  <link rel="apple-touch-icon" href="https://isselmexico.com.mx/logos/img/favicon.png">
+
+  <!-- Estilos del sitio (tu CSS principal) -->
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Estilos de la calculadora (este archivo va en tu carpeta css/) -->
+  <link rel="stylesheet" href="../css/styles_Calculadora.css">
+</head>
+
+<body>
+
+  <!-- =============================
+       NAVBAR / MENÚ (sin cambios)
+  ============================== -->
+  <header class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid px-lg-4">
+
+      <div class="d-flex align-items-center gap-3 flex-shrink-0">
+        <a class="navbar-brand m-0" href="../index.html">
+          <img src="../logos/Logotipo_IMEX_Lean_Project_10.png" alt="IMEX Logo" height="50">
+        </a>
+        <div class="header-social d-none d-md-flex align-items-center gap-2 ms-3">
+          <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="20" height="20">
+          </a>
+          <a href="https://www.linkedin.com/company/imex-lean-project" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="20" height="20">
+          </a>
+          <a href="https://www.instagram.com/imex_lean_project" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="20" height="20">
+          </a>
+          <a href="https://www.tiktok.com/@imex.leanproject" target="_blank">
+            <img src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200" width="28" height="28">
+          </a>
+        </div>
+      </div>
+
+      <div class="header-ticker-horizontal d-none d-lg-block mx-4" style="flex: 15; min-width: 0;">
+        <div class="marquee-content">
+          <span> Proyectos Lean de alta eficiencia • Distribución de equipos de automatización industrial • Soporte técnico especializado • </span>
+          <span> Proyectos Lean de alta eficiencia • Distribución de equipos de automatización industrial • Soporte técnico especializado • </span>
+        </div>
+      </div>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#imexNavbar"
+        aria-controls="imexNavbar" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="imexNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+
+          <li class="nav-item dropdown has-megamenu">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Productos</a>
+            <div class="dropdown-menu megamenu shadow-lg">
+              <div class="container-fluid px-lg-5">
+                <div class="row">
+                  <div class="col-lg-2 col-12 mb-3">
+                    <div class="d-none d-lg-block mb-3">
+                      <img src="../recurso_index/logos_proveedores/Banner.png" class="brand-logo-menu" alt="Banner" height="30">
+                    </div>
+                    <span class="menu-header-title d-lg-none">Banner</span>
+                    <ul class="list-unstyled">
+                      <li><a class="dropdown-item p-0" href="https://www.bannerengineering.com/mx/es/products/sensors.html">Sensores</a></li>
+                      <li><a class="dropdown-item p-0" href="https://www.bannerengineering.com/mx/es/products/lighting-and-indicators.html">Iluminación e indicación</a></li>
+                      <li><a class="dropdown-item p-0" href="https://www.bannerengineering.com/mx/es/products/machine-safety.html">Seguridad</a></li>
+                      <li><a class="dropdown-item p-0" href="https://www.bannerengineering.com/mx/es/products/wireless-sensor-networks.html">Inalámbricos</a></li>
+                      <li><a class="dropdown-item p-0" href="https://www.bannerengineering.com/mx/es/products/connectivity-technology/snap-signal.html">Snap signal</a></li>
+                      <li><a class="dropdown-item p-0" href="../html/Crossref.html">Cross Reference</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-3 col-12 mb-3 border-start-lg">
+                    <div class="d-none d-lg-block mb-3">
+                      <img src="../recurso_index/logos_proveedores/Wago.png" class="brand-logo-menu" alt="Wago" height="25">
+                    </div>
+                    <span class="menu-header-title d-lg-none">Wago</span>
+                    <ul class="list-unstyled">
+                      <li><a class="dropdown-item p-0" href="https://www.wago.com/mx-es/tecnolog%C3%ADa-conexi%C3%B3n">Conectividad</a></li>
+                      <li><a class="dropdown-item p-0" href="https://www.wago.com/mx-es/electr%C3%B3nica-interfaz">Interface electrónica</a></li>
+                      <li><a class="dropdown-item p-0" href="https://www.wago.com/mx-es/tecnolog%C3%ADa-automatizaci%C3%B3n">Automation technology</a></li>
+                      <li><a class="dropdown-item p-0" href="https://www.wago.com/mx-es/tecnolog%C3%ADa-automatizaci%C3%B3n/sistemas-es">Sistemas I/O</a></li>
+                      <li><a class="dropdown-item p-0" href="https://www.wago.com/mx-es/electr%C3%B3nica-interfaz/cableado-sistemas">Cableado de sistemas I/O</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-2 col-12 mb-3 border-start-lg">
+                    <div class="d-none d-lg-block mb-3">
+                      <img src="../recurso_index/logos_proveedores/ckd-png.png" class="brand-logo-menu" alt="CKD" height="35">
+                    </div>
+                    <span class="menu-header-title d-lg-none">CKD</span>
+                    <ul class="list-unstyled">
+                      <li><a class="dropdown-item p-0" href="https://www.ckd.co.jp/kiki/en/product/category/1">Neumática</a></li>
+                      <li><a class="dropdown-item p-0" href="https://www.ckd.co.jp/kiki/en/product/category/16">Vacío</a></li>
+                      <li><a class="dropdown-item p-0" href="https://www.ckd.co.jp/kiki/en/product/category/9">Racores</a></li>
+                      <li><a class="dropdown-item p-0" href="https://www.ckd.co.jp/kiki/en/product/category/14">Electroválvulas</a></li>
+                      <li><a class="dropdown-item p-0" href="https://www.ckd.co.jp/kiki/en//product/category/12">Indexador mecánico</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-2 col-12 mb-3 border-start-lg">
+                    <div class="d-none d-lg-block mb-3">
+                      <img src="../recurso_index/logos_proveedores/helukabel.png" class="brand-logo-menu" alt="Helukabel" height="25">
+                    </div>
+                    <span class="menu-header-title d-lg-none">Helu</span>
+                    <ul class="list-unstyled">
+                      <li><a class="dropdown-item p-0" href="https://shop.helu.com/mx-es/cables-para-sectores-industriales-y-de-maquinaria">Cables industriales</a></li>
+                      <li><a class="dropdown-item p-0" href="https://shop.helu.com/mx-es/cables-para-infraestructuras-y-edificios">Cables para infraestructuras</a></li>
+                      <li><a class="dropdown-item p-0" href="https://shop.helu.com/mx-es/prensaestopas">Prensaestopas</a></li>
+                      <li><a class="dropdown-item p-0" href="https://shop.helu.com/mx-es/soluciones-de-energias-renovables">Energías renovables</a></li>
+                      <li><a class="dropdown-item p-0" href="https://shop.helu.com/mx-es/tecnologia-de-medios-y-eventos">Tecnología de medios</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-3 col-12 border-start-lg">
+                    <div class="menu-cta-card p-3 rounded bg-dark-blue text-center">
+                      <p class="text-white small mb-3">¿Necesitas ayuda específica?</p>
+                      <a href="../html/contacto.html" class="btn btn-warning fw-bold w-100">Contactar Especialista</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown has-megamenu">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Servicios</a>
+            <div class="dropdown-menu megamenu">
+              <div class="container-fluid px-lg-5">
+                <div class="row">
+                  <!-- Columna de enlaces -->
+                  <div class="col-lg-3">
+                    <div class="py-1"><a class="dropdown-item category-link" href="../html/servicios.html">Servicios
+                        Técnicos</a></div>
+                    <div class="py-1"><a class="dropdown-item category-link" href="../html/distribuidores.html">Marcas
+                        Distribuidas</a></div>
+                    <div class="py-1"><a class="dropdown-item category-link" href="../html/nosotros.html">Acerca de
+                        nosotros</a></div>
+                    <!-- Nuevo enlace agregado aquí -->
+                    <div class="py-1"><a class="dropdown-item category-link fw-bold text-warning"
+                        href="../html/CalculadoraRoi.html">Calculadora ROI</a></div>
+                  </div>
+
+                  <!-- Columna de texto descriptivo -->
+                  <div class="col-lg-9 ps-lg-4 divider-left d-none d-lg-block">
+                    <span class="menu-header-title">VALOR AGREGADO</span>
+                    <p class="text-white-50">Soluciones integrales en automatización industrial y proyectos Lean.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown has-megamenu">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Conócenos</a>
+            <div class="dropdown-menu megamenu">
+              <div class="container-fluid px-lg-5">
+                <div class="row">
+                  <div class="col-lg-3">
+                    <div class="py-1"><a class="dropdown-item category-link" href="../html/blog.html">Blog Industrial</a></div>
+                    <div class="py-1"><a class="dropdown-item category-link" href="../html/valores.html">Nuestros Valores</a></div>
+                    <div class="py-1"><a class="dropdown-item category-link" href="../html/contacto.html">Cómo comprar</a></div>
+                  </div>
+                  <div class="col-lg-9 ps-lg-4 divider-left d-none d-lg-block">
+                    <span class="menu-header-title">NUESTRA FILOSOFÍA</span>
+                    <p class="text-white-50">Líderes en distribución de equipo de automatización en México.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item ms-lg-4 mt-3 mt-lg-0">
+            <a href="../html/contacto.html" class="btn-contacto-imex">Contáctanos</a>
+          </li>
+        </ul>
+
+        <div class="mobile-social d-flex d-lg-none justify-content-center gap-4 pt-3 mt-3 border-top w-100">
+          <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="28"></a>
+          <a href="https://www.linkedin.com/company/imex-lean-project"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="28"></a>
+          <a href="https://www.instagram.com/imex_lean_project"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="28"></a>
+          <a href="https://www.tiktok.com/@imex.leanproject" target="_blank"><img src="https://www.svgrepo.com/show/333611/tiktok.svg" width="28" height="28" style="filter: brightness(0) invert(1);"></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- =============================
+       CONTENIDO: CALCULADORA
+       (envuelto en .calc-page para
+        aplicar fondo y padding-top
+        que respeta el navbar fijo)
+  ============================== -->
+  <main class="calc-page">
+
+    <!-- Canvas circuitos animados -->
+    <canvas id="calc-circuits-canvas"></canvas>
+
+    <!-- Header de la calculadora -->
+    <header class="calc-header calc-reveal">
+      <div>
+        <p class="calc-eyebrow">IMEX Lean Project</p>
+        <h1 class="calc-titulo">Calcula tu<br><span>ahorro potencial</span></h1>
+      </div>
+      <p class="calc-subtitulo">Estima cuánto puede ahorrar tu planta con soluciones de automatización y monitoreo industrial.</p>
+    </header>
+
+    <!-- Tarjeta principal -->
+    <div class="calc-card calc-reveal">
+
+      <!-- PASO 1 -->
+      <div class="calc-section">
+        <p class="calc-section-label">01 — Tu operación</p>
+        <div class="calc-inputs-grid">
+          <div class="calc-field">
+            <label for="calc-sector">Sector industrial</label>
+            <select id="calc-sector" onchange="calcROI()">
+              <option value="automotriz">Automotriz</option>
+              <option value="alimentos">Alimentos y bebidas</option>
+              <option value="farmaceutico">Farmacéutico</option>
+              <option value="electronica">Electrónica</option>
+              <option value="plasticos">Plásticos / hule</option>
+              <option value="metalmecanica">Metalmecánica</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="calc-turnos">Turnos de operación</label>
+            <select id="calc-turnos" onchange="calcROI()">
+              <option value="1">1 turno — 8 hrs</option>
+              <option value="2" selected>2 turnos — 16 hrs</option>
+              <option value="3">3 turnos — 24 hrs</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="calc-lineas">Líneas de producción</label>
+            <input type="number" id="calc-lineas" value="3" min="1" max="100" oninput="calcROI()" />
+          </div>
+          <div class="calc-field">
+            <label for="calc-operadores">Operadores por línea</label>
+            <input type="number" id="calc-operadores" value="5" min="1" max="50" oninput="calcROI()" />
+          </div>
+        </div>
+      </div>
+
+      <!-- PASO 2 -->
+      <div class="calc-section">
+        <p class="calc-section-label">02 — Situación actual</p>
+        <div class="calc-slider-group">
+          <div class="calc-slider-row">
+            <div>
+              <label>Paros no planeados por semana</label>
+              <input type="range" id="calc-paros" min="1" max="25" value="5" step="1"
+                oninput="document.getElementById('calc-paros-v').textContent=this.value; calcROI()" />
+            </div>
+            <div class="calc-slider-val" id="calc-paros-v">5</div>
+          </div>
+          <div class="calc-slider-row">
+            <div>
+              <label>Duración promedio por paro (minutos)</label>
+              <input type="range" id="calc-duracion" min="15" max="300" value="45" step="15"
+                oninput="document.getElementById('calc-dur-v').textContent=this.value+' min'; calcROI()" />
+            </div>
+            <div class="calc-slider-val" id="calc-dur-v">45 min</div>
+          </div>
+          <div class="calc-slider-row">
+            <div>
+              <label>Costo por hora de producción (MXN)</label>
+              <input type="range" id="calc-costo" min="500" max="25000" value="3000" step="500"
+                oninput="document.getElementById('calc-costo-v').textContent='$'+Number(this.value).toLocaleString('es-MX'); calcROI()" />
+            </div>
+            <div class="calc-slider-val" id="calc-costo-v">$3,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASO 3: RESULTADOS -->
+      <div class="calc-section calc-results-section">
+        <p class="calc-section-label">03 — Tu ahorro estimado</p>
+
+        <div class="calc-results-grid">
+          <div class="calc-result-card">
+            <span class="calc-result-label">Ahorro mensual</span>
+            <span class="calc-result-value" id="calc-r-mensual">—</span>
+          </div>
+          <div class="calc-result-card">
+            <span class="calc-result-label">Ahorro anual</span>
+            <span class="calc-result-value" id="calc-r-anual">—</span>
+          </div>
+          <div class="calc-result-card">
+            <span class="calc-result-label">Recuperación inversión</span>
+            <span class="calc-result-value white" id="calc-r-payback">—</span>
+          </div>
+          <div class="calc-result-card">
+            <span class="calc-result-label">Horas recuperadas / año</span>
+            <span class="calc-result-value dim" id="calc-r-horas">—</span>
+          </div>
+        </div>
+
+        <div class="calc-insight-bar">
+          <p id="calc-insight">Ajusta los parámetros para ver tu estimación personalizada.</p>
+        </div>
+
+        <div class="calc-cta-row">
+          <a href="../html/contacto.html" class="calc-btn-primary">Solicitar diagnóstico gratuito</a>
+          <a href="../html/servicios.html" class="calc-btn-secondary">Ver nuestros servicios</a>
+        </div>
+      </div>
+
+    </div><!-- /calc-card -->
+
+    <p class="calc-disclaimer">
+      * Los resultados son estimaciones basadas en benchmarks del sector industrial mexicano.
+      Los ahorros reales varían según las condiciones específicas de cada planta.
+    </p>
+
+  </main><!-- /calc-page -->
+
+
+  <!-- =============================
+       FOOTER (sin cambios)
+  ============================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>IMEX</h3>
+        <p>Soluciones en automatización industrial con innovación y confianza.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Enlaces</h4>
+        <ul>
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="../html/servicios.html">Nuestros Servicios</a></li>
+          <li><a href="../html/blog.html">Blog</a></li>
+          <li><a href="../html/contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="../html/terminos_condiciones.html">Términos y Condiciones</a></li>
+          <li><a href="../html/terminos_condiciones.html">Aviso de Privacidad</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="../html/contacto.html" class="footer-contact-btn">Contáctanos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026. Todos los derechos reservados. IMEX Lean Project
+        Felipe Villanueva 232 Peralvillo • Cuauhtémoc, C.P. 06220 • CDMX</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Scripts del sitio -->
+  <script src="../script.js"></script>
+
+  <!-- Script de la calculadora -->
+  <script src="../js/script_calculadora.js"></script>
+
+  <!-- Elfsight chatbot -->
+  <script src="https://elfsightcdn.com/platform.js" async></script>
+  <div class="elfsight-app-f760d761-b5db-4b1f-b436-1fd973ddb20b" data-elfsight-app-lazy></div>
+
+</body>
+</html>

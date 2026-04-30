@@ -2336,3 +2336,223 @@ header.hide-on-scroll {
     margin-bottom: 5px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+
+
+
+
+.welcome-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: opacity 0.5s ease;
+}
+
+.welcome-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow-y: auto; /* Permite scroll si la pantalla es muy pequeña */
+}
+
+.welcome-cards-grid {
+    display: grid;
+    /* 4 columnas en desktop, 2 en tablets, 1 en móviles */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.flyer-card {
+    background: #111;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #333;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.flyer-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain; /* Para que los logos de marcas no se corten */
+    background: #fff; /* Fondo blanco para que resalten los logos */
+    padding: 20px;
+}
+
+.brand-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 2;
+    color: white;
+}
+
+/* Colores de marca */
+.banner { background: #ed1c24; }
+.wago { background: #009639; }
+.ckd { background: #0054a6; }
+.helu { background: #000000; border: 1px solid #fff; }
+
+.flyer-info {
+    padding: 15px;
+    text-align: center;
+    background: #1a1a1a;
+    color: white;
+}
+
+.flyer-info span {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.close-btn {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #ffc107;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 992px) {
+    .welcome-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .welcome-cards-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+    }
+    .flyer-card img {
+        height: 150px;
+    }
+}
+
+
+
+
+
+
+
+
+
+.welcome-overlay {
+    position: fixed;
+    top: 0; left: 0; 
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.788);
+    z-index: 100000;
+    
+    /* --- CAMBIO DE ALINEACIÓN --- */
+    display: flex;
+    justify-content: center; /* Mantenemos centrado horizontal */
+    align-items: flex-start; /* CAMBIAR 'center' por 'flex-start' para subirlo */
+    
+    /* --- COLCHÓN SUPERIOR --- */
+    padding-top: 40px; /* Esto define qué tan arriba queda respecto al techo */
+    overflow-y: auto;  /* Por seguridad, si es muy alto en móvil, permite scroll */
+}
+/* Sección de centrado */
+.flyer-section {
+    width: 100%;
+    height: 100%;
+    padding: 40px 0; /* Espacio de seguridad arriba y abajo */
+}
+
+/* El marco ahora permite un ancho mucho mayor */
+.welcome-frame {
+    position: relative;
+    width: 95%;
+    max-width: 900px; /* Mantenemos tu ancho expandido */
+    margin: 0; /* QUITAMOS margin: auto; ya que el padding del overlay manda */
+}
+/* La Imagen: Aquí es donde controlas qué tanto espacio vertical ocupa */
+.img-render {
+    width: 100%;
+    height: auto;
+    max-height: 85vh; /* Mantenemos tu alto expandido */
+    object-fit: contain;
+    border-radius: 15px 15px 0 0;
+    display: block;
+}
+
+.close-flyer-btn {
+    position: absolute;
+    /* Al subir todo, aseguramos que la X no se pegue al techo */
+    top: -20px; 
+    right: -10px;
+    background: #ffc107;
+    /* ... resto de tus estilos del botón ... */
+}
+
+/* El pie del flyer (donde está el botón amarillo) */
+.flyer-btns {
+    padding: 10px 20px; /* Reducimos el padding para que no robe tanto espacio vertical */
+    background: #111;
+}
+
+/* Botón de Cerrar (X) */
+.close-flyer-btn {
+    position: absolute;
+    top: -20px;
+    right: -15px;
+    background: #ffc107;
+    color: #000;
+    border: 2px solid #000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 100001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.close-flyer-btn:hover {
+    transform: scale(1.1);
+    background: #fff;
+}
+
+/* Flechas laterales */
+.carousel-control-prev, .carousel-control-next {
+    width: 10%;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.9));
+}
+
+/* Responsive para pantallas muy pequeñas */
+@media (max-width: 576px) {
+    .welcome-frame {
+        max-width: 90%;
+    }
+    .img-render {
+        max-height: 90vh;
+    }
+    .close-flyer-btn {
+        right: 0;
+    }
+}
