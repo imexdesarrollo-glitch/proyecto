@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Participa en nuestra quiniela del Mundial 2026 con soluciones de automatización IMEX Lean Project.">
+  <title>Quiniela Mundial 2026</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://isselmexico.com.mx/logos/img/favicon.png">
+  <link rel="apple-touch-icon" href="https://isselmexico.com.mx/logos/img/favicon.png">
+
+  <!-- Estilos del sitio (tu CSS principal) -->
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Estilos de la calculadora (este archivo va en tu carpeta css/) -->
+  <link rel="stylesheet" href="../css/styles_quiniela.css">
+</head>
+
+<body>
+
+  <header class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid px-lg-4">
+
+      <div class="d-flex align-items-center gap-3 flex-shrink-0">
+        <a class="navbar-brand m-0" href="../index.html">
+          <img src="../logos/Logotipo_IMEX_Lean_Project_10.png" alt="IMEX Logo" height="50">
+        </a>
+        <div class="header-social d-none d-md-flex align-items-center gap-2 ms-3">
+          <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/?locale=es_LA" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="20"
+              height="20">
+          </a>
+          <a href="https://www.linkedin.com/company/imex-lean-project" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="20"
+              height="20">
+          </a>
+          <a href="https://www.instagram.com/imex_lean_project" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="20"
+              height="20">
+          </a>
+          <a href="https://www.tiktok.com/@imex.leanproject" target="_blank">
+            <img
+              src="https://img.utdstc.com/icon/32d/af5/32daf5ad34af15eb8ea853325ec1838574e3a6d572c204950d42471cc2ceba94:200"
+              width="28" height="28">
+          </a>
+        </div>
+      </div>
+
+      <div class="header-ticker-horizontal d-none d-lg-block mx-4" style="flex: 15; min-width: 0;">
+        <div class="marquee-content">
+          <span> Proyectos Lean de alta eficiencia • Distribución de equipos de automatización industrial • Soporte
+            técnico especializado • </span>
+          <span> Proyectos Lean de alta eficiencia • Distribución de equipos de automatización industrial • Soporte
+            técnico especializado • </span>
+        </div>
+      </div>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#imexNavbar"
+        aria-controls="imexNavbar" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="imexNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+
+          <li class="nav-item dropdown has-megamenu">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Productos</a>
+            <div class="dropdown-menu megamenu shadow-lg">
+              <div class="container-fluid px-lg-5">
+                <div class="row">
+                  <div class="col-lg-2 col-12 mb-3">
+                    <div class="d-none d-lg-block mb-3">
+                      <img src="../recurso_index/logos_proveedores/Banner.png" class="brand-logo-menu" alt="Banner"
+                        height="30">
+                    </div>
+                    <span class="menu-header-title d-lg-none">Banner</span>
+                    <ul class="list-unstyled">
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.bannerengineering.com/mx/es/products/sensors.html">Sensores</a></li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.bannerengineering.com/mx/es/products/lighting-and-indicators.html">Iluminación
+                          e indicación</a></li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.bannerengineering.com/mx/es/products/machine-safety.html">Seguridad</a></li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.bannerengineering.com/mx/es/products/wireless-sensor-networks.html">Inalámbricos</a>
+                      </li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.bannerengineering.com/mx/es/products/connectivity-technology/snap-signal.html">Snap
+                          signal</a></li>
+                      <li><a class="dropdown-item p-0" href="../html/Crossref.html">Cross Reference</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-3 col-12 mb-3 border-start-lg">
+                    <div class="d-none d-lg-block mb-3">
+                      <img src="../recurso_index/logos_proveedores/Wago.png" class="brand-logo-menu" alt="Wago"
+                        height="25">
+                    </div>
+                    <span class="menu-header-title d-lg-none">Wago</span>
+                    <ul class="list-unstyled">
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.wago.com/mx-es/tecnolog%C3%ADa-conexi%C3%B3n">Conectividad</a></li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.wago.com/mx-es/electr%C3%B3nica-interfaz">Interface electrónica</a></li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.wago.com/mx-es/tecnolog%C3%ADa-automatizaci%C3%B3n">Automation
+                          technology</a></li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.wago.com/mx-es/tecnolog%C3%ADa-automatizaci%C3%B3n/sistemas-es">Sistemas
+                          I/O</a></li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.wago.com/mx-es/electr%C3%B3nica-interfaz/cableado-sistemas">Cableado de
+                          sistemas I/O</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-2 col-12 mb-3 border-start-lg">
+                    <div class="d-none d-lg-block mb-3">
+                      <img src="../recurso_index/logos_proveedores/ckd-png.png" class="brand-logo-menu" alt="CKD"
+                        height="35">
+                    </div>
+                    <span class="menu-header-title d-lg-none">CKD</span>
+                    <ul class="list-unstyled">
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.ckd.co.jp/kiki/en/product/category/1">Neumática</a></li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.ckd.co.jp/kiki/en/product/category/16">Vacío</a></li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.ckd.co.jp/kiki/en/product/category/9">Racores</a></li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.ckd.co.jp/kiki/en/product/category/14">Electroválvulas</a></li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://www.ckd.co.jp/kiki/en//product/category/12">Indexador mecánico</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-2 col-12 mb-3 border-start-lg">
+                    <div class="d-none d-lg-block mb-3">
+                      <img src="../recurso_index/logos_proveedores/helukabel.png" class="brand-logo-menu"
+                        alt="Helukabel" height="25">
+                    </div>
+                    <span class="menu-header-title d-lg-none">Helu</span>
+                    <ul class="list-unstyled">
+                      <li><a class="dropdown-item p-0"
+                          href="https://shop.helu.com/mx-es/cables-para-sectores-industriales-y-de-maquinaria">Cables
+                          industriales</a></li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://shop.helu.com/mx-es/cables-para-infraestructuras-y-edificios">Cables para
+                          infraestructuras</a></li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://shop.helu.com/mx-es/prensaestopas">Prensaestopas</a></li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://shop.helu.com/mx-es/soluciones-de-energias-renovables">Energías renovables</a>
+                      </li>
+                      <li><a class="dropdown-item p-0"
+                          href="https://shop.helu.com/mx-es/tecnologia-de-medios-y-eventos">Tecnología de medios</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-3 col-12 border-start-lg">
+                    <div class="menu-cta-card p-3 rounded bg-dark-blue text-center">
+                      <p class="text-white small mb-3">¿Necesitas ayuda específica?</p>
+                      <a href="../html/contacto.html" class="btn btn-warning fw-bold w-100">Contactar Especialista</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown has-megamenu">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Servicios</a>
+            <div class="dropdown-menu megamenu">
+              <div class="container-fluid px-lg-5">
+                <div class="row">
+                  <!-- Columna de enlaces -->
+                  <div class="col-lg-3">
+                    <div class="py-1"><a class="dropdown-item category-link" href="../html/servicios.html">Servicios
+                        Técnicos</a></div>
+                    <div class="py-1"><a class="dropdown-item category-link" href="../html/distribuidores.html">Marcas
+                        Distribuidas</a></div>
+                    <div class="py-1"><a class="dropdown-item category-link" href="../html/nosotros.html">Acerca de
+                        nosotros</a></div>
+                    <div class="py-1"><a class="dropdown-item category-link fw-bold text-warning"
+                        href="../html/CalculadoraRoi.html">Calculadora ROI</a></div>
+                  </div>
+
+                  <!-- Columna de texto descriptivo -->
+                  <div class="col-lg-9 ps-lg-4 divider-left d-none d-lg-block">
+                    <span class="menu-header-title">VALOR AGREGADO</span>
+                    <p class="text-white-50">Soluciones integrales en automatización industrial y proyectos Lean.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown has-megamenu">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Conócenos</a>
+            <div class="dropdown-menu megamenu">
+              <div class="container-fluid px-lg-5">
+                <div class="row">
+                  <div class="col-lg-3">
+                    <div class="py-1"><a class="dropdown-item category-link" href="../html/blog.html">Blog
+                        Industrial</a></div>
+                    <div class="py-1"><a class="dropdown-item category-link" href="../html/valores.html">Nuestros
+                        Valores</a></div>
+                    <div class="py-1"><a class="dropdown-item category-link" href="../html/contacto.html">Cómo
+                        comprar</a></div>
+                  </div>
+                  <div class="col-lg-9 ps-lg-4 divider-left d-none d-lg-block">
+                    <span class="menu-header-title">NUESTRA FILOSOFÍA</span>
+                    <p class="text-white-50">Líderes en distribución de equipo de automatización en México.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item ms-lg-4 mt-3 mt-lg-0">
+            <a href="../html/contacto.html" class="btn-contacto-imex">Contáctanos</a>
+          </li>
+        </ul>
+
+        <div class="mobile-social d-flex d-lg-none justify-content-center gap-4 pt-3 mt-3 border-top w-100">
+          <a href="https://www.facebook.com/people/IMEX-Lean-Project/100093844433041/"><img
+              src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="28"></a>
+          <a href="https://www.linkedin.com/company/imex-lean-project"><img
+              src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="28"></a>
+          <a href="https://www.instagram.com/imex_lean_project"><img
+              src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="28"></a>
+          <a href="https://www.tiktok.com/@imex.leanproject" target="_blank"><img
+              src="https://www.svgrepo.com/show/333611/tiktok.svg" width="28" height="28"
+              style="filter: brightness(0) invert(1);"></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-badge">⚽ Copa del Mundo FIFA</div>
+    <h1>MUNDIAL <span>2026</span></h1>
+    <p>Estados Unidos · México · Canadá &nbsp;|&nbsp; 11 Jun – 19 Jul 2026</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">48</div>
+        <div class="hero-stat-lbl">Selecciones</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">12</div>
+        <div class="hero-stat-lbl">Grupos</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">104</div>
+        <div class="hero-stat-lbl">Partidos</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs-wrap">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('fase-grupos')">Fase de Grupos</button>
+      <button class="tab-btn" onclick="showTab('mi-quiniela')">Mi Quiniela</button>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- TAB: FASE DE GRUPOS -->
+    <div class="tab-content active" id="tab-fase-grupos">
+      <div class="progreso-wrap">
+        <div class="progreso-texto">
+          <span>Progreso de pronósticos</span>
+          <span id="progreso-txt">0 / 48 partidos</span>
+        </div>
+        <div class="progreso-bar-bg">
+          <div class="progreso-bar-fill" id="progreso-fill"></div>
+        </div>
+      </div>
+
+      <div class="grupos-grid" id="grupos-container"></div>
+    </div>
+
+    <!-- TAB: MI QUINIELA -->
+    <div class="tab-content" id="tab-mi-quiniela">
+      <div class="tabla-resumen">
+
+        <div class="consulta-folio">
+
+          <h4>Consultar quiniela registrada</h4>
+
+          <div class="consulta-row">
+            <input type="number" id="folioConsulta" placeholder="Ingrese su folio">
+
+            <button onclick="consultarQuiniela()">
+              Buscar
+            </button>
+          </div>
+
+        </div>
+        <div class="tabla-header">📋 Resumen de mis pronósticos</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Grupo</th>
+              <th>Partido</th>
+              <th>Resultado</th>
+              <th>Pronóstico</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-body">
+            <tr>
+              <td colspan="4" style="text-align:center;color:var(--texto-sec);padding:30px">Aún no has hecho ningún
+                pronóstico</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="registro-form">
+
+    <h3>Datos del participante</h3>
+
+    <input type="text" id="nombre" placeholder="Nombre completo" required>
+
+    <input type="email" id="correo" placeholder="Correo electrónico" required>
+
+    <input type="text" id="empresa" placeholder="Empresa y Orden de Compra">
+
+    <input type="tel" id="telefono" placeholder="Teléfono">
+
+    <label class="terms-label">
+      <div class="terms-row">
+        <div>
+          <input type="checkbox" id="acepto">
+          Acepto términos y condiciones
+        </div>
+
+        <button type="button" class="terms-toggle" onclick="toggleTerms()">
+          Más información ▶
+        </button>
+      </div>
+
+      <div class="terms-content" id="terms-content">
+
+        <p>
+          ⚽ ¡Participa en nuestra Quiniela del Mundial 2026 y gana increíbles premios!
+          ¿Cómo obtener oportunidades de participación?
+
+        </p>
+        <p>
+          • Si durante el mes de mayo realizaste compras igual o mayor a $1,000 USD antes de IVA, recibes 1 oportunidad
+          de participación en la quiniela.
+        </p>
+
+        <p> • Además, por cada $1,000 USD antes de IVA en órdenes de compra generadas entre 8 de junio y el lunes 15 de
+          junio, recibirás 1 oportunidad adicional de participación. </p>
+
+        <p>
+          Nota importante: Solo serán válidas las órdenes de compra emitidas dentro del periodo promocional. Los
+          participantes que se registren después del inicio del Mundial podrán participar; sin embargo, los partidos
+          disputados desde el inicio del torneo y hasta el cierre del registro no serán considerados para su puntuación.
+        </p>
+
+        <p>Una vez registrado el participante, comenzará a acumular puntos únicamente en los partidos que se jueguen
+          posteriormente a su inscripción. (Es importante destacar que los apartados del participante se llenen
+          correctamente, colocar ambos apellidos, empresa y orden de compra, ya que, en caso de resultar ganadores, la
+          información será validada para otorgar los premios).
+        </p>
+
+        <p> IMEX se reserva el derecho de resolver cualquier situación no contemplada en el reglamento de puntuación.
+        </p>
+      </div>
+    </label>
+
+  </div>
+  <!-- BARRA INFERIOR -->
+  <div class="resumen-bar">
+    <div class="resumen-stats">
+      <div class="res-stat">
+        <div class="res-num" id="cnt-total" style="color:var(--texto)">0</div>
+        <div class="res-lbl">Total</div>
+      </div>
+      <div class="res-stat">
+        <div class="res-num res-1" id="cnt-1">0</div>
+        <div class="res-lbl">Local</div>
+      </div>
+      <div class="res-stat">
+        <div class="res-num res-x" id="cnt-x">0</div>
+        <div class="res-lbl">Empate</div>
+      </div>
+      <div class="res-stat">
+        <div class="res-num res-2" id="cnt-2">0</div>
+        <div class="res-lbl">Visita</div>
+      </div>
+    </div>
+    <button class="btn-secundario" onclick="window.location.href='https://www.isselmexico.com.mx/posiciones.php'">
+      🏆 Ver tabla de posiciones
+    </button>
+
+    <button class="btn-enviar" onclick="abrirModal()">
+      Enviar Quiniela →
+    </button>
+  </div>
+
+
+
+  <!-- MODAL quiniela-->
+  <div class="modal-overlay" id="modal">
+    <div class="quiniela-modal">
+      <div class="modal-icon">🏆</div>
+      <h2>¡Quiniela enviada!</h2>
+      <p>Tus selecciones se han registrado con éxito en el sistema.</p>
+
+      <div class="modal-grid">
+        <div class="modal-stat">
+          <div class="modal-stat-num res-1" id="m-1">0</div>
+          <div class="modal-stat-lbl">Locales</div>
+        </div>
+        <div class="modal-stat">
+          <div class="modal-stat-num res-x" id="m-x">0</div>
+          <div class="modal-stat-lbl">Empates</div>
+        </div>
+        <div class="modal-stat">
+          <div class="modal-stat-num res-2" id="m-2">0</div>
+          <div class="modal-stat-lbl">Visitantes</div>
+        </div>
+      </div>
+
+      <button type="button" id="btn-descargar-pdf"
+        style="background: #d32f2f; color: white; border: none; border-radius: 10px; padding: 12px 20px; font-size: 14px; font-weight: 600; cursor: pointer; width: 100%; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        📄 Descargar Quiniela
+      </button>
+
+      <button type="button" class="btn-cerrar" onclick="cerrarModal()">¡Listo!</button>
+    </div>
+  </div>
+
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>IMEX</h3>
+        <p>Soluciones en automatización industrial con innovación y confianza.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Enlaces</h4>
+        <ul>
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="../html/servicios.html">Nuestros Servicios</a></li>
+          <li><a href="../html/blog.html">Blog</a></li>
+          <li><a href="../html/contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="../html/terminos_condiciones.html">Términos y Condiciones</a></li>
+          <li><a href="../html/terminos_condiciones.html">Aviso de Privacidad</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="../html/contacto.html" class="footer-contact-btn">Contáctanos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026. Todos los derechos reservados. IMEX Lean Project
+        Felipe Villanueva 232 Peralvillo • Cuauhtémoc, C.P. 06220 • CDMX</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Scripts del sitio -->
+  <script src="../script.js"></script>
+
+  <!-- Script de la quiniela -->
+  <script src="../js/script_quiniela.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+</body>
+
+</html>

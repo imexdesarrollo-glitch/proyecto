@@ -1,0 +1,913 @@
+:root {
+    --verde: #003c69;
+    --verde-dark: #00223d;
+    --verde-light: #e6f7ee;
+    --verde-cancha: #1b5e20;
+    --rojo: #d32f2f;
+    --rojo-light: #fdeaea;
+    --amarillo: #f9a825;
+    --amarillo-light: #fffde7;
+    --gris: #f4f4f4;
+    --borde: #e0e0e0;
+    --texto: #1a1a1a;
+    --texto-sec: #666;
+    --blanco: #fff;
+    --shadow: 0 4px 18px rgba(0,0,0,0.12);
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ==========================================
+   NUEVO FONDO INMERSIVO (ESTADIO DE NOCHE)
+   ========================================== */
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--texto);
+    min-height: 100vh;
+    
+    /* 1. Capa oscura intermedia azul/verde y el enlace real al estadio mundialista */
+    background: 
+        linear-gradient(rgba(0, 25, 46, 0.88), rgba(5, 33, 10, 0.88)), 
+        url('https://t4.ftcdn.net/jpg/20/10/27/33/360_F_2010273389_HYKbzgHItGovWpPA2XtDUiiNxcvrsPu5.jpg');
+        
+    /* 2. Propiedades de ajuste de pantalla completa */
+    background-size: cover;          /* Llena toda la pantalla sin deformar el campo ni las gradas */
+    background-position: center 30%; /* Enfoca perfectamente la cancha y los reflectores */
+    background-repeat: no-repeat;    /* Evita que se repita en pantallas grandes */
+    background-attachment: fixed;    /* El estadio se queda estático al deslizar los partidos */
+}
+/* HEADER / HERO */
+/* ==========================================
+   BANNER PRINCIPAL (ESTILO CANCHA DE NOCHE)
+   ========================================== */
+.hero {
+    /* 1. Degradado que simula los reflectores del estadio iluminando el césped de noche */
+    background: 
+        radial-gradient(circle at center, rgba(27, 94, 32, 0.4) 0%, rgba(0, 34, 61, 0.95) 70%),
+        linear-gradient(180deg, #00192e 0%, #0c3311 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px 50px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 4px solid var(--amarillo);
+}
+
+/* 2. Dibujo de las líneas de la cancha y círculos de juego usando CSS puro */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.08; /* Controla qué tan visibles son las líneas de la cancha */
+    background-image: 
+        /* Círculo central de la cancha */
+        radial-gradient(circle at center, transparent 60px, #fff 61px, #fff 63px, transparent 64px),
+        /* Línea del medio campo */
+        linear-gradient(90deg, transparent 49.8%, #fff 49.9%, #fff 50.1%, transparent 50.2%),
+        /* Patrón de franjas de césped (claro y oscuro) */
+        linear-gradient(90deg, rgba(255,255,255,0.05) 50%, transparent 50%);
+    background-size: 100% 100%, 100% 100%, 80px 100%;
+    pointer-events: none;
+}
+
+/* 3. Toque extra: Siluetas de balones flotando sutilmente en las esquinas */
+.hero::after {
+    content: '⚽';
+    position: absolute;
+    font-size: 70px;
+    bottom: -15px;
+    right: 5%;
+    opacity: 0.08; /* Súper sutil para que no compita con el texto */
+    transform: rotate(15deg);
+    filter: blur(1px);
+}
+
+.hero-badge {
+    display: inline-block;
+    background: var(--amarillo);
+    color: #1a1a1a;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(46px, 8vw, 76px);
+    letter-spacing: .03em;
+    line-height: 0.95;
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.4);
+}
+.hero h1 span { color: var(--amarillo); }
+
+.hero p {
+    font-size: 15px;
+    opacity: .85;
+    margin-bottom: 28px;
+    font-weight: 300;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+}
+
+.hero-stat {
+    background: rgba(255,255,255,0.9);
+    color: #1a1a1a;
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.1);
+    min-width: 120px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: #1a1a1a;
+    line-height: 1;
+}
+.hero-stat-lbl { font-size: 11px; opacity: .75; letter-spacing: .08em; text-transform: uppercase; margin-top: 2px; }
+
+/* TABS MUNDIALISTAS */
+/* TABS MUNDIALISTAS (LÍNEA BLANCA ELIMINADA) */
+.tabs-wrap {
+    background: transparent; /* Quitamos el fondo blanco sólido */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1); /* Cambiado a una línea oscura muy sutil */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    box-shadow: none; /* Quitamos la sombra que generaba el bloque blanco */
+    margin-bottom: 25px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center; /* Centramos las pestañas para que luzcan igual que en la imagen */
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.tab-btn {
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6); /* Color gris claro semitransparente para que contraste con el fondo oscuro */
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all .2s;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+}
+
+/* Cambios de color al pasar el mouse y al estar activo acordes a la paleta pambolera */
+.tab-btn:hover { 
+    color: var(--amarillo); 
+    background: transparent; 
+}
+
+.tab-btn.active { 
+    color: var(--amarillo); 
+    border-bottom-color: var(--amarillo); 
+    font-weight: 800; 
+}
+
+/* MAIN CONTAINER */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* GRUPOS GRID */
+.grupos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+}
+
+.grupo-card {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.4);
+
+    overflow: hidden;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+    transition: transform .2s,
+                box-shadow .2s;
+}
+
+.grupo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+}
+
+.grupo-header {
+    background: linear-gradient(
+        90deg,
+        #013861 0%,
+        #154d19 100%
+    );
+
+    color: white;
+
+    padding: 16px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 3px solid var(--amarillo);
+}
+.grupo-nombre {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: .05em;
+}
+.grupo-count { 
+    font-size: 11px; 
+    background: rgba(255,255,255,0.15); 
+    padding: 3px 8px; 
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.partido-item {
+    padding: 16px;
+    border-bottom: 1px solid var(--gris);
+    transition: background .15s;
+}
+.partido-item:last-child { border-bottom: none; }
+.partido-item:hover { background: #fdfdfd; }
+
+.partido-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed var(--borde);
+    padding-bottom: 6px;
+}
+.partido-fecha { font-size: 11px; color: var(--texto-sec); font-weight: 600; text-transform: uppercase; }
+.partido-sede { font-size: 11px; color: var(--texto-sec); text-align: right; }
+
+.partido-equipos {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* Mantenemos la estructura de 3 columnas */
+  align-items: center;
+  gap: 8px; /* Unir un poco para ganar espacio lateral */
+}
+.equipo-local {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+  text-align: right; /* Alineamos el texto a la derecha */
+}
+.equipo-visita {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-start;
+  flex-direction: row-reverse; /* Bandera primero, luego nombre */
+  text-align: left; /* Alineamos el texto a la izquierda */
+}
+.bandera {
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0; /* Evita que la bandera se achique */
+}
+.equipo-nombre {
+  font-size: 13px;
+  font-weight: 500;
+  /* CAMBIOS CLAVE: Permitir que el texto ocupe espacio y se divida en líneas */
+  flex: 1; /* Permite que el nombre ocupe el espacio disponible */
+  white-space: normal; /* Permite salto de línea en lugar de 'nowrap' */
+  line-height: 1.3; /* Ajuste para que se vea bien en 2 líneas */
+  word-wrap: break-word; /* Rompe palabras si son excesivamente largas (seguridad extra) */
+  hyphens: auto; /* Permite guiones automáticos si el navegador lo soporta */
+}
+.equipo-local .equipo-nombre { text-align: left; }
+.equipo-visita .equipo-nombre { text-align: right; }
+
+/* SCORE BLOCK ESTILO MARCADOR EN VIVO */
+.score-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+.score-inputs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.score-input {
+    width: 38px;
+    height: 38px;
+
+    text-align: center;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+
+    border: 1px solid #b5b5b5;
+    border-radius: 6px;
+
+    background: #e3e6e8;
+    color: #1a1a1a;
+
+    outline: none;
+
+    transition: all .2s;
+
+    box-shadow:
+        inset 0 2px 4px rgba(0,0,0,0.1);
+}
+.score-input::-webkit-inner-spin-button,
+.score-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+.score-input:focus { 
+    border-color: var(--verde); 
+    background: white; 
+    box-shadow: 0 0 0 3px rgba(0,60,105,0.15);
+}
+.score-sep { font-size: 18px; font-weight: 800; color: #a0a0a0; }
+
+/* BOTONES DE PRONÓSTICO RAPIDO */
+.res-btns { display: flex; gap: 4px; }
+.rbtn {
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    border: 1.5px solid var(--borde);
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+    color: var(--texto-sec);
+    transition: all .15s;
+    text-transform: uppercase;
+}
+.rbtn:hover { background: var(--gris); color: var(--texto); }
+.rbtn.r1.active { background: var(--verde-light); border-color: var(--verde); color: var(--verde-dark); box-shadow: var(--shadow-sm); }
+.rbtn.rx.active { background: var(--amarillo-light); border-color: var(--amarillo); color: #7a5c00; box-shadow: var(--shadow-sm); }
+.rbtn.r2.active { background: var(--rojo-light); border-color: var(--rojo); color: var(--rojo); box-shadow: var(--shadow-sm); }
+
+/* RESUMEN BARRA STICKY INFERIOR */
+.resumen-bar {
+    position: fixed;
+
+    bottom: 15px;
+    left: 20px;
+    right: 20px;
+
+    background: rgba(255,255,255,0.9);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255,255,255,0.4);
+
+    border-radius: 16px;
+
+    padding: 12px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    z-index: 200;
+
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+.resumen-stats { display: flex; gap: 24px; align-items: center; }
+.res-stat { text-align: center; }
+.res-num { font-family: 'Bebas Neue', sans-serif; font-size: 28px; line-height: 1; }
+.res-lbl { font-size: 10px; color: var(--texto-sec); text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
+.res-1 { color: var(--verde); }
+.res-x { color: #b28500; }
+.res-2 { color: var(--rojo); }
+
+/* RETORNO AL COLOR AZUL ORIGINAL */
+.btn-enviar {
+    background: linear-gradient(180deg, var(--verde) 0%, #014e88 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 36px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(0, 60, 105, 0.3);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+.btn-enviar:hover { background: #014e88; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0, 60, 105, 0.4); }
+.btn-enviar:active { transform: scale(.98); }
+
+/* FORMULARIO DE REGISTRO (DISEÑO FICHA TÁCTICA) */
+.registro-form {
+    max-width: 650px;
+    margin: 40px auto 120px auto;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.85); /* Cambiado a traslúcido */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    position: relative;
+}
+
+/* Pestaña superior del formulario coordinada con el estilo */
+.registro-form::before {
+    content: '📋 FICHA DE INSCRIPCIÓN';
+    position: absolute;
+    top: -12px;
+    left: 30px;
+    background: #cc8514; /* Tono ocre/dorado de los botones */
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 5px 16px;
+    border-radius: 6px;
+    letter-spacing: .06em;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.registro-form h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: #003c69; /* Azul IMEX */
+    margin-bottom: 25px;
+    letter-spacing: .03em;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+    padding-bottom: 8px;
+}
+
+/* Inputs modernos con mejor contraste e indicador de foco */
+.registro-form input[type="text"],
+.registro-form input[type="email"],
+.registro-form input[type="tel"] {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    border: 1px solid #b5b5b5;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.7); /* Ligeramente más claro para escribir bien */
+    color: #1a1a1a;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all .2s ease;
+}
+
+/* Marcador de posición (Placeholder) en color neutro legible */
+.registro-form input::placeholder {
+    color: #666666;
+    font-weight: 500;
+}
+
+.registro-form input:focus {
+    border-color: #cc8514; /* Foco dorado */
+    background: #ffffff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(204, 133, 20, 0.25);
+}
+
+/* Fila de los términos */
+.terms-label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 5px;
+    color: #1a1a1a; /* Texto oscuro sobre el formulario claro */
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.terms-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.terms-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #003c69; /* Checkbox azul */
+    cursor: pointer;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+/* Enlace/Botón de Más información */
+.terms-toggle {
+    background: transparent;
+    border: none;
+    color: #014e88;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+
+.terms-toggle:hover {
+    color: #cc8514;
+    text-decoration: underline;
+}
+
+/* PROGRESO BAR */
+.progreso-wrap { 
+    background: white; 
+    padding: 16px; 
+    border-radius: 12px; 
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--borde);
+    margin-bottom: 24px;
+}
+.progreso-bar-bg {
+    background: var(--gris);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+    margin-top: 8px;
+    border: 1px solid #ebebeb;
+}
+.progreso-bar-fill {
+    background: linear-gradient(90deg, var(--verde) 0%, var(--amarillo) 100%);
+    height: 100%;
+    border-radius: 10px;
+    transition: width .5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0%;
+}
+.progreso-texto { font-size: 13px; font-weight: 600; color: var(--texto-sec); display: flex; justify-content: space-between; }
+
+/* TABLA RESUMEN MUNDIALISTA */
+.tabla-resumen {
+    background: rgba(255, 255, 255, 0.85); /* Fondo traslúcido */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-top: 24px;
+}
+
+/* Encabezado con el degradado oficial de la app */
+.tabla-header {
+    background: linear-gradient(90deg, #013861 0%, #154d19 100%) !important;
+    color: white;
+    padding: 16px 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: .05em;
+    border-bottom: 3px solid var(--amarillo);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent;
+}
+
+/* Estilo para los títulos de las columnas */
+th {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #1a1a1a;
+    background: rgba(0, 0, 0, 0.05); /* Sutil separación oscura */
+    padding: 14px 18px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Celdas con texto bien contrastado */
+td {
+    padding: 14px 18px;
+    font-size: 13px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    color: #111111;
+    font-weight: 600;
+}
+
+/* Efecto hover elegante al revisar los renglones */
+table tbody tr:hover td {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.badge-1, .badge-x, .badge-2 { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; }
+.badge-1 { background: var(--verde-light); color: var(--verde-dark); }
+.badge-x { background: var(--amarillo-light); color: #7a5c00; }
+.badge-2 { background: var(--rojo-light); color: var(--rojo); }
+
+/* MODAL POPIN */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,29,53,0.7);
+    backdrop-filter: blur(5px);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.quiniela-modal {
+    background: white;
+    border-radius: 24px;
+    padding: 40px 32px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    border: 3px solid var(--amarillo);
+}
+.modal-icon { font-size: 64px; margin-bottom: 16px; }
+.quiniela-modal h2 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--verde); margin-bottom: 8px; }
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 32px;
+}
+.modal-stat { border: 2px solid var(--gris); border-radius: 12px; padding: 14px 8px; background: #fafafa; }
+.modal-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 28px; line-height: 1; }
+.modal-stat-lbl { font-size: 10px; color: var(--texto-sec); font-weight: 700; text-transform: uppercase; margin-top: 4px; }
+
+.btn-cerrar {
+    background: var(--verde);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(0,60,105,0.2);
+}
+
+@media (max-width: 600px) {
+    .grupos-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 16px; flex-wrap: wrap; }
+    .resumen-stats { gap: 14px; }
+    .res-num { font-size: 22px; }
+    .btn-enviar { padding: 12px 20px; font-size: 13px; }
+    .registro-form { padding: 24px; }
+}
+
+.bandera {
+    width: 32px;      /* Tamaño perfecto de la bandera en la tarjeta */
+    height: auto;     /* Mantiene la proporción correcta de cada país */
+    border-radius: 4px; /* Sutil redondeado en las esquinas */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15); /* Les da relieve visual */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.resumen-botones {
+    display: flex;
+    gap: 12px; /* Espacio de separación entre los dos botones */
+    justify-content: flex-end; /* Los alinea al extremo derecho */
+    align-items: center;
+    margin-left: auto; /* Refuerzo para empujar todo a la derecha */
+}
+
+/* Estilo base unificado para ambos botones (mismo tamaño exacto) */
+.btn-enviar, 
+.btn-secundario {
+    height: 42px; /* Altura idéntica y estilizada para ambos */
+    padding: 0 24px; /* Relleno horizontal idéntico */
+    border: none;
+    border-radius: 10px; /* Esquinas redondeadas idénticas */
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap; /* Evita que el texto se rompa en dos filas */
+    transition: all 0.2s ease;
+}
+
+/* Colores específicos para "VER TABLA DE POSICIONES" */
+.btn-secundario {
+    background: #e09622;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.btn-secundario:hover {
+    background: #c78214;
+    transform: translateY(-1px);
+}
+
+.btn-enviar {
+    background: #cc8514;
+    color: white;
+    box-shadow: 0 4px 12px rgba(204,133,20,0.3);
+}
+
+.btn-enviar:hover {
+    background: #b3720f;
+    transform: translateY(-1px);
+}
+
+/* Ajuste para pantallas móviles */
+@media (max-width: 600px) {
+    .resumen-bar {
+        padding: 12px 16px;
+    }
+    .resumen-botones {
+        gap: 8px;
+    }
+    .btn-enviar, .btn-secundario {
+        padding: 0 12px;
+        font-size: 11px;
+        height: 38px;
+    }
+}
+
+/* Ajuste responsive para pantallas móviles (se apilan ordenadamente) */
+@media (max-width: 600px) {
+    .resumen-bar {
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px;
+    }
+    .resumen-botones {
+        width: 100%;
+    }
+    .btn-enviar, 
+    .btn-secundario {
+        width: 50%; /* Se dividen la pantalla a la mitad en móviles */
+        min-width: unset;
+    }
+}
+
+.terms-label{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.terms-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.terms-toggle{
+  background: transparent;
+  border: none;
+  color: #014e88;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.terms-toggle:hover{
+  text-decoration: underline;
+}
+
+.terms-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    font-size: 13px;
+    line-height: 1.5;
+    
+    /* SOLUCIÓN A LA TRANSPARENCIA: Fondo sólido e independiente */
+    background-color: #ffffff; /* Fondo blanco totalmente sólido */
+    color: #1a1a1a;            /* Texto oscuro para un contraste perfecto */
+    border-radius: 8px;        /* Bordes redondeados acordes al diseño */
+    padding: 0 14px;           /* Controlamos el espacio interno */
+    margin-top: 0;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.08); /* Sutil sombra interna */
+}
+
+/* Cuando los términos se abren, añadimos el padding vertical */
+.terms-content.open {
+    max-height: 600px; /* Cambiado de 200px a 500px */
+    padding: 12px 14px; 
+    margin-top: 8px;    
+    border: 1px solid #e0e0e0; 
+}
+
+/* ==========================
+   CONSULTA DE FOLIO
+========================== */
+
+.consulta-folio {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.12);
+}
+
+.consulta-folio h4 {
+  margin: 0 0 18px;
+  color: #003c69;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.consulta-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.consulta-row input {
+  flex: 1;
+  height: 50px;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  padding: 0 15px;
+  font-size: 15px;
+  outline: none;
+  transition: all .25s ease;
+}
+
+.consulta-row input:focus {
+  border-color: #f9a825;
+  box-shadow: 0 0 0 4px rgba(249,168,37,.15);
+}
+
+.consulta-row button {
+  height: 50px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 12px;
+  background: #f9a825;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .25s ease;
+  white-space: nowrap;
+}
+
+.consulta-row button:hover {
+  background: #e69100;
+  transform: translateY(-2px);
+}
+
+.consulta-row button:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+  .consulta-row {
+    flex-direction: column;
+  }
+
+  .consulta-row input,
+  .consulta-row button {
+    width: 100%;
+  }
+
+}
