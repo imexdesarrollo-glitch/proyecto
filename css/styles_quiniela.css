@@ -911,3 +911,132 @@ table tbody tr:hover td {
   }
 
 }
+
+/* ── BRACKET FORM 16AVOS ── */
+.bracket-grid-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
+.partido16-card {
+  background: var(--card-bg, #1e1e2e);
+  border: 1.5px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 16px;
+  transition: border-color .2s;
+}
+
+.partido16-card.completado {
+  border-color: rgba(249,168,37,.35);
+}
+
+.partido16-num {
+  font-size: 10px;
+  color: rgba(255,255,255,.3);
+  font-weight: 700;
+  letter-spacing: .08em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.partido16-teams {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.partido16-team {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.partido16-team-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto, #fff);
+}
+
+.partido16-gol-inp {
+  width: 48px;
+  padding: 7px;
+  text-align: center;
+  background: rgba(255,255,255,.06);
+  border: 1.5px solid rgba(255,255,255,.12);
+  border-radius: 8px;
+  color: #f9a825;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.partido16-gol-inp:focus {
+  outline: none;
+  border-color: #f9a825;
+  background: rgba(249,168,37,.08);
+}
+
+.partido16-vs {
+  text-align: center;
+  font-size: 9px;
+  color: rgba(255,255,255,.2);
+  font-weight: 700;
+  letter-spacing: .1em;
+  padding: 2px 0;
+}
+
+.partido16-resultado {
+  margin-top: 10px;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.partido16-resultado .r-btn {
+  flex: 1;
+  padding: 6px 4px;
+  border: 1.5px solid rgba(255,255,255,.1);
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255,255,255,.4);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.partido16-resultado .r-btn.sel-1 {
+  background: rgba(0,60,105,.4);
+  border-color: #003c69;
+  color: #5ba4e0;
+}
+.partido16-resultado .r-btn.sel-x {
+  background: rgba(249,168,37,.15);
+  border-color: #f9a825;
+  color: #f9a825;
+}
+.partido16-resultado .r-btn.sel-2 {
+  background: rgba(211,47,47,.2);
+  border-color: #d32f2f;
+  color: #ff5252;
+}
+
+.bracket-seccion-titulo16 {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #f9a825;
+  padding: 10px 0 4px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+@media (max-width: 640px) {
+  .bracket-grid-form { grid-template-columns: 1fr; }
+}

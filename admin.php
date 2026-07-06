@@ -6,10 +6,10 @@ error_reporting(E_ALL);
 // ══════════════════════════════════════
 define('ADMIN_USER', 'admin');
 define('ADMIN_PASS', 'imex2026'); // ← cambia esto
-
+ 
 session_start();
-
-// ── Login / Logout ──
+ 
+// ── Login / Logout (va primero para poder saber si está logueado) ──
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     if ($_POST['usuario'] === ADMIN_USER && $_POST['password'] === ADMIN_PASS) {
         $_SESSION['admin'] = true;
@@ -23,11 +23,193 @@ if (isset($_GET['logout'])) {
     exit;
 }
 $logueado = !empty($_SESSION['admin']);
-
-// ── Conexión BD ──
+ 
+//========================================
+// CONEXIÓN A BD — SIEMPRE ANTES DE USAR $conn
+//========================================
 if ($logueado) {
-    require_once __DIR__ . '/coneccion.php'; // $conn
-
+    require_once __DIR__ . '/coneccion.php'; // define $conn
+}
+ 
+//========================================
+// ACTUALIZAR PARTIDO ELIMINATORIA  (PASO 1)
+//========================================
+ 
+if($logueado && isset($_POST['actualizar_eliminatoria'])){
+ 
+    $id=(int)$_POST['id'];
+ 
+    $fase=(int)$_POST['fase'];
+ 
+    $local=trim($_POST['local']);
+ 
+    $visita=trim($_POST['visita']);
+ 
+    $fecha=$_POST['fecha'];
+ 
+    $hora=$_POST['hora'];
+ 
+    $sede=$_POST['sede'];
+ 
+    $activo=isset($_POST['activo'])?1:0;
+ 
+    $stmt=$conn->prepare("
+    UPDATE partidos_eliminatorias
+    SET
+        fase=?,
+        local=?,
+        visita=?,
+        fecha=?,
+        hora=?,
+        sede=?,
+        activo=?
+    WHERE id=?
+    ");
+ 
+    $stmt->bind_param(
+        "isssssii",
+        $fase,
+        $local,
+        $visita,
+        $fecha,
+        $hora,
+        $sede,
+        $activo,
+        $id
+    );
+ 
+    $stmt->execute();
+    $stmt->close();
+ 
+    header("Location: admin.php");
+    exit;
+}
+ 
+//========================================
+// ELIMINAR PARTIDO ELIMINATORIA  (PASO 2)
+//========================================
+ 
+if($logueado && isset($_GET['eliminarPartido'])){
+ 
+    $id=(int)$_GET['eliminarPartido'];
+ 
+    $stmt=$conn->prepare("
+        DELETE FROM partidos_eliminatorias
+        WHERE id=?
+    ");
+ 
+    $stmt->bind_param("i",$id);
+    $stmt->execute();
+    $stmt->close();
+ 
+    header("Location: admin.php");
+    exit;
+}
+ 
+//========================================
+// CARGAR PARTIDO A EDITAR  (PASO 1)
+//========================================
+ 
+$editando = null;
+ 
+if($logueado && isset($_GET['editar'])){
+ 
+    $id=(int)$_GET['editar'];
+ 
+    $stmt=$conn->prepare("
+        SELECT *
+        FROM partidos_eliminatorias
+        WHERE id=?
+    ");
+ 
+    $stmt->bind_param("i",$id);
+    $stmt->execute();
+    $editando=$stmt->get_result()->fetch_assoc();
+    $stmt->close();
+}
+ 
+//========================================
+// GUARDAR PARTIDO NUEVO
+//========================================
+ 
+if($logueado && isset($_POST['guardar_eliminatoria'])){
+ 
+    $fase=(int)$_POST['fase'];
+ 
+    $local=trim($_POST['local']);
+ 
+    $visita=trim($_POST['visita']);
+ 
+    $fecha=$_POST['fecha'];
+ 
+    $hora=$_POST['hora'];
+ 
+    $sede=$_POST['sede'];
+ 
+    $activo=isset($_POST['activo'])?1:0;
+ 
+    $stmt=$conn->prepare("
+    SELECT
+    IFNULL(MAX(partido_idx),0)+1 siguiente
+    FROM partidos_eliminatorias
+    WHERE fase=?
+    ");
+ 
+    $stmt->bind_param("i",$fase);
+    $stmt->execute();
+    $sig=$stmt->get_result()->fetch_assoc()['siguiente'];
+    $stmt->close();
+ 
+    $stmt=$conn->prepare("
+    INSERT INTO partidos_eliminatorias
+    (
+    fase,
+    partido_idx,
+    local,
+    visita,
+    fecha,
+    hora,
+    sede,
+    activo
+    )
+    VALUES
+    (?,?,?,?,?,?,?,?)
+    ");
+ 
+    $stmt->bind_param(
+        "iisssssi",
+        $fase,
+        $sig,
+        $local,
+        $visita,
+        $fecha,
+        $hora,
+        $sede,
+        $activo
+    );
+ 
+    $stmt->execute();
+    $stmt->close();
+ 
+    header("Location: admin.php");
+    exit;
+}
+ 
+//========================================
+// INFO DE FASES  (PASO 4 y PASO 5)
+//========================================
+// 'total' = número de partidos que debe haber en esa fase cuando está completa
+$faseInfo = [
+    16 => ['nombre' => '16avos',    'clase' => 'fase-16', 'total' => 16],
+    8  => ['nombre' => 'Cuartos',   'clase' => 'fase-8',  'total' => 8],
+    4  => ['nombre' => 'Semifinal', 'clase' => 'fase-4',  'total' => 4],
+    3  => ['nombre' => '3er Lugar', 'clase' => 'fase-3',  'total' => 1],
+    2  => ['nombre' => 'Final',     'clase' => 'fase-2',  'total' => 1],
+];
+ 
+// ── Resto de datos de la BD (ya con $conn disponible) ──
+if ($logueado) {
+ 
     // Crear tabla resultados si no existe
     $conn->query("
         CREATE TABLE IF NOT EXISTS resultados_reales (
@@ -41,7 +223,7 @@ if ($logueado) {
             UNIQUE KEY partido_unico (grupo, partido_idx)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
     ");
-
+ 
     // ── Guardar resultado ──
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['guardar_resultado'])) {
         $grupo   = $conn->real_escape_string($_POST['grupo']);
@@ -49,7 +231,7 @@ if ($logueado) {
         $gl      = max(0, (int)$_POST['goles_local']);
         $gv      = max(0, (int)$_POST['goles_visita']);
         $res     = $gl > $gv ? '1' : ($gl < $gv ? '2' : 'x');
-
+ 
         $stmt = $conn->prepare("
             INSERT INTO resultados_reales (grupo, partido_idx, goles_local, goles_visita, res)
             VALUES (?, ?, ?, ?, ?)
@@ -60,30 +242,51 @@ if ($logueado) {
         $stmt->close();
         $guardado = true;
     }
-
+ 
     // ── Cargar todos los resultados guardados ──
     $resultados = [];
     $rows = $conn->query("SELECT * FROM resultados_reales");
     while ($row = $rows->fetch_assoc()) {
         $resultados[$row['grupo'] . '_' . $row['partido_idx']] = $row;
     }
-
+ 
     // ── Contar participantes ──
     $totalParticipantes = $conn->query("SELECT COUNT(*) as total FROM quinielas")->fetch_assoc()['total'];
-
+ 
     $participantes = $conn->query("
-    SELECT
-        id,
-        nombre,
-        correo,
-        empresa,
-        fecha_envio,
-        quiniela_json
-    FROM quinielas
-    ORDER BY fecha_envio DESC
-");
+        SELECT
+            id,
+            nombre,
+            correo,
+            empresa,
+            fecha_envio,
+            quiniela_json
+        FROM quinielas
+        ORDER BY fecha_envio DESC
+    ");
+ 
+    //========================================
+    // CARGAR PARTIDOS DE ELIMINATORIAS  (PASO 3)
+    //========================================
+    $partidosEliminatoria = [];
+    $resElim = $conn->query("
+        SELECT *
+        FROM partidos_eliminatorias
+        ORDER BY fase DESC, partido_idx ASC
+    ");
+    while ($row = $resElim->fetch_assoc()) {
+        $partidosEliminatoria[] = $row;
+    }
+ 
+    // Conteo de partidos registrados por fase (PASO 5)
+    $conteoFases = [16 => 0, 8 => 0, 4 => 0, 3 => 0, 2 => 0];
+    foreach ($partidosEliminatoria as $pe) {
+        if (isset($conteoFases[$pe['fase']])) {
+            $conteoFases[$pe['fase']]++;
+        }
+    }
 }
-
+ 
 // ── Datos de partidos ──
 $grupos = [
   ["nombre"=>"A","partidos"=>[
@@ -220,10 +423,29 @@ $grupos = [
   .b1{background:#e6f7ee;color:#003c69;} .bx{background:#fffde7;color:#7a5c00;} .b2{background:#fdeaea;color:#d32f2f;}
   .pendiente{color:#bbb;font-style:italic;font-size:12px;}
   .fecha-col{color:#999;font-size:12px;}
+ 
+  /* ── PASO 4: colores por fase ── */
+  .fase-badge{display:inline-block;font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;white-space:nowrap;}
+  .fase-16{background:#e3f2fd;color:#1565c0;}
+  .fase-8 {background:#f3e5f5;color:#7b1fa2;}
+  .fase-4 {background:#fff3e0;color:#ef6c00;}
+  .fase-3 {background:#e0f2f1;color:#00897b;}
+  .fase-2 {background:#fce4ec;color:#c2185b;}
+ 
+  /* ── PASO 5: indicador de partidos faltantes ── */
+  .resumen-fases{display:flex;flex-wrap:wrap;gap:10px;padding:16px;background:#fafafa;border-bottom:1px solid var(--borde);}
+  .resumen-item{flex:1 1 140px;border-radius:8px;padding:10px 14px;font-size:12px;border:1px solid var(--borde);background:#fff;}
+  .resumen-item .rf-nombre{font-weight:700;margin-bottom:4px;display:block;}
+  .resumen-item.completo{border-color:#a5d6a7;background:#f1f8f2;}
+  .resumen-item.incompleto{border-color:#ffcc80;background:#fff8ef;}
+  .rf-ok{color:#2e7d32;font-weight:700;}
+  .rf-falta{color:#e65100;font-weight:700;}
+ 
+  .form-editando{background:#fff8e1;border:2px solid var(--amarillo);}
 </style>
 </head>
 <body>
-
+ 
 <?php if (!$logueado): ?>
 <div class="login-wrap">
   <div class="login-card">
@@ -238,7 +460,7 @@ $grupos = [
     </form>
   </div>
 </div>
-
+ 
 <?php else: ?>
 <header>
   <h1>⚽ Panel Admin – Quiniela Mundial 2026</h1>
@@ -248,19 +470,121 @@ $grupos = [
   <div class="sb">Participantes registrados: <strong><?= $totalParticipantes ?></strong></div>
   <div class="sb">Partidos con resultado: <strong><?= count($resultados) ?></strong> / 72</div>
 </div>
-
+ 
 <div class="container">
   <?php if (!empty($guardado)): ?>
     <div class="alert-ok">✅ Resultado guardado correctamente en la base de datos.</div>
   <?php endif; ?>
-
+ 
   <div class="info-pts">
     🏆 <strong>Sistema de puntos:</strong> &nbsp;
     <strong>3 pts</strong> marcador exacto &nbsp;|&nbsp;
     <strong>1 pt</strong> ganador o empate correcto &nbsp;|&nbsp;
     <strong>0 pts</strong> pronóstico incorrecto
   </div>
-
+ 
+  <div class="grupo-card">
+ 
+    <div class="grupo-header">
+      ⚔️ Administración Eliminatorias
+      <?php if ($editando): ?>
+        &nbsp;—&nbsp;<span style="color:var(--amarillo);">Editando partido #<?= $editando['id'] ?></span>
+      <?php endif; ?>
+    </div>
+ 
+    <!-- PASO 5: indicador de partidos faltantes por fase -->
+    <div class="resumen-fases">
+      <?php foreach ($faseInfo as $faseId => $info):
+        $reg = $conteoFases[$faseId] ?? 0;
+        $tot = $info['total'];
+        $completo = $reg >= $tot;
+      ?>
+        <div class="resumen-item <?= $completo ? 'completo' : 'incompleto' ?>">
+          <span class="rf-nombre"><?= $info['nombre'] ?></span>
+          <?php if ($completo): ?>
+            <span class="rf-ok">✅ Completo (<?= $reg ?>/<?= $tot ?>)</span>
+          <?php else: ?>
+            <span class="rf-falta">⚠️ Faltan <?= $tot - $reg ?> (<?= $reg ?>/<?= $tot ?>)</span>
+          <?php endif; ?>
+        </div>
+      <?php endforeach; ?>
+    </div>
+ 
+    <div style="padding:20px;">
+ 
+      <form method="POST" class="<?= $editando ? 'form-editando' : '' ?>" style="padding:16px;border-radius:10px;">
+ 
+        <?php if ($editando): ?>
+          <input type="hidden" name="id" value="<?= $editando['id'] ?>">
+        <?php endif; ?>
+ 
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px;">
+ 
+          <div>
+            <label>Fase</label>
+            <select name="fase" required style="width:100%;padding:10px;">
+              <option value="16" <?= (($editando['fase'] ?? 16) == 16) ? 'selected' : '' ?>>16avos</option>
+              <option value="8"  <?= (($editando['fase'] ?? 16) == 8)  ? 'selected' : '' ?>>Cuartos</option>
+              <option value="4"  <?= (($editando['fase'] ?? 16) == 4)  ? 'selected' : '' ?>>Semifinal</option>
+              <option value="3"  <?= (($editando['fase'] ?? 16) == 3)  ? 'selected' : '' ?>>3er Lugar</option>
+              <option value="2"  <?= (($editando['fase'] ?? 16) == 2)  ? 'selected' : '' ?>>Final</option>
+            </select>
+          </div>
+ 
+          <div>
+            <label>Equipo Local</label>
+            <input type="text" name="local" required style="width:100%;padding:10px;" value="<?= htmlspecialchars($editando['local'] ?? '') ?>">
+          </div>
+ 
+          <div>
+            <label>Equipo Visitante</label>
+            <input type="text" name="visita" required style="width:100%;padding:10px;" value="<?= htmlspecialchars($editando['visita'] ?? '') ?>">
+          </div>
+ 
+          <div>
+            <label>Fecha</label>
+            <input type="date" name="fecha" style="width:100%;padding:10px;" value="<?= htmlspecialchars($editando['fecha'] ?? '') ?>">
+          </div>
+ 
+          <div>
+            <label>Hora</label>
+            <input type="time" name="hora" style="width:100%;padding:10px;" value="<?= htmlspecialchars($editando['hora'] ?? '') ?>">
+          </div>
+ 
+          <div>
+            <label>Sede</label>
+            <input type="text" name="sede" style="width:100%;padding:10px;" value="<?= htmlspecialchars($editando['sede'] ?? '') ?>">
+          </div>
+ 
+        </div>
+ 
+        <br>
+ 
+        <label>
+          <input type="checkbox" name="activo" <?= (($editando['activo'] ?? 1) == 1) ? 'checked' : '' ?>>
+          Activo
+        </label>
+ 
+        <br><br>
+ 
+        <button class="btn-save" type="submit" name="<?= $editando ? 'actualizar_eliminatoria' : 'guardar_eliminatoria' ?>">
+          <?php if ($editando): ?>
+            Actualizar Partido
+          <?php else: ?>
+            Guardar Partido
+          <?php endif; ?>
+        </button>
+ 
+        <?php if ($editando): ?>
+          &nbsp;<a href="admin.php" style="font-size:12px;color:#999;">Cancelar edición</a>
+        <?php endif; ?>
+ 
+      </form>
+ 
+    </div>
+ 
+  </div>
+ 
   <?php foreach ($grupos as $grupo): ?>
   <div class="grupo-card">
     <div class="grupo-header">Grupo <?= $grupo['nombre'] ?></div>
@@ -308,11 +632,67 @@ $grupos = [
     </table>
   </div>
   <?php endforeach; ?>
+ 
+  <!--
+    PASO 3: tabla de partidos de eliminatorias ordenada por fase
+    (ya se carga UNA sola vez arriba, fuera del foreach de grupos)
+  -->
+  <div class="grupo-card">
+ 
+    <div class="grupo-header">
+      📋 Partidos Registrados
+    </div>
+ 
+    <table>
+      <thead>
+        <tr>
+          <th>Fase</th>
+          <th>#</th>
+          <th>Local</th>
+          <th>Visitante</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Activo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if (empty($partidosEliminatoria)): ?>
+          <tr><td colspan="8" class="pendiente">Aún no hay partidos de eliminatorias registrados.</td></tr>
+        <?php endif; ?>
+ 
+        <?php foreach ($partidosEliminatoria as $p):
+          $info = $faseInfo[$p['fase']] ?? ['nombre' => $p['fase'], 'clase' => ''];
+        ?>
+        <tr>
+          <td>
+            <!-- PASO 4: badge de color por fase -->
+            <span class="fase-badge <?= $info['clase'] ?>"><?= $info['nombre'] ?></span>
+          </td>
+          <td><?= $p['partido_idx'] ?></td>
+          <td><?= htmlspecialchars($p['local']) ?></td>
+          <td><?= htmlspecialchars($p['visita']) ?></td>
+          <td><?= htmlspecialchars($p['fecha']) ?></td>
+          <td><?= htmlspecialchars($p['hora']) ?></td>
+          <td><?= $p['activo'] ? "✅" : "❌" ?></td>
+          <td>
+            <!-- PASO 1: link de editar -->
+            <a href="?editar=<?= $p['id'] ?>">✏️</a>
+            &nbsp;
+            <!-- PASO 2: link de eliminar -->
+            <a href="?eliminarPartido=<?= $p['id'] ?>" onclick="return confirm('¿Eliminar este partido?')">🗑</a>
+          </td>
+        </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+ 
   <div class="grupo-card">
     <div class="grupo-header">
         👥 Participantes Registrados
     </div>
-
+ 
     <table>
         <thead>
             <tr>
@@ -322,28 +702,28 @@ $grupos = [
                 <th>Ver Quiniela</th>
             </tr>
         </thead>
-
+ 
         <tbody>
-
+ 
         <?php while($p = $participantes->fetch_assoc()): ?>
-
+ 
         <tr>
             <td><?= htmlspecialchars($p['nombre']) ?></td>
             <td><?= htmlspecialchars($p['empresa']) ?></td>
             <td><?= htmlspecialchars($p['fecha_envio']) ?></td>
-
+ 
             <td>
                 <details>
                     <summary>Ver</summary>
-
+ 
                     <?php
                     $quiniela = json_decode($p['quiniela_json'], true);
-
+ 
                     foreach($quiniela as $jornada => $partidos){
                         echo "<br><strong>Jornada ".($jornada+1)."</strong><br>";
-
+ 
                         foreach($partidos as $num => $partido){
-
+ 
                             echo "Partido ".($num+1).
                                  " → ".
                                  strtoupper($partido['res']).
@@ -353,13 +733,13 @@ $grupos = [
                         }
                     }
                     ?>
-
+ 
                 </details>
             </td>
         </tr>
-
+ 
         <?php endwhile; ?>
-
+ 
         </tbody>
     </table>
 </div>
@@ -367,3 +747,4 @@ $grupos = [
 <?php endif; ?>
 </body>
 </html>
+ 

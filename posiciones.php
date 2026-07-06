@@ -107,6 +107,41 @@ function calcularPuntos($quinielaJson, $resultados, $grupos) {
     return compact('puntos','exactos','ganadores','jugados');
 }
 
+function calcularPuntos16($quinielaId, $res16Arr, $conn) {
+    $stmt = $conn->prepare("
+        SELECT quiniela_json FROM quinielas_16avos WHERE quiniela_id = ? LIMIT 1
+    ");
+    $stmt->bind_param("i", $quinielaId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+
+    if ($result->num_rows === 0) {
+        return ['puntos' => 0, 'exactos' => 0, 'ganadores' => 0, 'jugados' => 0];
+    }
+
+    $quiniela = json_decode($result->fetch_assoc()['quiniela_json'], true) ?? [];
+    $puntos = 0; $exactos = 0; $ganadores = 0; $jugados = 0;
+
+    foreach ($quiniela as $pi => $pron) {
+        $real = $res16Arr[$pi] ?? null;
+        if (!$real || $real['goles_local'] === null) continue;
+        if (!isset($pron['res']) || !$pron['res'])   continue;
+
+        $jugados++;
+        $esExacto = (string)$pron['gl'] === (string)$real['goles_local']
+                 && (string)$pron['gv'] === (string)$real['goles_visita'];
+
+        if ($esExacto) {
+            $puntos += 3; $exactos++;
+        } elseif ($pron['res'] === $real['res']) {
+            $puntos += 1; $ganadores++;
+        }
+    }
+
+    return compact('puntos', 'exactos', 'ganadores', 'jugados');
+}
+
 // ── Cargar resultados reales de la BD ──
 $resultados = [];
 $rows = $conn->query("SELECT * FROM resultados_reales");
@@ -114,6 +149,18 @@ while ($row = $rows->fetch_assoc()) {
     $resultados[$row['grupo'] . '_' . $row['partido_idx']] = $row;
 }
 $partidosJugados = count($resultados);
+
+// Resultados 16avos
+$res16 = [];
+$rows16 = $conn->query("
+    SELECT * FROM resultados_16avos
+");
+if ($rows16) {
+    while ($r = $rows16->fetch_assoc()) {
+        $res16[$r['partido_idx']] = $r;
+    }
+}
+$partidos16Jugados = count(array_filter($res16, fn($r) => $r['goles_local'] !== null));
 
 // ── Autenticación por correo o folio ──
 $acceso     = false;
@@ -164,18 +211,20 @@ if ($acceso) {
     $totalParticipantes = $todos->num_rows;
 
     while ($q = $todos->fetch_assoc()) {
-        $stats = calcularPuntos($q['quiniela_json'], $resultados, $grupos);
-        $ranking[] = [
-            'id'        => $q['id'],
-            'nombre'    => $q['nombre'],
-            'empresa'   => $q['empresa'] ?? '',
-            'puntos'    => $stats['puntos'],
-            'exactos'   => $stats['exactos'],
-            'ganadores' => $stats['ganadores'],
-            'jugados'   => $stats['jugados'],
-            'esYo'      => ($q['id'] == ($_SESSION['quiniela_id'] ?? 0)),
-        ];
-    }
+    $stats   = calcularPuntos($q['quiniela_json'], $resultados, $grupos);
+    $stats16 = calcularPuntos16($q['id'], $res16, $conn);
+
+    $ranking[] = [
+        'id'        => $q['id'],
+        'nombre'    => $q['nombre'],
+        'empresa'   => $q['empresa'] ?? '',
+        'puntos'    => $stats['puntos']    + $stats16['puntos'],
+        'exactos'   => $stats['exactos']   + $stats16['exactos'],
+        'ganadores' => $stats['ganadores'] + $stats16['ganadores'],
+        'jugados'   => $stats['jugados']   + $stats16['jugados'],
+        'esYo'      => ($q['id'] == ($_SESSION['quiniela_id'] ?? 0)),
+    ];
+}
 
     // Ordenar: más puntos → más exactos como desempate
     usort($ranking, fn($a,$b) => $b['puntos'] <=> $a['puntos'] ?: $b['exactos'] <=> $a['exactos']);
@@ -263,6 +312,10 @@ foreach ($ranking as $idx => $r) {
     <div class="hs"><div class="hs-num"><?= $totalParticipantes ?></div><div class="hs-lbl">Participantes</div></div>
     <div class="hs"><div class="hs-num"><?= $partidosJugados ?></div><div class="hs-lbl">Partidos jugados</div></div>
     <div class="hs"><div class="hs-num"><?= !empty($ranking) ? $ranking[0]['puntos'] : 0 ?></div><div class="hs-lbl">Puntaje líder</div></div>
+    <div class="hs">
+  <div class="hs-num"><?= $partidosJugados + $partidos16Jugados ?></div>
+  <div class="hs-lbl">Partidos jugados</div>
+</div>
   </div>
   <?php endif; ?>
 </div>

@@ -267,6 +267,7 @@
   <div class="tabs-wrap">
     <div class="tabs">
       <button class="tab-btn active" onclick="showTab('fase-grupos')">Fase de Grupos</button>
+      <button class="tab-btn" onclick="showTab('dieciseisavos')">⚔️ 16avos</button>
       <button class="tab-btn" onclick="showTab('mi-quiniela')">Mi Quiniela</button>
     </div>
   </div>
@@ -323,6 +324,71 @@
           </tbody>
         </table>
       </div>
+    </div>
+
+    <!-- TAB: 16AVOS -->
+    <div class="tab-content" id="tab-dieciseisavos">
+
+      <!-- Estado: folio requerido -->
+      <div id="16avos-login" style="display:none;">
+        <div class="consulta-folio" style="max-width:400px;margin:40px auto;text-align:center;">
+          <h4>Ingresa tu folio para pronosticar 16avos</h4>
+          <p style="color:var(--texto-sec);font-size:13px;margin:8px 0 16px;">
+            Necesitas el folio que recibiste al registrar tu quiniela de grupos.
+          </p>
+          <div class="consulta-row">
+            <input type="number" id="folio16Input" placeholder="Tu número de folio">
+            <button onclick="validarFolio16()">Confirmar</button>
+          </div>
+          <p id="folio16Error" style="color:#d32f2f;font-size:12px;margin-top:8px;display:none;"></p>
+        </div>
+      </div>
+
+      <!-- Pronóstico de 16avos -->
+      <div id="16avos-form" style="display:none;">
+        <div class="progreso-wrap">
+          <div class="progreso-texto">
+            <span>Pronósticos 16avos</span>
+            <span id="progreso16-txt">0 / 16 partidos</span>
+          </div>
+          <div class="progreso-bar-bg">
+            <div class="progreso-bar-fill" id="progreso16-fill"></div>
+          </div>
+        </div>
+
+        <div id="partidos16-container" class="bracket-grid-form"></div>
+
+        <!-- Barra envío -->
+        <div style="text-align:center;margin-top:28px;">
+          <button class="btn-enviar" onclick="enviar16avos()" id="btn-enviar-16">
+            Enviar pronósticos 16avos →
+          </button>
+        </div>
+      </div>
+
+      <!-- Ya registrado -->
+      <div id="16avos-ya-registrado" style="display:none;">
+        <div style="text-align:center;padding:50px 20px;">
+          <div style="font-size:48px;margin-bottom:16px;">✅</div>
+          <h3 style="color:var(--texto);">¡Ya tienes tus pronósticos registrados!</h3>
+          <p style="color:var(--texto-sec);margin-top:8px;font-size:14px;">
+            Tus selecciones de 16avos han sido guardadas. Puedes ver los resultados en la tabla de posiciones.
+          </p>
+          <div id="resumen-ya-registrado" style="margin-top:24px;"></div>
+        </div>
+      </div>
+
+      <!-- Inactivo -->
+      <div id="16avos-inactivo" style="display:none;">
+        <div style="text-align:center;padding:60px 20px;">
+          <div style="font-size:48px;margin-bottom:16px;">🔒</div>
+          <h3 style="color:var(--texto);">Los 16avos aún no están disponibles</h3>
+          <p style="color:var(--texto-sec);margin-top:8px;font-size:13px;">
+            El administrador activará esta sección cuando concluya la fase de grupos.
+          </p>
+        </div>
+      </div>
+
     </div>
 
   </div>

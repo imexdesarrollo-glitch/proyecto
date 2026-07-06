@@ -1,6 +1,27 @@
 let ultimoIdInsertado = null;
 let datosParticipante = {};
 let resultadosReales = {};
+let partidosEliminatoria = [];
+let stateEliminatoria = [];
+let eliminatorias = [];
+
+async function cargarEliminatorias(){
+
+    try {
+
+        const res = await fetch("obtener_partidos_eliminatorias.php");
+
+        eliminatorias = await res.json();
+
+        renderEliminatorias();
+
+    } catch (e) {
+
+        console.error("Error cargando eliminatorias", e);
+
+    }
+
+}
 const grupos = [
   {
     nombre: "A", partidos: [
@@ -331,17 +352,15 @@ function updateStats() {
 
 
 function showTab(id) {
-
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-
   document.getElementById('tab-' + id).classList.add('active');
-
   event.target.classList.add('active');
 
   if (id === 'mi-quiniela') renderTabla();
 
+  // ── NUEVO: cargar 16avos al entrar al tab ──
+  if (id === 'dieciseisavos') iniciar16avos();
 }
 
 
@@ -509,6 +528,7 @@ function cargarLogoIMEX() {
 document.addEventListener('DOMContentLoaded', async () => {
 
   await cargarLogoIMEX();
+  cargarEliminatorias();
 
   const btnPDF = document.getElementById('btn-descargar-pdf');
 
@@ -801,5 +821,146 @@ async function consultarQuiniela() {
 
 }
 
+// ===========================================
+// CARGAR PARTIDOS ELIMINATORIA
+// ===========================================
+
+async function cargarEliminatorias() {
+
+    try{
+
+        const response = await fetch("obtener_partidos_eliminatorias.php");
+
+        partidosEliminatoria = await response.json();
+
+        stateEliminatoria = partidosEliminatoria.map(() => ({
+
+            gl: "",
+
+            gv: "",
+
+            res: ""
+
+        }));
+
+        renderEliminatorias();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+// ===========================================
+// RENDER ELIMINATORIAS
+// ===========================================
+
+function renderEliminatorias(){
+
+    const cont=document.getElementById("partidos16-container");
+
+    cont.innerHTML="";
+
+    if(partidosEliminatoria.length===0){
+
+        cont.innerHTML="<p style='text-align:center'>No hay partidos disponibles.</p>";
+
+        return;
+
+    }
+
+    partidosEliminatoria.forEach((p,i)=>{
+
+        cont.innerHTML += `
+
+        <div class="match-card">
+
+            <div class="match-header">
+
+                <strong>${nombreFase(p.fase)}</strong>
+
+            </div>
+
+            <div class="match-body">
+
+                <div class="team">
+
+                    ${p.local}
+
+                </div>
+
+                <div class="score">
+
+                    <input
+                    type="number"
+                    min="0"
+                    max="20"
+                    id="gl_${i}"
+                    oninput="setScoreEliminatoria(${i})">
+
+                    -
+
+                    <input
+                    type="number"
+                    min="0"
+                    max="20"
+                    id="gv_${i}"
+                    oninput="setScoreEliminatoria(${i})">
+
+                </div>
+
+                <div class="team">
+
+                    ${p.visita}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+function nombreFase(fase){
+
+    switch(parseInt(fase)){
+
+        case 16:
+
+            return "🏆 Dieciseisavos";
+
+        case 8:
+
+            return "🏆 Cuartos";
+
+        case 4:
+
+            return "🏆 Semifinal";
+
+        case 3:
+
+            return "🥉 Tercer Lugar";
+
+        case 2:
+
+            return "🏆 Final";
+
+        default:
+
+            return "";
+
+    }
+
+}
+
 cargarResultadosReales();
 updateStats();
+
