@@ -1,12 +1,23 @@
 <?php
+// Buffer de salida defensivo: si por BOM, espacios o algún include hay
+// una salida accidental antes de este punto, esto evita que
+// session_start() / header() truenen con "headers already sent".
+if (ob_get_level() === 0) {
+    ob_start();
+}
+ 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 // ══════════════════════════════════════
 //  CONFIGURACIÓN ADMIN
 // ══════════════════════════════════════
 define('ADMIN_USER', 'admin');
-define('ADMIN_PASS', 'imex2026'); // ← cambia esto
+define('ADMIN_PASS', '@Charlote.20'); // ← cambia esto
  
+if (headers_sent($archivo, $linea)) {
+    die("Los headers ya fueron enviados en:<br><strong>$archivo</strong><br>Línea: <strong>$linea</strong>");
+}
+
 session_start();
  
 // ── Login / Logout (va primero para poder saber si está logueado) ──
@@ -200,13 +211,33 @@ if($logueado && isset($_POST['guardar_eliminatoria'])){
 //========================================
 // 'total' = número de partidos que debe haber en esa fase cuando está completa
 $faseInfo = [
-    16 => ['nombre' => '16avos',    'clase' => 'fase-16', 'total' => 16],
-    8  => ['nombre' => 'Cuartos',   'clase' => 'fase-8',  'total' => 8],
-    4  => ['nombre' => 'Semifinal', 'clase' => 'fase-4',  'total' => 4],
+    32 => ['nombre' => '16avos',    'clase' => 'fase-32', 'total' => 16],
+    16 => ['nombre' => '8avos',     'clase' => 'fase-16', 'total' => 8],
+    8  => ['nombre' => 'Cuartos',   'clase' => 'fase-8',  'total' => 4],
+    4  => ['nombre' => 'Semifinal', 'clase' => 'fase-4',  'total' => 2],
     3  => ['nombre' => '3er Lugar', 'clase' => 'fase-3',  'total' => 1],
     2  => ['nombre' => 'Final',     'clase' => 'fase-2',  'total' => 1],
 ];
- 
+
+//========================================
+// VARIABLES POR DEFECTO
+//========================================
+
+$resultados = [];
+$resultadosElim = [];
+$participantes = null;
+$totalParticipantes = 0;
+$partidosEliminatoria = [];
+$totalPartidosEliminatoria = 0;
+
+$conteoFases = [
+    32 => 0,
+    16 => 0,
+    8  => 0,
+    4  => 0,
+    3  => 0,
+    2  => 0
+];
 // ── Resto de datos de la BD (ya con $conn disponible) ──
 if ($logueado) {
  
@@ -223,6 +254,45 @@ if ($logueado) {
             UNIQUE KEY partido_unico (grupo, partido_idx)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
     ");
+ 
+    // Tabla de resultados reales de ELIMINATORIAS
+    // (columnas: id, fase, partido_idx, local, visita, goles_local, goles_visita, res)
+    // Se identifica el partido por fase + partido_idx, igual que resultados_reales
+    // identifica los partidos de grupo por grupo + partido_idx.
+    $conn->query("
+        CREATE TABLE IF NOT EXISTS resultados_eliminatorias (
+            id           INT AUTO_INCREMENT PRIMARY KEY,
+            fase         INT         NOT NULL,
+            partido_idx  INT         NOT NULL,
+            local        VARCHAR(60) NOT NULL DEFAULT '',
+            visita       VARCHAR(60) NOT NULL DEFAULT '',
+            goles_local  INT         NOT NULL DEFAULT 0,
+            goles_visita INT         NOT NULL DEFAULT 0,
+            res          VARCHAR(1)  NOT NULL,
+            UNIQUE KEY fase_partido_unico (fase, partido_idx)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+    ");
+ 
+    // ── Guardar resultado real de un partido de ELIMINATORIA ──
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['guardar_resultado_eliminatoria'])) {
+        $faseElim  = (int)$_POST['fase'];
+        $piElim    = (int)$_POST['partido_idx'];
+        $localElim = trim($_POST['local']);
+        $vistaElim = trim($_POST['visita']);
+        $gl        = max(0, (int)$_POST['goles_local']);
+        $gv        = max(0, (int)$_POST['goles_visita']);
+        $res       = $gl > $gv ? '1' : ($gl < $gv ? '2' : 'x');
+ 
+        $stmt = $conn->prepare("
+            INSERT INTO resultados_eliminatorias (fase, partido_idx, local, visita, goles_local, goles_visita, res)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            ON DUPLICATE KEY UPDATE goles_local=VALUES(goles_local), goles_visita=VALUES(goles_visita), res=VALUES(res)
+        ");
+        $stmt->bind_param("iissiis", $faseElim, $piElim, $localElim, $vistaElim, $gl, $gv, $res);
+        $stmt->execute();
+        $stmt->close();
+        $guardadoElim = true;
+    }
  
     // ── Guardar resultado ──
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['guardar_resultado'])) {
@@ -279,11 +349,25 @@ if ($logueado) {
     }
  
     // Conteo de partidos registrados por fase (PASO 5)
-    $conteoFases = [16 => 0, 8 => 0, 4 => 0, 3 => 0, 2 => 0];
+    $conteoFases = [
+    32 => 0,
+    16 => 0,
+    8  => 0,
+    4  => 0,
+    3  => 0,
+    2  => 0
+    ];
     foreach ($partidosEliminatoria as $pe) {
         if (isset($conteoFases[$pe['fase']])) {
             $conteoFases[$pe['fase']]++;
         }
+    }
+ 
+    // ── Cargar resultados reales de eliminatorias (keyed por fase_partido_idx) ──
+    $resultadosElim = [];
+    $rowsElim = $conn->query("SELECT * FROM resultados_eliminatorias");
+    while ($row = $rowsElim->fetch_assoc()) {
+        $resultadosElim[$row['fase'] . '_' . $row['partido_idx']] = $row;
     }
 }
  
@@ -386,6 +470,20 @@ $grupos = [
     ["local"=>"Croacia",    "visita"=>"Ghana",      "fecha"=>"27 Jun"],
   ]],
 ];
+
+$totalPartidosEliminatoria = 0;
+
+
+if ($logueado) {
+    $totalPartidosEliminatoria = $conn->query("
+        SELECT COUNT(*) total 
+        FROM partidos_eliminatorias
+    ")->fetch_assoc()['total'];
+}
+
+$totalPartidosMundial = 72 + $totalPartidosEliminatoria;
+$totalResultados = count($resultados) + count($resultadosElim);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -468,12 +566,15 @@ $grupos = [
 </header>
 <div class="stats-bar">
   <div class="sb">Participantes registrados: <strong><?= $totalParticipantes ?></strong></div>
-  <div class="sb">Partidos con resultado: <strong><?= count($resultados) ?></strong> / 72</div>
+
 </div>
  
 <div class="container">
   <?php if (!empty($guardado)): ?>
     <div class="alert-ok">✅ Resultado guardado correctamente en la base de datos.</div>
+  <?php endif; ?>
+  <?php if (!empty($guardadoElim)): ?>
+    <div class="alert-ok">✅ Resultado real de eliminatoria guardado correctamente.</div>
   <?php endif; ?>
  
   <div class="info-pts">
@@ -520,17 +621,36 @@ $grupos = [
  
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px;">
  
-          <div>
-            <label>Fase</label>
-            <select name="fase" required style="width:100%;padding:10px;">
-              <option value="16" <?= (($editando['fase'] ?? 16) == 16) ? 'selected' : '' ?>>16avos</option>
-              <option value="8"  <?= (($editando['fase'] ?? 16) == 8)  ? 'selected' : '' ?>>Cuartos</option>
-              <option value="4"  <?= (($editando['fase'] ?? 16) == 4)  ? 'selected' : '' ?>>Semifinal</option>
-              <option value="3"  <?= (($editando['fase'] ?? 16) == 3)  ? 'selected' : '' ?>>3er Lugar</option>
-              <option value="2"  <?= (($editando['fase'] ?? 16) == 2)  ? 'selected' : '' ?>>Final</option>
-            </select>
-          </div>
- 
+         <div>
+          <label>Fase</label>
+          <select name="fase" required style="width:100%;padding:10px;">
+
+            <option value="32" <?= (($editando['fase'] ?? 32) == 32) ? 'selected' : '' ?>>
+              16avos
+            </option>
+
+            <option value="16" <?= (($editando['fase'] ?? 32) == 16) ? 'selected' : '' ?>>
+              8avos
+            </option>
+
+            <option value="8" <?= (($editando['fase'] ?? 32) == 8) ? 'selected' : '' ?>>
+              Cuartos
+            </option>
+
+            <option value="4" <?= (($editando['fase'] ?? 32) == 4) ? 'selected' : '' ?>>
+              Semifinal
+            </option>
+
+            <option value="3" <?= (($editando['fase'] ?? 32) == 3) ? 'selected' : '' ?>>
+              3er Lugar
+            </option>
+
+            <option value="2" <?= (($editando['fase'] ?? 32) == 2) ? 'selected' : '' ?>>
+              Final
+            </option>
+
+          </select>
+        </div>
           <div>
             <label>Equipo Local</label>
             <input type="text" name="local" required style="width:100%;padding:10px;" value="<?= htmlspecialchars($editando['local'] ?? '') ?>">
@@ -652,17 +772,19 @@ $grupos = [
           <th>Visitante</th>
           <th>Fecha</th>
           <th>Hora</th>
+          <th>Marcador real</th>
           <th>Activo</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <?php if (empty($partidosEliminatoria)): ?>
-          <tr><td colspan="8" class="pendiente">Aún no hay partidos de eliminatorias registrados.</td></tr>
+          <tr><td colspan="9" class="pendiente">Aún no hay partidos de eliminatorias registrados.</td></tr>
         <?php endif; ?>
  
         <?php foreach ($partidosEliminatoria as $p):
           $info = $faseInfo[$p['fase']] ?? ['nombre' => $p['fase'], 'clase' => ''];
+          $rE   = $resultadosElim[$p['fase'] . '_' . $p['partido_idx']] ?? null;
         ?>
         <tr>
           <td>
@@ -674,6 +796,28 @@ $grupos = [
           <td><?= htmlspecialchars($p['visita']) ?></td>
           <td><?= htmlspecialchars($p['fecha']) ?></td>
           <td><?= htmlspecialchars($p['hora']) ?></td>
+          <td>
+            <!-- Captura de marcador REAL del partido de eliminatoria -->
+            <form method="POST" style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+              <input type="hidden" name="fase"        value="<?= $p['fase'] ?>">
+              <input type="hidden" name="partido_idx" value="<?= $p['partido_idx'] ?>">
+              <input type="hidden" name="local"       value="<?= htmlspecialchars($p['local']) ?>">
+              <input type="hidden" name="visita"      value="<?= htmlspecialchars($p['visita']) ?>">
+              <input type="hidden" name="guardar_resultado_eliminatoria" value="1">
+              <input class="score-inp" type="number" name="goles_local"  min="0" max="20" value="<?= $rE ? $rE['goles_local']  : '' ?>" placeholder="–" style="width:40px;">
+              <span style="font-weight:700;color:#bbb;">:</span>
+              <input class="score-inp" type="number" name="goles_visita" min="0" max="20" value="<?= $rE ? $rE['goles_visita'] : '' ?>" placeholder="–" style="width:40px;">
+              <button class="btn-save" type="submit">Guardar</button>
+            </form>
+            <?php if ($rE): ?>
+              <span class="badge <?= $rE['res']==='1'?'b1':($rE['res']==='x'?'bx':'b2') ?>">
+                <?= $rE['goles_local'] ?>-<?= $rE['goles_visita'] ?> &nbsp;·&nbsp;
+                <?= $rE['res']==='1'?'Local':($rE['res']==='x'?'Empate':'Visitante') ?>
+              </span>
+            <?php else: ?>
+              <span class="pendiente">Pendiente</span>
+            <?php endif; ?>
+          </td>
           <td><?= $p['activo'] ? "✅" : "❌" ?></td>
           <td>
             <!-- PASO 1: link de editar -->

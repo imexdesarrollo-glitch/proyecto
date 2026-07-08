@@ -3,147 +3,132 @@ let datosParticipante = {};
 let resultadosReales = {};
 let partidosEliminatoria = [];
 let stateEliminatoria = [];
-let eliminatorias = [];
+let folioEliminatoriaActual = null;
+let participanteEliminatoria = null;
 
-async function cargarEliminatorias(){
-
-    try {
-
-        const res = await fetch("obtener_partidos_eliminatorias.php");
-
-        eliminatorias = await res.json();
-
-        renderEliminatorias();
-
-    } catch (e) {
-
-        console.error("Error cargando eliminatorias", e);
-
-    }
-
-}
 const grupos = [
   {
     nombre: "A", partidos: [
-      { local: "🇲🇽 México",        visita: "🇿🇦 Sudáfrica",     fecha: "11 Jun", sede: "Azteca, CDMX" },
-      { local: "🇰🇷 Corea del Sur", visita: "🇨🇿 Chequia",        fecha: "12 Jun", sede: "Akron, Guadalajara" },
-      { local: "🇲🇽 México",        visita: "🇰🇷 Corea del Sur", fecha: "18 Jun", sede: "Akron, Guadalajara" },
-      { local: "🇨🇿 Chequia",       visita: "🇿🇦 Sudáfrica",     fecha: "18 Jun", sede: "Mercedes-Benz, Atlanta" },
-      { local: "🇨🇿 Chequia",       visita: "🇲🇽 México",         fecha: "24 Jun", sede: "Azteca, CDMX" },
-      { local: "🇿🇦 Sudáfrica",     visita: "🇰🇷 Corea del Sur", fecha: "24 Jun", sede: "BBVA, Monterrey" },
+      { local: "🇲🇽 México", visita: "🇿🇦 Sudáfrica", fecha: "11 Jun", sede: "Azteca, CDMX" },
+      { local: "🇰🇷 Corea del Sur", visita: "🇨🇿 Chequia", fecha: "12 Jun", sede: "Akron, Guadalajara" },
+      { local: "🇲🇽 México", visita: "🇰🇷 Corea del Sur", fecha: "18 Jun", sede: "Akron, Guadalajara" },
+      { local: "🇨🇿 Chequia", visita: "🇿🇦 Sudáfrica", fecha: "18 Jun", sede: "Mercedes-Benz, Atlanta" },
+      { local: "🇨🇿 Chequia", visita: "🇲🇽 México", fecha: "24 Jun", sede: "Azteca, CDMX" },
+      { local: "🇿🇦 Sudáfrica", visita: "🇰🇷 Corea del Sur", fecha: "24 Jun", sede: "BBVA, Monterrey" },
     ]
   },
   {
     nombre: "B", partidos: [
-      { local: "🇨🇦 Canadá",  visita: "🇧🇦 Bosnia",   fecha: "12 Jun", sede: "BMO Field, Toronto" },
-      { local: "🇶🇦 Qatar",   visita: "🇨🇭 Suiza",    fecha: "13 Jun", sede: "Levi's Stadium, SF" },
-      { local: "🇨🇭 Suiza",   visita: "🇧🇦 Bosnia",   fecha: "18 Jun", sede: "SoFi, Los Ángeles" },
-      { local: "🇨🇦 Canadá",  visita: "🇶🇦 Qatar",    fecha: "18 Jun", sede: "BC Place, Vancouver" },
-      { local: "🇨🇭 Suiza",   visita: "🇨🇦 Canadá",   fecha: "24 Jun", sede: "BC Place, Vancouver" },
-      { local: "🇧🇦 Bosnia",  visita: "🇶🇦 Qatar",    fecha: "24 Jun", sede: "Lumen Field, Seattle" },
+      { local: "🇨🇦 Canadá", visita: "🇧🇦 Bosnia", fecha: "12 Jun", sede: "BMO Field, Toronto" },
+      { local: "🇶🇦 Qatar", visita: "🇨🇭 Suiza", fecha: "13 Jun", sede: "Levi's Stadium, SF" },
+      { local: "🇨🇭 Suiza", visita: "🇧🇦 Bosnia", fecha: "18 Jun", sede: "SoFi, Los Ángeles" },
+      { local: "🇨🇦 Canadá", visita: "🇶🇦 Qatar", fecha: "18 Jun", sede: "BC Place, Vancouver" },
+      { local: "🇨🇭 Suiza", visita: "🇨🇦 Canadá", fecha: "24 Jun", sede: "BC Place, Vancouver" },
+      { local: "🇧🇦 Bosnia", visita: "🇶🇦 Qatar", fecha: "24 Jun", sede: "Lumen Field, Seattle" },
     ]
   },
   {
     nombre: "C", partidos: [
-      { local: "🇧🇷 Brasil",   visita: "🇲🇦 Marruecos",        fecha: "13 Jun", sede: "MetLife, NY/NJ" },
-      { local: "🇭🇹 Haití",    visita: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escocia",          fecha: "14 Jun", sede: "Gillette, Boston" },
-      { local: "🇧🇷 Brasil",   visita: "🇭🇹 Haití",             fecha: "19 Jun", sede: "Lincoln Financial, Filadelfia" },
-      { local: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escocia", visita: "🇲🇦 Marruecos",        fecha: "19 Jun", sede: "Gillette, Boston" },
-      { local: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escocia", visita: "🇧🇷 Brasil",           fecha: "24 Jun", sede: "Hard Rock, Miami" },
-      { local: "🇲🇦 Marruecos", visita: "🇭🇹 Haití",            fecha: "24 Jun", sede: "Mercedes-Benz, Atlanta" },
+      { local: "🇧🇷 Brasil", visita: "🇲🇦 Marruecos", fecha: "13 Jun", sede: "MetLife, NY/NJ" },
+      { local: "🇭🇹 Haití", visita: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escocia", fecha: "14 Jun", sede: "Gillette, Boston" },
+      { local: "🇧🇷 Brasil", visita: "🇭🇹 Haití", fecha: "19 Jun", sede: "Lincoln Financial, Filadelfia" },
+      { local: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escocia", visita: "🇲🇦 Marruecos", fecha: "19 Jun", sede: "Gillette, Boston" },
+      { local: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escocia", visita: "🇧🇷 Brasil", fecha: "24 Jun", sede: "Hard Rock, Miami" },
+      { local: "🇲🇦 Marruecos", visita: "🇭🇹 Haití", fecha: "24 Jun", sede: "Mercedes-Benz, Atlanta" },
     ]
   },
   {
     nombre: "D", partidos: [
-      { local: "🇺🇸 Estados Unidos", visita: "🇵🇾 Paraguay",  fecha: "12 Jun", sede: "SoFi, Los Ángeles" },
-      { local: "🇦🇺 Australia",       visita: "🇹🇷 Turquía",   fecha: "14 Jun", sede: "NRG, Houston" },
-      { local: "🇺🇸 Estados Unidos", visita: "🇦🇺 Australia",  fecha: "19 Jun", sede: "Lumen Field, Seattle" },
-      { local: "🇹🇷 Turquía",        visita: "🇵🇾 Paraguay",  fecha: "19 Jun", sede: "Levi's Stadium, SF" },
-      { local: "🇹🇷 Turquía",        visita: "🇺🇸 Estados Unidos", fecha: "25 Jun", sede: "SoFi, Los Ángeles" },
-      { local: "🇵🇾 Paraguay",       visita: "🇦🇺 Australia", fecha: "25 Jun", sede: "Levi's Stadium, SF" },
+      { local: "🇺🇸 Estados Unidos", visita: "🇵🇾 Paraguay", fecha: "12 Jun", sede: "SoFi, Los Ángeles" },
+      { local: "🇦🇺 Australia", visita: "🇹🇷 Turquía", fecha: "14 Jun", sede: "NRG, Houston" },
+      { local: "🇺🇸 Estados Unidos", visita: "🇦🇺 Australia", fecha: "19 Jun", sede: "Lumen Field, Seattle" },
+      { local: "🇹🇷 Turquía", visita: "🇵🇾 Paraguay", fecha: "19 Jun", sede: "Levi's Stadium, SF" },
+      { local: "🇹🇷 Turquía", visita: "🇺🇸 Estados Unidos", fecha: "25 Jun", sede: "SoFi, Los Ángeles" },
+      { local: "🇵🇾 Paraguay", visita: "🇦🇺 Australia", fecha: "25 Jun", sede: "Levi's Stadium, SF" },
     ]
   },
   {
     nombre: "E", partidos: [
-      { local: "🇩🇪 Alemania",        visita: "🇨🇼 Curaçao",          fecha: "14 Jun", sede: "MetLife, NY/NJ" },
-      { local: "🇨🇮 Costa de Marfil", visita: "🇪🇨 Ecuador",          fecha: "15 Jun", sede: "AT&T, Dallas" },
-      { local: "🇩🇪 Alemania",        visita: "🇨🇮 Costa de Marfil",  fecha: "20 Jun", sede: "BMO Field, Toronto" },
-      { local: "🇪🇨 Ecuador",         visita: "🇨🇼 Curaçao",          fecha: "20 Jun", sede: "Arrowhead, Kansas City" },
-      { local: "🇪🇨 Ecuador",         visita: "🇩🇪 Alemania",         fecha: "25 Jun", sede: "MetLife, NY/NJ" },
-      { local: "🇨🇼 Curaçao",         visita: "🇨🇮 Costa de Marfil", fecha: "25 Jun", sede: "Lincoln Financial, Filadelfia" },
+      { local: "🇩🇪 Alemania", visita: "🇨🇼 Curaçao", fecha: "14 Jun", sede: "MetLife, NY/NJ" },
+      { local: "🇨🇮 Costa de Marfil", visita: "🇪🇨 Ecuador", fecha: "15 Jun", sede: "AT&T, Dallas" },
+      { local: "🇩🇪 Alemania", visita: "🇨🇮 Costa de Marfil", fecha: "20 Jun", sede: "BMO Field, Toronto" },
+      { local: "🇪🇨 Ecuador", visita: "🇨🇼 Curaçao", fecha: "20 Jun", sede: "Arrowhead, Kansas City" },
+      { local: "🇪🇨 Ecuador", visita: "🇩🇪 Alemania", fecha: "25 Jun", sede: "MetLife, NY/NJ" },
+      { local: "🇨🇼 Curaçao", visita: "🇨🇮 Costa de Marfil", fecha: "25 Jun", sede: "Lincoln Financial, Filadelfia" },
     ]
   },
   {
     nombre: "F", partidos: [
-      { local: "🇳🇱 Países Bajos", visita: "🇯🇵 Japón",  fecha: "15 Jun", sede: "SoFi, Los Ángeles" },
-      { local: "🇸🇪 Suecia",       visita: "🇹🇳 Túnez",  fecha: "15 Jun", sede: "Levi's Stadium, SF" },
+      { local: "🇳🇱 Países Bajos", visita: "🇯🇵 Japón", fecha: "15 Jun", sede: "SoFi, Los Ángeles" },
+      { local: "🇸🇪 Suecia", visita: "🇹🇳 Túnez", fecha: "15 Jun", sede: "Levi's Stadium, SF" },
       { local: "🇳🇱 Países Bajos", visita: "🇸🇪 Suecia", fecha: "20 Jun", sede: "NRG, Houston" },
-      { local: "🇹🇳 Túnez",        visita: "🇯🇵 Japón",  fecha: "20 Jun", sede: "Akron, Guadalajara" },
-      { local: "🇹🇳 Túnez",        visita: "🇳🇱 Países Bajos", fecha: "25 Jun", sede: "Arrowhead, Kansas City" },
-      { local: "🇯🇵 Japón",        visita: "🇸🇪 Suecia", fecha: "25 Jun", sede: "AT&T, Dallas" },
+      { local: "🇹🇳 Túnez", visita: "🇯🇵 Japón", fecha: "20 Jun", sede: "Akron, Guadalajara" },
+      { local: "🇹🇳 Túnez", visita: "🇳🇱 Países Bajos", fecha: "25 Jun", sede: "Arrowhead, Kansas City" },
+      { local: "🇯🇵 Japón", visita: "🇸🇪 Suecia", fecha: "25 Jun", sede: "AT&T, Dallas" },
     ]
   },
   {
     nombre: "G", partidos: [
-      { local: "🇧🇪 Bélgica",      visita: "🇪🇬 Egipto",        fecha: "15 Jun", sede: "Lumen Field, Seattle" },
-      { local: "🇮🇷 Irán",         visita: "🇳🇿 Nueva Zelanda", fecha: "15 Jun", sede: "SoFi, Los Ángeles" },
-      { local: "🇧🇪 Bélgica",      visita: "🇮🇷 Irán",          fecha: "21 Jun", sede: "SoFi, Los Ángeles" },
-      { local: "🇳🇿 Nueva Zelanda", visita: "🇪🇬 Egipto",       fecha: "21 Jun", sede: "BC Place, Vancouver" },
-      { local: "🇳🇿 Nueva Zelanda", visita: "🇧🇪 Bélgica",      fecha: "26 Jun", sede: "BC Place, Vancouver" },
-      { local: "🇪🇬 Egipto",       visita: "🇮🇷 Irán",          fecha: "26 Jun", sede: "Lumen Field, Seattle" },
+      { local: "🇧🇪 Bélgica", visita: "🇪🇬 Egipto", fecha: "15 Jun", sede: "Lumen Field, Seattle" },
+      { local: "🇮🇷 Irán", visita: "🇳🇿 Nueva Zelanda", fecha: "15 Jun", sede: "SoFi, Los Ángeles" },
+      { local: "🇧🇪 Bélgica", visita: "🇮🇷 Irán", fecha: "21 Jun", sede: "SoFi, Los Ángeles" },
+      { local: "🇳🇿 Nueva Zelanda", visita: "🇪🇬 Egipto", fecha: "21 Jun", sede: "BC Place, Vancouver" },
+      { local: "🇳🇿 Nueva Zelanda", visita: "🇧🇪 Bélgica", fecha: "26 Jun", sede: "BC Place, Vancouver" },
+      { local: "🇪🇬 Egipto", visita: "🇮🇷 Irán", fecha: "26 Jun", sede: "Lumen Field, Seattle" },
     ]
   },
   {
     nombre: "H", partidos: [
-      { local: "🇪🇸 España",        visita: "🇨🇻 Cabo Verde",     fecha: "15 Jun", sede: "Mercedes-Benz, Atlanta" },
-      { local: "🇸🇦 Arabia Saudita", visita: "🇺🇾 Uruguay",       fecha: "15 Jun", sede: "Hard Rock, Miami" },
-      { local: "🇪🇸 España",        visita: "🇸🇦 Arabia Saudita", fecha: "21 Jun", sede: "Mercedes-Benz, Atlanta" },
-      { local: "🇺🇾 Uruguay",       visita: "🇨🇻 Cabo Verde",     fecha: "21 Jun", sede: "Hard Rock, Miami" },
-      { local: "🇺🇾 Uruguay",       visita: "🇪🇸 España",         fecha: "26 Jun", sede: "Akron, Guadalajara" },
-      { local: "🇨🇻 Cabo Verde",    visita: "🇸🇦 Arabia Saudita", fecha: "26 Jun", sede: "NRG, Houston" },
+      { local: "🇪🇸 España", visita: "🇨🇻 Cabo Verde", fecha: "15 Jun", sede: "Mercedes-Benz, Atlanta" },
+      { local: "🇸🇦 Arabia Saudita", visita: "🇺🇾 Uruguay", fecha: "15 Jun", sede: "Hard Rock, Miami" },
+      { local: "🇪🇸 España", visita: "🇸🇦 Arabia Saudita", fecha: "21 Jun", sede: "Mercedes-Benz, Atlanta" },
+      { local: "🇺🇾 Uruguay", visita: "🇨🇻 Cabo Verde", fecha: "21 Jun", sede: "Hard Rock, Miami" },
+      { local: "🇺🇾 Uruguay", visita: "🇪🇸 España", fecha: "26 Jun", sede: "Akron, Guadalajara" },
+      { local: "🇨🇻 Cabo Verde", visita: "🇸🇦 Arabia Saudita", fecha: "26 Jun", sede: "NRG, Houston" },
     ]
   },
   {
     nombre: "I", partidos: [
-      { local: "🇫🇷 Francia",  visita: "🇸🇳 Senegal", fecha: "16 Jun", sede: "MetLife, NY/NJ" },
-      { local: "🇮🇶 Irak",    visita: "🇳🇴 Noruega", fecha: "16 Jun", sede: "Gillette, Boston" },
-      { local: "🇫🇷 Francia",  visita: "🇮🇶 Irak",    fecha: "22 Jun", sede: "Lincoln Financial, Filadelfia" },
+      { local: "🇫🇷 Francia", visita: "🇸🇳 Senegal", fecha: "16 Jun", sede: "MetLife, NY/NJ" },
+      { local: "🇮🇶 Irak", visita: "🇳🇴 Noruega", fecha: "16 Jun", sede: "Gillette, Boston" },
+      { local: "🇫🇷 Francia", visita: "🇮🇶 Irak", fecha: "22 Jun", sede: "Lincoln Financial, Filadelfia" },
       { local: "🇳🇴 Noruega", visita: "🇸🇳 Senegal", fecha: "22 Jun", sede: "BMO Field, Toronto" },
-      { local: "🇳🇴 Noruega", visita: "🇫🇷 Francia",  fecha: "26 Jun", sede: "Gillette, Boston" },
-      { local: "🇸🇳 Senegal", visita: "🇮🇶 Irak",    fecha: "26 Jun", sede: "BMO Field, Toronto" },
+      { local: "🇳🇴 Noruega", visita: "🇫🇷 Francia", fecha: "26 Jun", sede: "Gillette, Boston" },
+      { local: "🇸🇳 Senegal", visita: "🇮🇶 Irak", fecha: "26 Jun", sede: "BMO Field, Toronto" },
     ]
   },
   {
     nombre: "J", partidos: [
-      { local: "🇦🇷 Argentina", visita: "🇩🇿 Argelia",  fecha: "16 Jun", sede: "Arrowhead, Kansas City" },
-      { local: "🇦🇹 Austria",   visita: "🇯🇴 Jordania", fecha: "17 Jun", sede: "Levi's Stadium, SF" },
-      { local: "🇦🇷 Argentina", visita: "🇦🇹 Austria",  fecha: "22 Jun", sede: "AT&T, Dallas" },
-      { local: "🇯🇴 Jordania",  visita: "🇩🇿 Argelia",  fecha: "22 Jun", sede: "Levi's Stadium, SF" },
-      { local: "🇯🇴 Jordania",  visita: "🇦🇷 Argentina", fecha: "27 Jun", sede: "AT&T, Dallas" },
-      { local: "🇩🇿 Argelia",   visita: "🇦🇹 Austria",  fecha: "27 Jun", sede: "Arrowhead, Kansas City" },
+      { local: "🇦🇷 Argentina", visita: "🇩🇿 Argelia", fecha: "16 Jun", sede: "Arrowhead, Kansas City" },
+      { local: "🇦🇹 Austria", visita: "🇯🇴 Jordania", fecha: "17 Jun", sede: "Levi's Stadium, SF" },
+      { local: "🇦🇷 Argentina", visita: "🇦🇹 Austria", fecha: "22 Jun", sede: "AT&T, Dallas" },
+      { local: "🇯🇴 Jordania", visita: "🇩🇿 Argelia", fecha: "22 Jun", sede: "Levi's Stadium, SF" },
+      { local: "🇯🇴 Jordania", visita: "🇦🇷 Argentina", fecha: "27 Jun", sede: "AT&T, Dallas" },
+      { local: "🇩🇿 Argelia", visita: "🇦🇹 Austria", fecha: "27 Jun", sede: "Arrowhead, Kansas City" },
     ]
   },
   {
     nombre: "K", partidos: [
-      { local: "🇵🇹 Portugal",  visita: "🇨🇩 RD Congo",  fecha: "17 Jun", sede: "NRG, Houston" },
+      { local: "🇵🇹 Portugal", visita: "🇨🇩 RD Congo", fecha: "17 Jun", sede: "NRG, Houston" },
       { local: "🇺🇿 Uzbekistán", visita: "🇨🇴 Colombia", fecha: "17 Jun", sede: "Azteca, CDMX" },
-      { local: "🇵🇹 Portugal",  visita: "🇺🇿 Uzbekistán", fecha: "22 Jun", sede: "NRG, Houston" },
-      { local: "🇨🇩 RD Congo",  visita: "🇨🇴 Colombia", fecha: "22 Jun", sede: "BC Place, Vancouver" },
-      { local: "🇨🇴 Colombia",  visita: "🇵🇹 Portugal",  fecha: "27 Jun", sede: "Lumen Field, Seattle" },
-      { local: "🇨🇩 RD Congo",  visita: "🇺🇿 Uzbekistán", fecha: "27 Jun", sede: "Mercedes-Benz, Atlanta" },
+      { local: "🇵🇹 Portugal", visita: "🇺🇿 Uzbekistán", fecha: "22 Jun", sede: "NRG, Houston" },
+      { local: "🇨🇩 RD Congo", visita: "🇨🇴 Colombia", fecha: "22 Jun", sede: "BC Place, Vancouver" },
+      { local: "🇨🇴 Colombia", visita: "🇵🇹 Portugal", fecha: "27 Jun", sede: "Lumen Field, Seattle" },
+      { local: "🇨🇩 RD Congo", visita: "🇺🇿 Uzbekistán", fecha: "27 Jun", sede: "Mercedes-Benz, Atlanta" },
     ]
   },
   {
     nombre: "L", partidos: [
       { local: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra", visita: "🇭🇷 Croacia", fecha: "17 Jun", sede: "AT&T, Dallas" },
-      { local: "🇬🇭 Ghana",           visita: "🇵🇦 Panamá", fecha: "17 Jun", sede: "BMO Field, Toronto" },
-      { local: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra", visita: "🇬🇭 Ghana",   fecha: "23 Jun", sede: "Gillette, Boston" },
-      { local: "🇵🇦 Panamá",          visita: "🇭🇷 Croacia", fecha: "23 Jun", sede: "Gillette, Boston" },
-      { local: "🇵🇦 Panamá",          visita: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra", fecha: "27 Jun", sede: "MetLife, NY/NJ" },
-      { local: "🇭🇷 Croacia",         visita: "🇬🇭 Ghana",   fecha: "27 Jun", sede: "Lincoln Financial, Filadelfia" },
+      { local: "🇬🇭 Ghana", visita: "🇵🇦 Panamá", fecha: "17 Jun", sede: "BMO Field, Toronto" },
+      { local: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra", visita: "🇬🇭 Ghana", fecha: "23 Jun", sede: "Gillette, Boston" },
+      { local: "🇵🇦 Panamá", visita: "🇭🇷 Croacia", fecha: "23 Jun", sede: "Gillette, Boston" },
+      { local: "🇵🇦 Panamá", visita: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra", fecha: "27 Jun", sede: "MetLife, NY/NJ" },
+      { local: "🇭🇷 Croacia", visita: "🇬🇭 Ghana", fecha: "27 Jun", sede: "Lincoln Financial, Filadelfia" },
     ]
   },
 ];
+
 
 const state = grupos.map(g => g.partidos.map(() => ({ res: null, gl: '', gv: '' })));
 
@@ -156,8 +141,6 @@ async function cargarResultadosReales() {
     const response = await fetch('/obtener_resultados.php');
 
     resultadosReales = await response.json();
-
-    console.log('Resultados reales:', resultadosReales);
 
     renderGrupos();
 
@@ -205,7 +188,7 @@ function renderGrupos() {
 
       // EXPLICACIÓN: Esta expresión regular elimina CUALQUIER emoji o bandera rota de Windows,
       // dejando únicamente las letras del nombre listas para buscar en el diccionario.
-      const nombreLocalLimpio = p.local.replace(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]|\uD83D[\uDE80-\uDEFF]|\uD83E[\uDD00-\uDDFF]|\uD83C[\uDDE6-\uDDFF] backstory)/g, '').replace(/[^\w\sáéíóúñÁÉÍÓÚÑ]/g, '').trim().toLowerCase();
+      const nombreLocalLimpio = p.local.replace(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]|\uD83D[\uDE80-\uDEFF]|\uD83E[\uDD00-\uDDFF]|\uD83C[\uDDE6-\uDDFF])/g, '').replace(/[^\w\sáéíóúñÁÉÍÓÚÑ]/g, '').trim().toLowerCase();
       const nombreVisitaLimpio = p.visita.replace(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]|\uD83D[\uDE80-\uDEFF]|\uD83E[\uDD00-\uDDFF]|\uD83C[\uDDE6-\uDDFF])/g, '').replace(/[^\w\sáéíóúñÁÉÍÓÚÑ]/g, '').trim().toLowerCase();
 
       const codeLocal = mapaBanderas[nombreLocalLimpio] || 'un';
@@ -223,11 +206,11 @@ function renderGrupos() {
               <span class="equipo-nombre">${nombreLocalLimpio.charAt(0).toUpperCase() + nombreLocalLimpio.slice(1)}</span>
               <img class="bandera" src="https://flagcdn.com/w40/${codeLocal}.png" alt="" />
             </div>
-
+ 
         <div class="score-block">
-
+ 
         ${resultadoReal ? `
-
+ 
           <div style="
             background:#e8f5e9;
             border:1px solid #4caf50;
@@ -240,9 +223,9 @@ function renderGrupos() {
             FINAL<br>
             ${resultadoReal.goles_local} - ${resultadoReal.goles_visita}
           </div>
-
+ 
         ` : `
-
+ 
           <div class="score-inputs">
             <input class="score-input" type="number" min="0" max="20" step="1"
               placeholder="–" value="${s.gl}"
@@ -252,22 +235,22 @@ function renderGrupos() {
               placeholder="–" value="${s.gv}"
               oninput="setScore(${gi},${pi},'gv',this.value)" />
           </div>
-
+ 
           <div class="res-btns">
             <button class="rbtn r1 ${s.res === '1' ? 'active' : ''}" onclick="setRes(${gi},${pi},'1')">1</button>
             <button class="rbtn rx ${s.res === 'x' ? 'active' : ''}" onclick="setRes(${gi},${pi},'x')">X</button>
             <button class="rbtn r2 ${s.res === '2' ? 'active' : ''}" onclick="setRes(${gi},${pi},'2')">2</button>
           </div>
-
+ 
         `}
-
+ 
         </div>
-
+ 
             <div class="equipo-visita">
               <img class="bandera" src="https://flagcdn.com/w40/${codeVisita}.png" alt="" />
               <span class="equipo-nombre">${nombreVisitaLimpio.charAt(0).toUpperCase() + nombreVisitaLimpio.slice(1)}</span>
             </div>
-
+ 
           </div>
         </div>`;
     }).join('')}
@@ -354,13 +337,14 @@ function updateStats() {
 function showTab(id) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
   document.getElementById('tab-' + id).classList.add('active');
   event.target.classList.add('active');
 
   if (id === 'mi-quiniela') renderTabla();
 
-  // ── NUEVO: cargar 16avos al entrar al tab ──
-  if (id === 'dieciseisavos') iniciar16avos();
+  // ── Cargar/refrescar eliminatorias al entrar al nuevo tab unificado ──
+  if (id === 'eliminatorias') cargarEliminatorias();
 }
 
 
@@ -388,15 +372,15 @@ function renderTabla() {
             `<span class="badge-2">Visitante</span>`;
 
         filas.push(`<tr>
-
+ 
           <td><strong>Grupo ${grupo.nombre}</strong></td>
-
+ 
           <td>${p.local.split(' ').slice(1).join(' ')} vs ${p.visita.split(' ').slice(1).join(' ')}</td>
-
+ 
           <td>${resultado}</td>
-
+ 
           <td>${badge}</td>
-
+ 
         </tr>`);
 
       }
@@ -529,6 +513,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   await cargarLogoIMEX();
   cargarEliminatorias();
+  cargarResultadosReales();
+  updateStats();
 
   const btnPDF = document.getElementById('btn-descargar-pdf');
 
@@ -562,60 +548,25 @@ function descargarPDF() {
   const ancho = anchoPage - margen * 2;
   let y = 15;
 
-  // ── ENCABEZADO ──
-  // ── ENCABEZADO ──
-  // ─────────────────────────────
-  // ENCABEZADO CON LOGO IMEX
-  // ─────────────────────────────
+  // ── ENCABEZADO CON LOGO IMEX ──
   doc.setFillColor(...azul);
   doc.rect(margen, y, ancho, 24, 'F');
 
-  // Fondo blanco
   doc.setFillColor(255, 255, 255);
-  doc.roundedRect(
-    margen + 1,
-    y + 1,
-    38,
-    22,
-    2,
-    2,
-    'F'
-  );
+  doc.roundedRect(margen + 1, y + 1, 38, 22, 2, 2, 'F');
 
-  // Logo
   if (logoIMEX) {
-    doc.addImage(
-      logoIMEX,
-      'PNG',
-      margen + 3,
-      y + 2,
-      34,
-      20
-    );
+    doc.addImage(logoIMEX, 'PNG', margen + 3, y + 2, 34, 20);
   }
 
-  // Título
   doc.setTextColor(...blanco);
-
   doc.setFontSize(18);
   doc.setFont('helvetica', 'bold');
-
-  doc.text(
-    'QUINIELA MUNDIAL 2026',
-    120,
-    y + 9,
-    { align: 'center' }
-  );
+  doc.text('QUINIELA MUNDIAL 2026', 120, y + 9, { align: 'center' });
 
   doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');
-
-  doc.text(
-    'IMEX LEAN PROJECT',
-    120,
-    y + 16,
-    { align: 'center' }
-  );
+  doc.text('IMEX LEAN PROJECT', 120, y + 16, { align: 'center' });
 
   y += 28;
 
@@ -738,16 +689,7 @@ function descargarPDF() {
   doc.setFont('helvetica', 'normal');
   doc.text('IMEX Lean Project • Felipe Villanueva 232, Peralvillo • CDMX', anchoPage / 2, y, { align: 'center' });
   if (logoIMEX) {
-
-    doc.addImage(
-      logoIMEX,
-      'PNG',
-      margen,
-      y + 2,
-      18,
-      10
-    );
-
+    doc.addImage(logoIMEX, 'PNG', margen, y + 2, 18, 10);
   }
 
   doc.save(`Quiniela_2026_${(datosParticipante.nombre || 'Registro').replace(/\s+/g, '_')}.pdf`);
@@ -761,15 +703,8 @@ function cerrarModal() {
     btn.textContent = 'Enviar Quiniela →';
   }
 }
-// Evento botón PDF
-document.addEventListener('DOMContentLoaded', () => {
-  const btnPDF = document.getElementById('btn-descargar-pdf');
-  if (btnPDF) {
-    btnPDF.addEventListener('click', descargarPDF);
-  }
-});
 
-// funcion para los datos de mas informacion terminos y coindiciones 
+// funcion para los datos de mas informacion terminos y coindiciones
 function toggleTerms() {
   const box = document.getElementById('terms-content');
   box.classList.toggle('open');
@@ -777,8 +712,7 @@ function toggleTerms() {
 
 async function consultarQuiniela() {
 
-  const folio =
-    document.getElementById('folioConsulta').value;
+  const folio = document.getElementById('folioConsulta').value;
 
   if (!folio) {
     alert("Ingrese un folio");
@@ -787,180 +721,1184 @@ async function consultarQuiniela() {
 
   try {
 
-    const response =
-      await fetch(`/obtener_quiniela.php?folio=${folio}`);
-
-    const data =
-      await response.json();
+    const response = await fetch(`/obtener_quiniela.php?folio=${folio}`);
+    const data = await response.json();
 
     if (!data.ok) {
-
       alert("No se encontró ese folio");
       return;
-
     }
 
     state.length = 0;
-
-    data.quiniela.forEach(g => {
-      state.push(g);
-    });
+    data.quiniela.forEach(g => state.push(g));
 
     renderGrupos();
     renderTabla();
-
     showTab('mi-quiniela');
 
   } catch (error) {
-
     console.error(error);
-
     alert("Error al consultar");
-
   }
 
 }
 
 // ===========================================
-// CARGAR PARTIDOS ELIMINATORIA
+// ELIMINATORIAS
 // ===========================================
 
+// Carga los partidos activos de eliminatoria (con su marcador real si el
+// admin ya lo capturó en el panel) y arma el estado de pronóstico local.
 async function cargarEliminatorias() {
 
-    try{
+  try {
 
-        const response = await fetch("obtener_partidos_eliminatorias.php");
+    const response = await fetch("/obtener_partidos_eliminatorias.php");
+    partidosEliminatoria = await response.json();
 
-        partidosEliminatoria = await response.json();
+    // Solo reconstruye el estado de pronóstico si cambió el número de partidos
+    // (evita perder lo que el usuario ya iba escribiendo si se vuelve a llamar).
+    if (stateEliminatoria.length !== partidosEliminatoria.length) {
 
-        stateEliminatoria = partidosEliminatoria.map(() => ({
-
-            gl: "",
-
-            gv: "",
-
-            res: ""
-
-        }));
-
-        renderEliminatorias();
+      stateEliminatoria = partidosEliminatoria.map(p => ({
+        partido_id: parseInt(p.id),
+        gl: "",
+        gv: "",
+        res: null
+      }));
 
     }
 
-    catch(error){
+    renderEliminatorias();
 
-        console.error(error);
-
-    }
+  } catch (error) {
+    console.error("Error cargando eliminatorias", error);
+  }
 
 }
 
-// ===========================================
-// RENDER ELIMINATORIAS
-// ===========================================
+// Actualiza el pronóstico del usuario para un partido de eliminatoria.
+function setScoreEliminatoria(i, field, val) {
 
-function renderEliminatorias(){
+  const s = stateEliminatoria[i];
+  if (!s) return;
 
-    const cont=document.getElementById("partidos16-container");
+  s[field] = val === '' ? '' : String(Math.max(0, Math.min(20, parseInt(val) || 0)));
 
-    cont.innerHTML="";
+  const gl = parseInt(s.gl);
+  const gv = parseInt(s.gv);
 
-    if(partidosEliminatoria.length===0){
+  s.res = (!isNaN(gl) && !isNaN(gv)) ? (gl > gv ? '1' : gl < gv ? '2' : 'x') : null;
 
-        cont.innerHTML="<p style='text-align:center'>No hay partidos disponibles.</p>";
+}
 
-        return;
+function setResEliminatoria(i, val) {
 
-    }
+  const s = stateEliminatoria[i];
 
-    partidosEliminatoria.forEach((p,i)=>{
+  s.res = s.res === val ? null : val;
 
-        cont.innerHTML += `
+  if (s.res === "1") {
 
-        <div class="match-card">
+    s.gl = "1";
+    s.gv = "0";
 
-            <div class="match-header">
+  }
 
-                <strong>${nombreFase(p.fase)}</strong>
+  if (s.res === "x") {
 
-            </div>
+    s.gl = "0";
+    s.gv = "0";
 
-            <div class="match-body">
+  }
 
-                <div class="team">
+  if (s.res === "2") {
 
-                    ${p.local}
+    s.gl = "0";
+    s.gv = "1";
 
-                </div>
+  }
 
-                <div class="score">
+  renderEliminatorias();
 
-                    <input
-                    type="number"
-                    min="0"
-                    max="20"
-                    id="gl_${i}"
-                    oninput="setScoreEliminatoria(${i})">
+}
 
-                    -
+function nombreFase(fase) {
 
-                    <input
-                    type="number"
-                    min="0"
-                    max="20"
-                    id="gv_${i}"
-                    oninput="setScoreEliminatoria(${i})">
+  const f = parseInt(fase);
 
-                </div>
+  switch (f) {
 
-                <div class="team">
+    case 32:
+      return "🏆 Dieciseisavos";
 
-                    ${p.visita}
+    case 16:
+      return "🏆 Octavos";
 
-                </div>
+    case 8:
+      return "🏆 Cuartos";
 
-            </div>
+    case 4:
+      return "🏆 Semifinal";
 
-        </div>
+    case 3:
+      return "🥉 Tercer Lugar";
 
-        `;
+    case 2:
+      return "🏆 Final";
 
+    default:
+      return "🏆 Eliminatorias";
+  }
+}
+function obtenerBandera(nombre) {
+
+  const mapa = {
+
+    "Sudafricá": "za",
+    "Sudáfrica": "za",
+    "Canadá": "ca",
+    "Brasil": "br",
+    "Japón": "jp",
+    "Alemania": "de",
+    "Paraguay": "py",
+    "Países Bajos": "nl",
+    "Marruecos": "ma",
+    "Costa de Marfil": "ci",
+    "Noruega": "no",
+    "México": "mx",
+    "Corea del Sur": "kr",
+    "Chequia": "cz",
+    "Bosnia": "🇧🇦",
+    "Qatar": "qa",
+    "Suiza": "ch",
+    "Haití": "ht",
+    "Escocia": "gb-sct",
+    "Estados Unidos": "us",
+    "Australia": "au",
+    "Turquía": "tr",
+    "Curaçao": "cw",
+    "Ecuador": "ec",
+    "Túnez": "tn",
+    "Suecia": "se",
+    "Bélgica": "be",
+    "Egipto": "eg",
+    "Irán": "ir",
+    "Nueva Zelanda": "nz",
+    "España": "es",
+    "Cabo Verde": "cv",
+    "Arabia Saudita": "sa",
+    "Uruguay": "uy",
+    "Francia": "fr",
+    "Senegal": "sn",
+    "Irak": "iq",
+    "Argentina": "ar",
+    "Argelia": "dz",
+    "Austria": "at",
+    "Jordania": "jo",
+    "Portugal": "pt",
+    "RD Congo": "cd",
+    "Uzbekistán": "uz",
+    "Colombia": "co",
+    "Inglaterra": "gb-eng",
+    "Croacia": "hr",
+    "Ghana": "gh",
+    "Panamá": "pa"
+
+  };
+
+  const limpio = nombre.trim();
+
+  return mapa[limpio]
+    ? `https://flagcdn.com/w40/${mapa[limpio]}.png`
+    : "https://flagcdn.com/w40/un.png";
+
+}
+// Pinta las tarjetas de eliminatoria agrupadas por fase. Si el partido ya
+// tiene marcador real (capturado por el admin), se muestra el resultado
+// FINAL en vez de los inputs de pronóstico.
+// Pinta las tarjetas de eliminatoria agrupadas por fase.
+function renderEliminatorias() {
+  const cont = document.getElementById("eliminatorias-container");
+  if (!cont) return;
+
+  cont.innerHTML = "";
+
+  if (!partidosEliminatoria || partidosEliminatoria.length === 0) {
+    cont.innerHTML = `<p style="text-align:center;color:#999;padding:20px;">
+      Aún no hay partidos de eliminatorias disponibles.
+    </p>`;
+    return;
+  }
+
+  // 1. Agrupar por fase
+  const fases = {};
+  partidosEliminatoria.forEach((p, i) => {
+    const fase = p.fase || "Eliminatorias";
+    if (!fases[fase]) fases[fase] = [];
+    fases[fase].push({ ...p, index: i });
+  });
+
+  // 2. Contenedor bracket
+  const bracket = document.createElement("div");
+  bracket.className = "bracket-grid-form";
+
+  // 3. Render por fase
+  Object.keys(fases).forEach(fase => {
+
+    // Título de la fase usando tu función nombreFase()
+    const titulo = document.createElement("div");
+    titulo.className = "bracket-seccion-titulo16";
+    titulo.textContent = nombreFase(fase).toUpperCase();
+
+    bracket.appendChild(titulo);
+
+    fases[fase].forEach(p => {
+      // Obtenemos el estado de pronóstico guardado para este índice
+      const s = stateEliminatoria[p.index];
+
+      const card = document.createElement("div");
+      card.className = "partido16-card";
+
+      card.innerHTML = `
+
+<div class="partido16-num">
+PARTIDO ${p.partido_idx}
+</div>
+
+
+<div class="partido16-teams">
+
+
+<div class="partido16-team local">
+
+  <img class="bandera" src="${obtenerBandera(p.local)}">
+
+  <span class="partido16-team-name">
+    ${p.local}
+  </span>
+
+</div>
+
+
+
+<div class="partido16-score">
+
+${p.goles_local !== null
+
+          ?
+
+          `
+<div class="partido16-resultado-final">
+${p.goles_local} - ${p.goles_visita}
+</div>
+`
+
+          :
+
+          `
+
+<input 
+class="partido16-gol-inp"
+type="number"
+min="0"
+placeholder="–"
+value="${s ? s.gl : ''}"
+oninput="
+setScoreEliminatoria(${p.index},'gl',this.value);
+renderEliminatorias();
+">
+
+<span class="partido16-vs">
+VS
+</span>
+
+<input 
+class="partido16-gol-inp"
+type="number"
+min="0"
+placeholder="–"
+value="${s ? s.gv : ''}"
+oninput="
+setScoreEliminatoria(${p.index},'gv',this.value);
+renderEliminatorias();
+">
+
+`
+
+        }
+
+</div>
+
+
+<div class="partido16-team visita">
+
+<img class="bandera" src="${obtenerBandera(p.visita)}">
+
+<span class="partido16-team-name">
+${p.visita}
+</span>
+
+</div>
+
+
+</div>
+
+
+
+<div class="partido16-resultado">
+
+
+${p.goles_local !== null
+
+          ?
+
+          `
+<div style="
+background:#e8f5e9;
+border:1px solid #4caf50;
+border-radius:8px;
+padding:10px;
+color:#2e7d32;
+font-weight:bold;
+text-align:center;
+width:100%;
+">
+
+FINAL<br>
+
+${p.goles_local} - ${p.goles_visita}
+
+</div>
+`
+
+          :
+
+          `
+
+<button class="r-btn sel-1 ${s && s.res === '1' ? 'active' : ''}"
+onclick="setResEliminatoria(${p.index},'1')">
+1
+</button>
+
+
+<button class="r-btn sel-x ${s && s.res === 'x' ? 'active' : ''}"
+onclick="setResEliminatoria(${p.index},'x')">
+X
+</button>
+
+
+<button class="r-btn sel-2 ${s && s.res === '2' ? 'active' : ''}"
+onclick="setResEliminatoria(${p.index},'2')">
+2
+</button>
+
+`
+
+        }
+
+
+</div>
+
+`;
+
+      bracket.appendChild(card);
     });
+  });
+
+  cont.appendChild(bracket);
+
+
+  // Crear botones según las fases disponibles
+  crearBotonesFases();
 
 }
 
-function nombreFase(fase){
 
-    switch(parseInt(fase)){
+// ===========================================
+// CREAR BOTONES DE GUARDADO POR FASE
+// ===========================================
 
-        case 16:
+function crearBotonesFases() {
 
-            return "🏆 Dieciseisavos";
+  const contenedor = document.getElementById(
+    "botones-fases-eliminatoria"
+  );
 
-        case 8:
 
-            return "🏆 Cuartos";
+  if (!contenedor) return;
 
-        case 4:
 
-            return "🏆 Semifinal";
+  contenedor.innerHTML = "";
 
-        case 3:
 
-            return "🥉 Tercer Lugar";
 
-        case 2:
+  const fasesDisponibles = [...new Set(
 
-            return "🏆 Final";
+    partidosEliminatoria.map(p => parseInt(p.fase))
 
-        default:
+  )];
 
-            return "";
+
+
+  fasesDisponibles.forEach(fase => {
+
+
+
+    // No mostramos 16avos ni 8vos
+    // porque esos se manejan con resultados reales
+
+    if (fase === 32 || fase === 16) {
+
+      return;
 
     }
 
+
+
+    let texto = "";
+
+
+
+    switch (fase) {
+
+
+      case 8:
+        texto = "💾 Guardar Cuartos de Final";
+        break;
+
+
+      case 4:
+        texto = "💾 Guardar Semifinal";
+        break;
+
+
+      case 3:
+        texto = "💾 Guardar Tercer Lugar";
+        break;
+
+
+      case 2:
+        texto = "💾 Guardar Final";
+        break;
+
+
+      default:
+        texto = "💾 Guardar Eliminatoria";
+
+    }
+
+
+
+    const boton = document.createElement("button");
+
+
+    boton.className = "btn-enviar";
+
+
+    boton.textContent = texto;
+
+
+
+    boton.onclick = function () {
+
+
+      enviarEliminatoriaFase(fase);
+
+
+    };
+
+
+
+    contenedor.appendChild(boton);
+
+
+
+  });
+
+
+
 }
 
-cargarResultadosReales();
-updateStats();
+async function buscarFolioEliminatoria() {
 
+  const folio = document.getElementById("folioEliminatoria").value;
+
+
+  if (!folio) {
+
+    alert("Ingrese su folio");
+    return;
+
+  }
+
+
+  try {
+
+
+    const response = await fetch(
+      `/buscar_folio.php?folio=${folio}`
+    );
+
+
+    const data = await response.json();
+
+
+
+    if (!data.ok) {
+
+      alert(data.error);
+      return;
+
+    }
+
+
+
+    folioEliminatoriaActual = data.participante.id;
+    participanteEliminatoria = data.participante;
+
+
+
+    document.getElementById(
+      "datos-participante-eliminatoria"
+    ).style.display = "block";
+
+
+
+    document.getElementById(
+      "dato-folio"
+    ).textContent = data.participante.id;
+
+
+
+    document.getElementById(
+      "dato-nombre"
+    ).textContent = data.participante.nombre;
+
+
+
+    document.getElementById(
+      "dato-empresa"
+    ).textContent = data.participante.empresa;
+
+
+
+    document.getElementById(
+      "eliminatorias-container"
+    ).style.display = "block";
+
+
+
+    cargarEliminatorias();
+
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Error buscando folio");
+
+  }
+
+}
+
+async function enviarEliminatoriaFase(fase) {
+
+
+  if (!folioEliminatoriaActual) {
+
+    alert("Primero ingrese su folio");
+    return;
+
+  }
+
+
+  let pronosticos = [];
+
+
+  partidosEliminatoria.forEach((p, i) => {
+
+
+    if (parseInt(p.fase) === fase) {
+
+
+      const s = stateEliminatoria[i];
+
+
+      if (s && s.res !== null) {
+
+
+        pronosticos.push({
+
+          partido_id: p.id,
+          gl: s.gl,
+          gv: s.gv,
+          res: s.res
+
+        });
+
+
+      }
+
+
+    }
+
+
+  });
+
+
+
+  if (pronosticos.length === 0) {
+
+    alert("No existen pronósticos para esta fase");
+    return;
+
+  }
+
+
+
+  const datos = {
+
+
+    folio: folioEliminatoriaActual,
+
+    fase: fase,
+
+    partidos: pronosticos
+
+
+  };
+
+
+
+  try {
+
+
+    const response = await fetch(
+      "/guardar_eliminatoria.php",
+      {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(datos)
+
+      }
+    );
+
+
+
+    const data = await response.json();
+
+
+
+    if (data.ok) {
+
+
+      alert(
+        "Pronósticos guardados correctamente"
+      );
+
+
+      generarPDFEliminatoria(fase);
+
+
+
+    } else {
+
+
+      alert(data.error);
+
+
+    }
+
+
+
+  } catch (error) {
+
+
+    console.error(error);
+
+    alert("Error guardando");
+
+  }
+
+
+}
+
+function textoPDF(texto){
+
+    if(!texto) return "";
+
+    return texto
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"");
+
+}
+// ===========================================
+// PDF ELIMINATORIAS POR FASE
+// ===========================================
+
+async function generarPDFEliminatoria(fase) {
+
+
+
+  if (!folioEliminatoriaActual) {
+
+    alert("No existe folio");
+    return;
+
+  }
+
+  if (!logoIMEX) {
+    await cargarLogoIMEX();
+  }
+
+
+
+  const partidosPDF = [];
+
+
+  partidosEliminatoria.forEach((p, i) => {
+
+
+    if (parseInt(p.fase) === fase) {
+
+
+      const s = stateEliminatoria[i];
+
+
+      if (s && s.res !== null) {
+
+
+        partidosPDF.push({
+
+          partido: p.partido_idx,
+
+          local: p.local,
+
+          visita: p.visita,
+
+          fecha: p.fecha || "",
+
+          sede: p.sede || "",
+
+          gl: s.gl,
+
+          gv: s.gv,
+
+          res: s.res
+
+        });
+
+      }
+
+    }
+
+  });
+
+
+
+  if (partidosPDF.length === 0) {
+
+    alert("No hay partidos registrados para esta fase");
+
+    return;
+
+  }
+
+
+
+  const { jsPDF } = window.jspdf;
+
+
+  const doc = new jsPDF({
+
+    orientation: "portrait",
+
+    unit: "mm",
+
+    format: "a4"
+
+  });
+
+
+
+  let y = 40;
+
+
+
+  // ============================
+  // ENCABEZADO
+  // ============================
+
+
+  doc.setFillColor(0, 60, 105);
+
+  doc.rect(
+    0,
+    0,
+    210,
+    35,
+    "F"
+  );
+
+
+  doc.setTextColor(
+    255,
+    255,
+    255
+  );
+// ===============================
+// ENCABEZADO CON LOGO
+// ===============================
+
+if(logoIMEX){
+
+    // Fondo blanco detrás del logo
+    doc.setFillColor(255,255,255);
+
+    doc.rect(
+        15,
+        7,
+        45,
+        25,
+        "F"
+    );
+
+
+    // Logo IMEX
+    doc.addImage(
+        logoIMEX,
+        "PNG",
+        20,
+        10,
+        35,
+        18
+    );
+
+}
+
+
+  doc.setFontSize(18);
+
+  doc.text(
+    "QUINIELA MUNDIAL 2026",
+    105,
+    20,
+    {
+      align: "center"
+    }
+  );
+
+
+  doc.setFontSize(13);
+
+
+  let tituloPDF = "";
+
+  switch (parseInt(fase)) {
+
+    case 32:
+      tituloPDF = "DIECISEISAVOS DE FINAL";
+      break;
+
+    case 16:
+      tituloPDF = "OCTAVOS DE FINAL";
+      break;
+
+    case 8:
+      tituloPDF = "CUARTOS DE FINAL";
+      break;
+
+    case 4:
+      tituloPDF = "SEMIFINALES";
+      break;
+
+    case 3:
+      tituloPDF = "TERCER LUGAR";
+      break;
+
+    case 2:
+      tituloPDF = "FINAL";
+      break;
+
+    default:
+      tituloPDF = "ELIMINATORIAS";
+  }
+
+
+
+  doc.text(
+
+    tituloPDF,
+
+    105,
+
+    25,
+
+    { align: "center" }
+
+  );
+
+
+
+  y = 45;
+
+
+
+  // ============================
+  // DATOS PARTICIPANTE
+  // ============================
+
+
+  doc.setTextColor(0, 0, 0);
+
+
+  doc.setFontSize(11);
+
+
+  doc.text(
+
+    "Folio: " + folioEliminatoriaActual,
+
+    20,
+
+    y
+
+  );
+
+
+  y += 7;
+
+
+  doc.text(
+
+    "Participante: " + participanteEliminatoria.nombre,
+
+    20,
+
+    y
+
+  );
+
+
+  y += 7;
+
+
+  if (participanteEliminatoria.empresa) {
+
+    doc.text(
+
+      "Empresa: " + participanteEliminatoria.empresa,
+
+      20,
+
+      y
+
+    );
+
+    y += 7;
+
+  }
+
+
+
+  y += 8;
+
+
+
+  // ============================
+  // TABLA
+  // ============================
+
+
+  partidosPDF.forEach((p, index) => {
+
+
+    if (y > 260) {
+
+      doc.addPage();
+
+      y = 20;
+
+    }
+
+
+
+    // tarjeta partido
+
+    doc.setFillColor(
+      245,
+      245,
+      245
+    );
+
+
+    doc.rect(
+      15,
+      y - 5,
+      180,
+      35
+    );
+
+
+
+    doc.setFontSize(10);
+
+
+
+    doc.text(
+
+      "PARTIDO " + p.partido,
+
+      20,
+
+      y + 7
+
+    );
+
+
+
+    doc.setFontSize(12);
+
+
+
+    doc.text(
+
+      textoPDF(p.local) + "  vs  " + textoPDF(p.visita),
+
+      20,
+
+      y + 15
+
+    );
+
+
+
+    let resultado = "";
+
+
+    if (p.res === "1") {
+
+      resultado = "Gana Local (1)";
+
+    }
+    else if (p.res === "2") {
+
+      resultado = "Gana Visitante (2)";
+
+    }
+    else {
+
+      resultado = "Empate";
+
+    }
+
+
+    doc.setFontSize(10);
+
+
+    doc.text(
+
+      "Pronóstico: " + p.gl + " - " + p.gv + "  " + resultado,
+
+      20,
+
+      y + 24
+
+    );
+
+
+    y += 38;
+
+
+
+  });
+
+
+
+  // ============================
+  // PIE
+  // ============================
+
+
+  doc.setFontSize(9);
+
+
+  doc.text(
+
+    "Documento generado como comprobante de registro.",
+
+    20,
+
+    285
+
+  );
+
+
+
+  let nombre = "Eliminatoria";
+
+
+  switch (fase) {
+
+
+    case 32:
+
+      nombre = "Dieciseisavos";
+
+      break;
+
+
+    case 16:
+
+      nombre = "Octavos";
+
+      break;
+
+
+    case 8:
+
+      nombre = "Cuartos";
+
+      break;
+
+
+    case 4:
+
+      nombre = "Semifinal";
+
+      break;
+
+
+    case 3:
+
+      nombre = "Tercer_Lugar";
+
+      break;
+
+
+    case 2:
+
+      nombre = "Final";
+
+      break;
+
+
+  }
+
+
+
+  doc.save(
+
+    `Quiniela_${nombre}_Folio_${folioEliminatoriaActual}.pdf`
+
+  );
+
+
+}

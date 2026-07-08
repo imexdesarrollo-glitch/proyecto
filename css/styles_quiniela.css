@@ -912,131 +912,371 @@ table tbody tr:hover td {
 
 }
 
-/* ── BRACKET FORM 16AVOS ── */
+/* ==========================================
+   ELIMINATORIAS - MISMO ESTILO FASE GRUPOS
+   ========================================== */
+
 .bracket-grid-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 8px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 8px;
 }
+
+
+/* CARD */
 
 .partido16-card {
-  background: var(--card-bg, #1e1e2e);
-  border: 1.5px solid rgba(255,255,255,.08);
-  border-radius: 14px;
-  padding: 16px;
-  transition: border-color .2s;
+
+    background: rgba(255,255,255,0.85);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border-radius:20px;
+
+    border:1px solid rgba(255,255,255,.4);
+
+    padding:18px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+
+    transition:.2s;
 }
+
+
+.partido16-card:hover {
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+}
+
 
 .partido16-card.completado {
-  border-color: rgba(249,168,37,.35);
+
+    border-color:var(--amarillo);
+
 }
+
+
+
+/* NUMERO */
 
 .partido16-num {
-  font-size: 10px;
-  color: rgba(255,255,255,.3);
-  font-weight: 700;
-  letter-spacing: .08em;
-  margin-bottom: 10px;
-  text-transform: uppercase;
+
+    font-size:11px;
+    color:var(--texto-sec);
+    font-weight:800;
+    letter-spacing:.08em;
+    margin-bottom:14px;
+    text-transform:uppercase;
+
 }
+
+
+
+/* CONTENEDOR PARTIDO */
 
 .partido16-teams {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+
+    display:grid;
+
+    grid-template-columns:1fr auto 1fr;
+
+    align-items:center;
+
+    gap:15px;
+
 }
+
+
+
+/* EQUIPOS */
 
 .partido16-team {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
 }
+
+
+.partido16-team:first-child {
+
+    justify-content:flex-end;
+
+    text-align:right;
+
+}
+
+
+.partido16-team:last-child {
+
+    justify-content:flex-start;
+
+    text-align:left;
+
+}
+
+
+
+/* BANDERAS */
+
+.partido16-team img,
+.partido16-team .bandera {
+
+    width:32px;
+
+    height:32px;
+
+    object-fit:contain;
+
+    border-radius:4px;
+
+}
+
+
+
+/* NOMBRE */
 
 .partido16-team-name {
-  flex: 1;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--texto, #fff);
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#1a1a1a;
+
+    white-space:nowrap;
+
 }
+
+
+
+/* CENTRO MARCADOR */
+
+.partido16-score {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+}
+
+
 
 .partido16-gol-inp {
-  width: 48px;
-  padding: 7px;
-  text-align: center;
-  background: rgba(255,255,255,.06);
-  border: 1.5px solid rgba(255,255,255,.12);
-  border-radius: 8px;
-  color: #f9a825;
-  font-size: 16px;
-  font-weight: 900;
+
+    width:42px;
+
+    height:38px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:800;
+
+    color:#111;
+
+    background:#f1f3f5;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
 }
+
+
 
 .partido16-gol-inp:focus {
-  outline: none;
-  border-color: #f9a825;
-  background: rgba(249,168,37,.08);
+
+    outline:none;
+
+    border-color:var(--amarillo);
+
+    background:white;
+
 }
+
+
 
 .partido16-vs {
-  text-align: center;
-  font-size: 9px;
-  color: rgba(255,255,255,.2);
-  font-weight: 700;
-  letter-spacing: .1em;
-  padding: 2px 0;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    color:var(--texto-sec);
+
 }
+
+
+
+/* MARCADOR FINAL CUANDO YA EXISTE */
+
+.partido16-resultado-final {
+
+    font-size:22px;
+
+    font-weight:900;
+
+    color:var(--verde);
+
+}
+
+
+
+/* BOTONES */
 
 .partido16-resultado {
-  margin-top: 10px;
-  display: flex;
-  gap: 6px;
-  justify-content: center;
+
+    margin-top:15px;
+
+    display:flex;
+
+    gap:6px;
+
 }
+
 
 .partido16-resultado .r-btn {
-  flex: 1;
-  padding: 6px 4px;
-  border: 1.5px solid rgba(255,255,255,.1);
-  border-radius: 8px;
-  background: transparent;
-  color: rgba(255,255,255,.4);
-  font-size: 11px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all .2s;
+
+    flex:1;
+
+    padding:7px;
+
+    border-radius:8px;
+
+    border:1px solid var(--borde);
+
+    background:white;
+
+    color:var(--texto-sec);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
 }
+
 
 .partido16-resultado .r-btn.sel-1 {
-  background: rgba(0,60,105,.4);
-  border-color: #003c69;
-  color: #5ba4e0;
+
+    background:var(--verde-light);
+
+    border-color:var(--verde);
+
+    color:var(--verde-dark);
+
 }
+
+
 .partido16-resultado .r-btn.sel-x {
-  background: rgba(249,168,37,.15);
-  border-color: #f9a825;
-  color: #f9a825;
+
+    background:var(--amarillo-light);
+
+    border-color:var(--amarillo);
+
+    color:#7a5c00;
+
 }
+
+
 .partido16-resultado .r-btn.sel-2 {
-  background: rgba(211,47,47,.2);
-  border-color: #d32f2f;
-  color: #ff5252;
+
+    background:var(--rojo-light);
+
+    border-color:var(--rojo);
+
+    color:var(--rojo);
+
 }
+
+
+
+/* TITULO SECCION */
 
 .bracket-seccion-titulo16 {
-  grid-column: 1 / -1;
-  text-align: center;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: #f9a825;
-  padding: 10px 0 4px;
-  border-bottom: 1px solid rgba(255,255,255,.06);
+
+    grid-column:1/-1;
+
+    text-align:center;
+
+    color:var(--amarillo);
+
+    font-size:12px;
+
+    font-weight:800;
+
+    padding:12px;
+
+    letter-spacing:.1em;
+
+    text-transform:uppercase;
+
 }
 
-@media (max-width: 640px) {
-  .bracket-grid-form { grid-template-columns: 1fr; }
+
+
+/* RESPONSIVE */
+
+@media(max-width:640px){
+
+    .bracket-grid-form{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .partido16-teams{
+
+        grid-template-columns:1fr;
+
+        gap:12px;
+
+    }
+
+
+    .partido16-team:first-child,
+    .partido16-team:last-child{
+
+        justify-content:center;
+
+        text-align:center;
+
+    }
+
+
+    .partido16-score{
+
+        justify-content:center;
+
+    }
+
+}
+
+.partido16-score{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    justify-content:center;
+}
+
+.partido16-resultado-final{
+    font-size:22px;
+    font-weight:900;
+    color:var(--verde);
 }

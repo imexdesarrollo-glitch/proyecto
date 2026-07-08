@@ -107,39 +107,85 @@ function calcularPuntos($quinielaJson, $resultados, $grupos) {
     return compact('puntos','exactos','ganadores','jugados');
 }
 
-function calcularPuntos16($quinielaId, $res16Arr, $conn) {
+
+function calcularPuntosEliminatoria($quinielaId, $fase, $resultados, $conn)
+{
     $stmt = $conn->prepare("
-        SELECT quiniela_json FROM quinielas_16avos WHERE quiniela_id = ? LIMIT 1
+        SELECT quiniela_json
+        FROM quinielas_eliminatorias
+        WHERE quiniela_id = ?
+        AND fase = ?
+        LIMIT 1
     ");
-    $stmt->bind_param("i", $quinielaId);
+
+    $stmt->bind_param("ii", $quinielaId, $fase);
     $stmt->execute();
-    $result = $stmt->get_result();
+
+    $res = $stmt->get_result();
+
     $stmt->close();
 
-    if ($result->num_rows === 0) {
-        return ['puntos' => 0, 'exactos' => 0, 'ganadores' => 0, 'jugados' => 0];
+    if ($res->num_rows == 0) {
+        return [
+            'puntos'    => 0,
+            'exactos'   => 0,
+            'ganadores' => 0,
+            'jugados'   => 0
+        ];
     }
 
-    $quiniela = json_decode($result->fetch_assoc()['quiniela_json'], true) ?? [];
-    $puntos = 0; $exactos = 0; $ganadores = 0; $jugados = 0;
+    $quiniela = json_decode(
+        $res->fetch_assoc()['quiniela_json'],
+        true
+    );
 
-    foreach ($quiniela as $pi => $pron) {
-        $real = $res16Arr[$pi] ?? null;
-        if (!$real || $real['goles_local'] === null) continue;
-        if (!isset($pron['res']) || !$pron['res'])   continue;
+    $puntos = 0;
+    $exactos = 0;
+    $ganadores = 0;
+    $jugados = 0;
+
+    foreach ($quiniela as $pron) {
+
+        $partidoId = $pron['partido_id'];
+
+        if (!isset($resultados[$partidoId])) {
+            continue;
+        }
+
+        $real = $resultados[$partidoId];
+
+        if (
+            $real['goles_local'] === null ||
+            $real['goles_visita'] === null
+        ) {
+            continue;
+        }
 
         $jugados++;
-        $esExacto = (string)$pron['gl'] === (string)$real['goles_local']
-                 && (string)$pron['gv'] === (string)$real['goles_visita'];
+
+        $esExacto =
+            (string)$pron['gl'] == (string)$real['goles_local'] &&
+            (string)$pron['gv'] == (string)$real['goles_visita'];
 
         if ($esExacto) {
-            $puntos += 3; $exactos++;
-        } elseif ($pron['res'] === $real['res']) {
-            $puntos += 1; $ganadores++;
+
+            $puntos += 3;
+            $exactos++;
+
+        } elseif ($pron['res'] == $real['res']) {
+
+            $puntos += 1;
+            $ganadores++;
+
         }
     }
 
-    return compact('puntos', 'exactos', 'ganadores', 'jugados');
+    return compact(
+        'puntos',
+        'exactos',
+        'ganadores',
+        'jugados'
+    );
 }
 
 // ── Cargar resultados reales de la BD ──
@@ -150,17 +196,35 @@ while ($row = $rows->fetch_assoc()) {
 }
 $partidosJugados = count($resultados);
 
-// Resultados 16avos
-$res16 = [];
-$rows16 = $conn->query("
-    SELECT * FROM resultados_16avos
+$resultadosEliminatoria = [];
+
+$q = $conn->query("
+SELECT r.*
+FROM resultados_eliminatorias r
+INNER JOIN partidos_eliminatorias p 
+ON r.fase = p.fase 
+AND r.partido_idx = p.partido_idx
+WHERE p.evaluable = 1
 ");
-if ($rows16) {
-    while ($r = $rows16->fetch_assoc()) {
-        $res16[$r['partido_idx']] = $r;
-    }
+
+while($r = $q->fetch_assoc()){
+
+    $resultadosEliminatoria[$r['id']] = $r;
+
 }
-$partidos16Jugados = count(array_filter($res16, fn($r) => $r['goles_local'] !== null));
+
+$partidosEliminatoriaJugados = count(
+    array_filter(
+        $resultadosEliminatoria,
+        fn($p)=>$p['goles_local']!==null
+    )
+);
+
+$totalPartidosJugados = 
+    $partidosJugados + 
+    $partidosEliminatoriaJugados;
+
+$totalPartidosMundial = 104;
 
 // ── Autenticación por correo o folio ──
 $acceso     = false;
@@ -211,24 +275,170 @@ if ($acceso) {
     $totalParticipantes = $todos->num_rows;
 
     while ($q = $todos->fetch_assoc()) {
-    $stats   = calcularPuntos($q['quiniela_json'], $resultados, $grupos);
-    $stats16 = calcularPuntos16($q['id'], $res16, $conn);
+      $stats = calcularPuntos(
+    $q['quiniela_json'],
+    $resultados,
+    $grupos
+);
 
-    $ranking[] = [
-        'id'        => $q['id'],
-        'nombre'    => $q['nombre'],
-        'empresa'   => $q['empresa'] ?? '',
-        'puntos'    => $stats['puntos']    + $stats16['puntos'],
-        'exactos'   => $stats['exactos']   + $stats16['exactos'],
-        'ganadores' => $stats['ganadores'] + $stats16['ganadores'],
-        'jugados'   => $stats['jugados']   + $stats16['jugados'],
-        'esYo'      => ($q['id'] == ($_SESSION['quiniela_id'] ?? 0)),
-    ];
+$elim32 = calcularPuntosEliminatoria(
+    $q['id'],
+    32,
+    $resultadosEliminatoria,
+    $conn
+);
+
+$elim16 = calcularPuntosEliminatoria(
+    $q['id'],
+    16,
+    $resultadosEliminatoria,
+    $conn
+);
+
+$elim8 = calcularPuntosEliminatoria(
+    $q['id'],
+    8,
+    $resultadosEliminatoria,
+    $conn
+);
+
+$elim4 = calcularPuntosEliminatoria(
+    $q['id'],
+    4,
+    $resultadosEliminatoria,
+    $conn
+);
+
+$elim3 = calcularPuntosEliminatoria(
+    $q['id'],
+    3,
+    $resultadosEliminatoria,
+    $conn
+);
+
+$elim2 = calcularPuntosEliminatoria(
+    $q['id'],
+    2,
+    $resultadosEliminatoria,
+    $conn
+);
+
+$bonus = 0;
+
+$stmtBonus = $conn->prepare("
+    SELECT SUM(puntos) total
+    FROM puntos_bonus
+    WHERE quiniela_id = ?
+");
+
+$stmtBonus->bind_param(
+    "i",
+    $q['id']
+);
+
+$stmtBonus->execute();
+
+$rBonus = $stmtBonus->get_result()->fetch_assoc();
+
+$bonus = $rBonus['total'] ?? 0;
+
+// Bonus otorgado por 16avos + 8vos
+$bonusGanadores = 0;
+$bonusEvaluados = 0;
+
+if($bonus > 0){
+    $bonusGanadores = 24;
+    $bonusEvaluados = 24;
+}
+
+$ranking[] = [
+
+    'id'=>$q['id'],
+
+    'nombre'=>$q['nombre'],
+
+    'empresa'=>$q['empresa'],
+
+    'puntos'=>
+
+        $stats['puntos']+
+
+        $elim32['puntos']+
+
+        $elim16['puntos']+
+
+        $elim8['puntos']+
+
+        $elim4['puntos']+
+
+        $elim3['puntos']+
+
+        $elim2['puntos']+
+
+        $bonus,
+
+    'exactos'=>
+
+        $stats['exactos']+
+
+        $elim32['exactos']+
+
+        $elim16['exactos']+
+
+        $elim8['exactos']+
+
+        $elim4['exactos']+
+
+        $elim3['exactos']+
+
+        $elim2['exactos'],
+
+    'ganadores'=>
+
+        $stats['ganadores']+
+
+        $elim32['ganadores']+
+
+        $elim16['ganadores']+
+
+        $elim8['ganadores']+
+
+        $elim4['ganadores']+
+
+        $elim3['ganadores']+
+
+        $elim2['ganadores']+
+
+        $bonusGanadores,
+
+    'jugados'=>
+
+        $stats['jugados']+
+
+        $elim32['jugados']+
+
+        $elim16['jugados']+
+
+        $elim8['jugados']+
+
+        $elim4['jugados']+
+
+        $elim3['jugados']+
+
+        $elim2['jugados']+
+
+        $bonusEvaluados,
+
+    'esYo'=>($q['id']==($_SESSION['quiniela_id']??0))
+
+];
 }
 
     // Ordenar: más puntos → más exactos como desempate
     usort($ranking, fn($a,$b) => $b['puntos'] <=> $a['puntos'] ?: $b['exactos'] <=> $a['exactos']);
 }
+
+
 
 // ── Mi posición ──
 $miPos   = 1;
@@ -307,19 +517,45 @@ foreach ($ranking as $idx => $r) {
 <div class="hero">
   <h1>MUNDIAL <span>2026</span></h1>
   <p>Tabla de posiciones en tiempo real</p>
-  <?php if ($acceso): ?>
-  <div class="hero-stats">
-    <div class="hs"><div class="hs-num"><?= $totalParticipantes ?></div><div class="hs-lbl">Participantes</div></div>
-    <div class="hs"><div class="hs-num"><?= $partidosJugados ?></div><div class="hs-lbl">Partidos jugados</div></div>
-    <div class="hs"><div class="hs-num"><?= !empty($ranking) ? $ranking[0]['puntos'] : 0 ?></div><div class="hs-lbl">Puntaje líder</div></div>
-    <div class="hs">
-  <div class="hs-num"><?= $partidosJugados + $partidos16Jugados ?></div>
-  <div class="hs-lbl">Partidos jugados</div>
-</div>
-  </div>
-  <?php endif; ?>
-</div>
 
+  <?php if ($acceso): ?>
+
+  <div class="hero-stats">
+
+    <div class="hs">
+      <div class="hs-num"><?= $totalParticipantes ?></div>
+      <div class="hs-lbl">Participantes</div>
+    </div>
+
+    <div class="hs">
+      <div class="hs-num"><?= $partidosJugados ?></div>
+      <div class="hs-lbl">Fase De Grupos</div>
+    </div>
+
+    <div class="hs">
+      <div class="hs-num"><?= $partidosEliminatoriaJugados ?></div>
+      <div class="hs-lbl">Eliminatorias</div>
+    </div>
+
+    <div class="hs">
+      <div class="hs-num">
+        <?= $partidosJugados + $partidosEliminatoriaJugados ?>
+      </div>
+      <div class="hs-lbl">Total Partidos Evaluados</div>
+    </div>
+
+    <div class="hs">
+      <div class="hs-num">
+        <?= !empty($ranking) ? $ranking[0]['puntos'] : 0 ?>
+      </div>
+      <div class="hs-lbl">Puntaje líder</div>
+    </div>
+
+  </div>
+
+  <?php endif; ?>
+
+</div>
 <?php if (!$acceso): ?>
 <!-- ── PANTALLA DE LOGIN ── -->
 <div class="login-wrap">
@@ -356,7 +592,7 @@ foreach ($ranking as $idx => $r) {
       <div class="mi-detalle">
         ⚡ <?= $miDatos['exactos'] ?> marcadores exactos (×3 pts)
         &nbsp;·&nbsp; ✅ <?= $miDatos['ganadores'] ?> ganadores (×1 pt)
-        &nbsp;·&nbsp; 📋 <?= $miDatos['jugados'] ?> partidos evaluados
+        &nbsp;·&nbsp; 📋 <?= $totalPartidosJugados ?> / <?= $totalPartidosMundial ?> partidos evaluados
       </div>
     </div>
     <div class="mi-pts">
